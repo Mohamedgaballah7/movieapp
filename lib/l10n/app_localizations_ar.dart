@@ -1,0 +1,155 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for Arabic (`ar`).
+class AppLocalizationsAr extends AppLocalizations {
+  AppLocalizationsAr([String locale = 'ar']) : super(locale);
+
+  @override
+  String get explore_now => 'استكشف الآن';
+
+  @override
+  String get find_your_next_favorite => 'ابحث عن فيلمك المفضل القادم هنا';
+
+  @override
+  String get get_access_library =>
+      'احصل على وصول إلى مكتبة ضخمة من الأفلام تناسب جميع الأذواق. بالتأكيد ستعجبك.';
+
+  @override
+  String get next => 'التالي';
+
+  @override
+  String get back => 'السابق';
+
+  @override
+  String get discover_movies => 'اكتشف الأفلام';
+
+  @override
+  String get explore_vast_collection =>
+      'استكشف مجموعة واسعة من الأفلام بجميع الجودات والأنواع. ابحث عن فيلمك المفضل بسهولة.';
+
+  @override
+  String get explore_all_genres => 'استكشف جميع الأنواع';
+
+  @override
+  String get discover_movies_genre =>
+      'اكتشف الأفلام من كل نوع وبجميع الجودات المتاحة. ستجد شيئًا جديدًا وممتعًا لمشاهدته كل يوم.';
+
+  @override
+  String get create_watch_lists => 'أنشئ قوائم مشاهدة';
+
+  @override
+  String get share_your_thoughts =>
+      'شارك أفكارك حول الأفلام التي شاهدتها. تعمق في تفاصيل الفيلم وساعد الآخرين على اكتشاف أفلام رائعة من خلال مراجعاتك.';
+
+  @override
+  String get rate_review_learn => 'قيّم، راجع، وتعلّم';
+
+  @override
+  String get start_watching_now => 'ابدأ المشاهدة الآن';
+
+  @override
+  String get finish => 'إنهاء';
+
+  @override
+  String get verify_email => 'تأكيد البريد الإلكتروني';
+
+  @override
+  String get action => 'أكشن';
+
+  @override
+  String get see_more => 'شاهد المزيد';
+
+  @override
+  String get watch => 'مشاهدة';
+
+  @override
+  String get screen_shot => 'لقطات شاشة';
+
+  @override
+  String get search => 'بحث';
+
+  @override
+  String get similar => 'مشابه';
+
+  @override
+  String get summary => 'الملخص';
+
+  @override
+  String get cast => 'طاقم العمل';
+
+  @override
+  String get genres => 'الأنواع';
+
+  @override
+  String get edit_profile => 'تعديل الملف الشخصي';
+
+  @override
+  String get history => 'السجل';
+
+  @override
+  String get pick_avatar => 'اختر صورة رمزية';
+
+  @override
+  String get update_data => 'تحديث البيانات';
+
+  @override
+  String get delete_account => 'حذف الحساب';
+
+  @override
+  String get login => 'تسجيل الدخول';
+
+  @override
+  String get email => 'البريد الإلكتروني';
+
+  @override
+  String get password => 'كلمة المرور';
+
+  @override
+  String get re_password => 'أعد كلمة المرور';
+
+  @override
+  String get name => 'الاسم';
+
+  @override
+  String get register => 'تسجيل';
+
+  @override
+  String get create_one => 'أنشئ حساب';
+
+  @override
+  String get forget_password => 'نسيت كلمة المرور؟';
+
+  @override
+  String get reset_password => 'إعادة تعيين كلمة المرور';
+
+  @override
+  String get please_enter_password => 'من فضلك أدخل على الأقل 6 أحرف';
+
+  @override
+  String get please_valid_password => 'من فضلك أدخل كلمة مرور صحيحة';
+
+  @override
+  String get please_enter_email => 'من فضلك أدخل البريد الإلكتروني';
+
+  @override
+  String get please_valid_email => 'من فضلك أدخل بريد إلكتروني صحيح';
+
+  @override
+  String get please_enter_name => 'من فضلك أدخل الاسم';
+
+  @override
+  String get already_have_account => 'لديك حساب بالفعل؟';
+
+  @override
+  String get or => 'أو';
+
+  @override
+  String get login_with_google => 'تسجيل الدخول باستخدام جوجل';
+
+  @override
+  String get exit => 'خروج';
+}
