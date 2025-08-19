@@ -42,11 +42,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get create_watch_lists => 'Create WatchLists';
 
   @override
-  String get share_your_thoughts =>
-      'Share your thoughts on the movies you\'ve watched. Dive deep into film details and help others discover great movies with your reviews.';
+  String get save_movies_watchlist =>
+      'Save movies to your watchlist to keep track of what you want to watch next. Enjoy films in various qualities and genres.';
 
   @override
   String get rate_review_learn => 'Rate, Review, and Learn';
+
+  @override
+  String get share_your_thoughts =>
+      'Share your thoughts on the movies you\'ve watched. Dive deep into film details and help others discover great movies with your reviews.';
 
   @override
   String get start_watching_now => 'Start Watching Now';
@@ -152,4 +156,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get exit => 'Exit';
+
+  @override
+  String get get_started => 'Get Started';
 }

@@ -9,8 +9,9 @@
 "explore_all_genres":"Explore All Genres",
 "discover_movies_genre":"Discover movies from every genre, in all available qualities. Find something new and exciting to watch every day.",
 "create_watch_lists":"Create WatchLists",
-"share_your_thoughts":"Share your thoughts on the movies you've watched. Dive deep into film details and help others discover great movies with your reviews.",
+  "save_movies_watchlist": "Save movies to your watchlist to keep track of what you want to watch next. Enjoy films in various qualities and genres.",
 "rate_review_learn":"Rate, Review, and Learn",
+  "share_your_thoughts": "Share your thoughts on the movies you've watched. Dive deep into film details and help others discover great movies with your reviews.",
 "start_watching_now":"Start Watching Now",
 "finish":"Finish",
 "verify_email":"Verify Email",
@@ -45,5 +46,6 @@
 "already_have_account":"Already Have Account ?",
 "or":"Or",
 "login_with_google":"Login With Google",
-"exit":"Exit"
+  "exit": "Exit",
+  "get_started": "Get Started"
 }

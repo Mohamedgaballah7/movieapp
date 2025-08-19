@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movieapproute/onboarding_screens/onboarding_screens.dart';
 import 'package:movieapproute/utils/app_routes.dart';
 import 'package:movieapproute/utils/app_theme.dart';
 
@@ -10,16 +11,14 @@ void main(){
   runApp( MyApp());
 }
 
-class MyApp extends StatelessWidget
-{
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.homeRouteName,
+      initialRoute: AppRoutes.onBoardingRouteName,
       routes: {
+        AppRoutes.onBoardingRouteName: (context) => OnboardingScreens(),
         AppRoutes.homeRouteName:(context)=>Homescreen(),
       },
       theme: AppTheme.lightTheme,

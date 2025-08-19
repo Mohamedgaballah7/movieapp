@@ -158,17 +158,23 @@ abstract class AppLocalizations {
   /// **'Create WatchLists'**
   String get create_watch_lists;
 
-  /// No description provided for @share_your_thoughts.
+  /// No description provided for @save_movies_watchlist.
   ///
   /// In en, this message translates to:
-  /// **'Share your thoughts on the movies you\'ve watched. Dive deep into film details and help others discover great movies with your reviews.'**
-  String get share_your_thoughts;
+  /// **'Save movies to your watchlist to keep track of what you want to watch next. Enjoy films in various qualities and genres.'**
+  String get save_movies_watchlist;
 
   /// No description provided for @rate_review_learn.
   ///
   /// In en, this message translates to:
   /// **'Rate, Review, and Learn'**
   String get rate_review_learn;
+
+  /// No description provided for @share_your_thoughts.
+  ///
+  /// In en, this message translates to:
+  /// **'Share your thoughts on the movies you\'ve watched. Dive deep into film details and help others discover great movies with your reviews.'**
+  String get share_your_thoughts;
 
   /// No description provided for @start_watching_now.
   ///
@@ -379,6 +385,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Exit'**
   String get exit;
+
+  /// No description provided for @get_started.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get get_started;
 }
 
 class _AppLocalizationsDelegate
