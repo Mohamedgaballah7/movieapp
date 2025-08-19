@@ -34,8 +34,10 @@
   "re_password": "أعد كلمة المرور",
   "name": "الاسم",
   "register": "تسجيل",
-  "create_one": "أنشئ حساب",
-  "forget_password": "نسيت كلمة المرور؟",
+  "create_account": "أنشئ حساب",
+  "avatar" : "الصورة الرمزية" ,
+  "forget_password": "نسيت كلمة المرور ؟",
+  "forget_password_bar": "نسيت كلمة المرور",
   "reset_password": "إعادة تعيين كلمة المرور",
   "please_enter_password": "من فضلك أدخل على الأقل 6 أحرف",
   "please_valid_password": "من فضلك أدخل كلمة مرور صحيحة",
@@ -49,5 +51,4 @@
   "dont_have_account": "ليس لديك حساب؟",
   "please_enter_the_same_password": "من فضلك ادخل نفس كلمه المرور",
   "phone_number": "رقم المحمول"
-
 }

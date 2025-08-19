@@ -1,7 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:movieapproute/utils/app_assets.dart';
 import 'package:movieapproute/utils/app_colors.dart';
+import 'package:movieapproute/utils/app_routes.dart';
 import 'package:movieapproute/utils/app_styles.dart';
 import 'package:movieapproute/widgets/animated_toggle_button.dart';
 import 'package:movieapproute/widgets/custom_text_field.dart';
@@ -16,35 +18,36 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController nameController = TextEditingController(text: "youssef");
   TextEditingController emailController = TextEditingController(text: 'youssef@gmail.com');
   bool isObscure = true;
+  bool isObscureRe = true;
   var formKey=GlobalKey<FormState>();
-
-
   TextEditingController passwordController = TextEditingController(text: "1111111");
   TextEditingController confirmPasswordController = TextEditingController(text: "1111111");
 
-  PageController controller = PageController(viewportFraction: 0.35,initialPage: 4);
+  PageController controller = PageController(
+      viewportFraction: 0.35, initialPage: 3);
 
-   int currentPage = 4;
+  int currentPage = 3;
 
-   List<String>avatars = [
-     'assets/images/avatar_1.png',
-     'assets/images/avatar_2.png',
-     'assets/images/avatar_3.png',
-     'assets/images/avatar_4.png',
-     'assets/images/avatar_5.png',
-     'assets/images/avatar_6.png',
-     'assets/images/avatar_7.png',
-     'assets/images/avatar_8.png',
-     'assets/images/avatar_9.png',
+  List<String> avatars = [
+    AppAssets.avatar1Image,
+    AppAssets.avatar2Image,
+    AppAssets.avatar3Image,
+    AppAssets.avatar4Image,
+    AppAssets.avatar5Image,
+    AppAssets.avatar6Image,
+    AppAssets.avatar7Image,
+    AppAssets.avatar8Image,
+    AppAssets.avatar9Image,
    ];
    @override
   void initState() {
     // TODO: implement initState
     super.initState();
-  currentPage=4;
+    currentPage;
    }
 
   @override
@@ -53,7 +56,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Register',style: AppStyles.medium16yellow,),
+        title: Text(AppLocalizations.of(context)!.register,
+          style: AppStyles.medium16yellow,),
       ),
       body: SafeArea(
     child: Column(
@@ -62,7 +66,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
         SizedBox(
           height: height*0.15,
             child: PageView.builder(
-
                   padEnds: true,
                   controller: controller,
               itemCount: avatars.length,
@@ -74,16 +77,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
               itemBuilder: (context, index) {
 
                 if (index == currentPage) {
-
-                  return SizedBox(
-                    
-                  child:CircleAvatar(
-                    backgroundImage: AssetImage('assets/images/avatar_${index+1}.png'),
-                  )
-                    //Image.asset('assets/images/avatar_${index+1}.png',),
-                                  );
+                  return Image.asset(avatars[index], scale: 0.09,);
                 } else {
-                  return Image.asset('assets/images/avatar_${index+1}.png',);
+                  return Image.asset(avatars[index], scale: 1.2);
                 }
 
           },
@@ -94,7 +90,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Avatar", style: AppStyles.medium16White,)
+            Text(AppLocalizations.of(context)!.avatar,
+              style: AppStyles.medium16White,)
           ],
         ),
         SizedBox(height: height*0.01,),
@@ -111,6 +108,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               children: [
                 CustomTextField(
                   controller: nameController,
+                  style: AppStyles.medium16White,
                   prefixIcon: ImageIcon(AssetImage(AppAssets.namePrefixIcon),color: AppColors.whiteColor,),
                   hintText: AppLocalizations.of(context)!.name,
                 ),
@@ -142,7 +140,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   style: AppStyles.medium16White,
                   prefixIcon: ImageIcon(AssetImage(AppAssets.passwordPrefixIcon),color: AppColors.whiteColor,),
                   suffixIcon:
-                  InkWell(
+                  GestureDetector(
                       onTap: (){
                         isObscure = !isObscure;
                         setState(() {
@@ -169,9 +167,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   style: AppStyles.medium16White,
                   prefixIcon: ImageIcon(AssetImage(AppAssets.passwordPrefixIcon),color: AppColors.whiteColor,),
                   suffixIcon:
-                  InkWell(
+                  GestureDetector(
                       onTap: (){
-                        isObscure = !isObscure;
+                        isObscureRe = !isObscureRe;
                         setState(() {
 
                         });
@@ -187,13 +185,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     }
                     return null;
                   },
-                  obscureText: isObscure,
+                  obscureText: isObscureRe,
                 ),
                 SizedBox(height: height*0.024,),
-
-
                 CustomTextField(
-                  controller: nameController,
+                  controller: phoneController,
+                  style: AppStyles.medium16White,
                   prefixIcon: ImageIcon(AssetImage(AppAssets.phonePrefixIcon),color: AppColors.whiteColor,),
                   hintText: AppLocalizations.of(context)!.phone_number,
                 ),
@@ -210,20 +207,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
           )),
         ),
         SizedBox(height: height*0.024,),
-
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(AppLocalizations.of(context)!.already_have_account,style: AppStyles.medium14White,),
-           SizedBox(width: width*0.02,),
-            InkWell(
-                onTap: (){
-                  //todo:go back to login
-                  Navigator.pop(context);
-                },
-                child: Text(AppLocalizations.of(context)!.login,style: AppStyles.bold14Yellow,)),
-          ],
+        RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(
+            children: [
+              TextSpan(
+                text: "${AppLocalizations.of(context)!.already_have_account} ",
+                style: AppStyles.medium14White,
+              ),
+              TextSpan(
+                text: AppLocalizations.of(context)!.login,
+                style: AppStyles.bold14Yellow,
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    //todo:go back to login
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, AppRoutes.loginRouteName, (route) => false);
+                  },
+              ),
+            ],
+          ),
         ),
+
         SizedBox(height: height*0.036,),
 
         AnimatedToggleButtonLanguage()
@@ -244,5 +249,4 @@ class _RegisterScreenState extends State<RegisterScreen> {
       Navigator.pop(context);
     }
   }
-
 }
