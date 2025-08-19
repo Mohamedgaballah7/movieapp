@@ -308,11 +308,11 @@ abstract class AppLocalizations {
   /// **'Register'**
   String get register;
 
-  /// No description provided for @create_one.
+  /// No description provided for @create_account.
   ///
   /// In en, this message translates to:
-  /// **'Create One'**
-  String get create_one;
+  /// **'Create Account'**
+  String get create_account;
 
   /// No description provided for @forget_password.
   ///
@@ -379,6 +379,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Exit'**
   String get exit;
+
+  /// No description provided for @dont_have_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have Account ?'**
+  String get dont_have_account;
+
+  /// No description provided for @please_enter_the_same_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the same password'**
+  String get please_enter_the_same_password;
+
+  /// No description provided for @phone_number.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get phone_number;
 }
 
 class _AppLocalizationsDelegate

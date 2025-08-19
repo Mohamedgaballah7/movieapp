@@ -118,7 +118,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get register => 'Register';
 
   @override
-  String get create_one => 'Create One';
+  String get create_account => 'Create Account';
 
   @override
   String get forget_password => 'Forget Password?';
@@ -152,4 +152,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get exit => 'Exit';
+
+  @override
+  String get dont_have_account => 'Don\'t have Account ?';
+
+  @override
+  String get please_enter_the_same_password => 'Please enter the same password';
+
+  @override
+  String get phone_number => 'Phone Number';
 }
