@@ -45,5 +45,9 @@
   "already_have_account": "لديك حساب بالفعل؟",
   "or": "أو",
   "login_with_google": "تسجيل الدخول باستخدام جوجل",
-  "exit": "خروج"
+  "exit": "خروج",
+  "dont_have_account": "ليس لديك حساب؟",
+  "please_enter_the_same_password": "من فضلك ادخل نفس كلمه المرور",
+  "phone_number": "رقم المحمول"
+
 }

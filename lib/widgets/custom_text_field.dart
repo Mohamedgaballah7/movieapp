@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../utils/app_colors.dart';
 import '../utils/app_styles.dart';
 
-typedef OnValidator = String? Function(String?);
+typedef OnValidator = String? Function(String?)?;
 class CustomTextField extends StatelessWidget {
   Color colorBorderSide;
   Color? cursorColor;
@@ -20,10 +20,10 @@ class CustomTextField extends StatelessWidget {
   bool obscureText ;
   int? maxLines;
   TextStyle? style;
-
+  Color? filledColor;
   CustomTextField({super.key,
-     this.colorBorderSide = AppColors.greyLightColor,
-     this.cursorColor,
+     this.colorBorderSide = AppColors.greyDarkColor,
+     this.cursorColor=AppColors.whiteColor,
      this.hintText,
      this.hintStyle,
      this.labelText,
@@ -36,20 +36,24 @@ class CustomTextField extends StatelessWidget {
      this.obscureText = false,
      this.maxLines,
      this.style,
+    this.filledColor = AppColors.greyDarkColor
    });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+
       decoration: InputDecoration(
+        filled: true,
+        fillColor: filledColor,
         enabledBorder: builtDecorationBorder(colorBorderSide: colorBorderSide),
         focusedBorder: builtDecorationBorder(colorBorderSide: colorBorderSide),
         errorBorder: builtDecorationBorder(colorBorderSide: AppColors.redColor),
         focusedErrorBorder: builtDecorationBorder(colorBorderSide: AppColors.redColor),
         hintText: hintText,
-        hintStyle: hintStyle?? AppStyles.medium12Gray,
+        hintStyle: hintStyle?? AppStyles.medium16White,
         labelText: labelText,
-        labelStyle: labelStyle?? AppStyles.medium12Gray,
+        labelStyle: labelStyle?? AppStyles.medium16White,
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
         errorStyle: AppStyles.medium14White.copyWith(color: AppColors.redColor),

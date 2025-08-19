@@ -19,8 +19,9 @@ class _AnimatedToggleButtonLanguageState extends State<AnimatedToggleButtonLangu
     var width = MediaQuery.of(context).size.width;
     return Center(
       child: ToggleSwitch(
+
         borderColor: [AppColors.yellowColor,AppColors.yellowColor],
-        borderWidth: 1,
+        borderWidth: 0.4,
         cornerRadius: 40.0,
         animate: true,
         minWidth: width*0.11,
