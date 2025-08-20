@@ -121,10 +121,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get create_account => 'Create Account';
 
   @override
-  String get forget_password => 'Forget Password?';
+  String get forget_password => 'Forget Password ?';
+
+  @override
+  String get forget_password_bar => 'Forget Password';
 
   @override
   String get reset_password => 'Reset Password';
+
+  @override
+  String get avatar => 'Avatar';
 
   @override
   String get please_enter_password => 'Please Enter at least 6 Characters ';

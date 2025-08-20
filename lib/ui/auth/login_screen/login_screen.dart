@@ -1,4 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:movieapproute/l10n/app_localizations.dart';
 import 'package:movieapproute/utils/app_assets.dart';
 import 'package:movieapproute/utils/app_colors.dart';
 import 'package:movieapproute/utils/app_routes.dart';
@@ -6,7 +8,6 @@ import 'package:movieapproute/utils/app_styles.dart';
 import 'package:movieapproute/widgets/animated_toggle_button.dart';
 import 'package:movieapproute/widgets/custom_elevated_button.dart';
 import 'package:movieapproute/widgets/custom_text_field.dart';
-import 'package:movieapproute/l10n/app_localizations.dart';
 
 class LoginScreen extends StatefulWidget {
    LoginScreen({super.key});
@@ -17,13 +18,9 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
    TextEditingController emailController = TextEditingController(text: 'youssef@gmail.com');
-
    TextEditingController passwordController = TextEditingController(text: "1111111");
-
    bool isObscure = true;
-
    var formKey=GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -69,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: AppStyles.medium16White,
                       prefixIcon: ImageIcon(AssetImage(AppAssets.passwordPrefixIcon),color: AppColors.whiteColor,),
                       suffixIcon:
-                      InkWell(
+                      GestureDetector(
                         onTap: (){
                           isObscure = !isObscure;
                           setState(() {
@@ -89,22 +86,19 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       obscureText: isObscure,
                     ),
-                    SizedBox(height: height*0.01,),
+                    SizedBox(height: height * 0.02,),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          TextButton(
-
-                            onPressed: (){
+                          GestureDetector(
+                            onTap: () {
                                 //todo: navigate to forget password screen
                               Navigator.pushNamed(context, AppRoutes.forgetPasswordRouteName);
                             },
                              child: Text(AppLocalizations.of(context)!.forget_password,style: AppStyles.medium14yellow,),)
                         ],
                       ),
-
                     SizedBox(height: height*0.03,),
-
                     CustomElevatedButton(
                         onPressed: (){
                           //todo: Login
@@ -112,22 +106,29 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         text: AppLocalizations.of(context)!.login),
                     SizedBox(height: height*0.024,),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(AppLocalizations.of(context)!.dont_have_account,style: AppStyles.medium14White,),
-                        SizedBox(width: width*0.01,),
-                        InkWell(
-                            onTap: (){
-                              //todo: navigate to register screen
-                              Navigator.pushNamed(context, AppRoutes.registerRouteName);
-                            },
-                            child: Text(AppLocalizations.of(context)!.create_account, style: AppStyles.bold14Yellow,))
-                      ],
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "${AppLocalizations.of(context)!
+                                .dont_have_account} ",
+                            style: AppStyles.medium14White,
+                          ),
+                          TextSpan(
+                            text: AppLocalizations.of(context)!.create_account,
+                            style: AppStyles.bold14Yellow,
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                //todo:go back to login
+                                Navigator.pushNamed(
+                                    context, AppRoutes.registerRouteName);
+                              },
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(height: height*0.029,),
-
                     Row(
                       children: [
                         Expanded(child: Divider(
@@ -143,11 +144,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           endIndent: width*0.25,
                           color: AppColors.yellowColor,
                         )),
-
                       ],
                     ),
                     SizedBox(height: height*0.03,),
-
                     CustomElevatedButton(
                       onPressed: (){
                         //todo: sign in with google
@@ -157,30 +156,23 @@ class _LoginScreenState extends State<LoginScreen> {
                       hasIcon: true,
                     ),
                     SizedBox(height: height*0.036,),
-
                     AnimatedToggleButtonLanguage()
 
                   ],
                 )
                 ),
-
-
-
               ],
             ),
           ),
         ),
       ),
 
-
-
-
     );
   }
-
   void login(){
     if(formKey.currentState?.validate()==true){
       //todo: Login
+      Navigator.pushNamed(context, AppRoutes.updateProfileRouteName);
     }
   }
 }

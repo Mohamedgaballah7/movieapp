@@ -35,8 +35,10 @@
 "name":"Name",
 "register":"Register",
 "create_account":"Create Account",
-"forget_password":"Forget Password?",
+"forget_password":"Forget Password ?",
+"forget_password_bar":"Forget Password",
 "reset_password":"Reset Password",
+"avatar" : "Avatar" ,
 "please_enter_password":"Please Enter at least 6 Characters ",
 "please_valid_password":"Please Enter Valid Password",
 "please_enter_email":"Please Enter Email",
@@ -48,5 +50,5 @@
 "exit":"Exit",
 "dont_have_account": "Don't have Account ?",
 "please_enter_the_same_password": "Please enter the same password",
-  "phone_number": "Phone Number"
+ "phone_number": "Phone Number"
 }

@@ -317,14 +317,26 @@ abstract class AppLocalizations {
   /// No description provided for @forget_password.
   ///
   /// In en, this message translates to:
-  /// **'Forget Password?'**
+  /// **'Forget Password ?'**
   String get forget_password;
+
+  /// No description provided for @forget_password_bar.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget Password'**
+  String get forget_password_bar;
 
   /// No description provided for @reset_password.
   ///
   /// In en, this message translates to:
   /// **'Reset Password'**
   String get reset_password;
+
+  /// No description provided for @avatar.
+  ///
+  /// In en, this message translates to:
+  /// **'Avatar'**
+  String get avatar;
 
   /// No description provided for @please_enter_password.
   ///

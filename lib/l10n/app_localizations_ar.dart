@@ -118,13 +118,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get register => 'تسجيل';
 
   @override
-  String get create_account => 'Create Account';
+  String get create_account => 'أنشئ حساب';
 
   @override
-  String get forget_password => 'نسيت كلمة المرور؟';
+  String get forget_password => 'نسيت كلمة المرور ؟';
+
+  @override
+  String get forget_password_bar => 'نسيت كلمة المرور';
 
   @override
   String get reset_password => 'إعادة تعيين كلمة المرور';
+
+  @override
+  String get avatar => 'الصورة الرمزية';
 
   @override
   String get please_enter_password => 'من فضلك أدخل على الأقل 6 أحرف';
