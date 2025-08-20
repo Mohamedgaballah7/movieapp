@@ -118,7 +118,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get register => 'تسجيل';
 
   @override
-  String get create_one => 'أنشئ حساب';
+  String get create_account => 'Create Account';
 
   @override
   String get forget_password => 'نسيت كلمة المرور؟';
@@ -152,4 +152,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get exit => 'خروج';
+
+  @override
+  String get dont_have_account => 'ليس لديك حساب؟';
+
+  @override
+  String get please_enter_the_same_password => 'من فضلك ادخل نفس كلمه المرور';
+
+  @override
+  String get phone_number => 'رقم المحمول';
 }

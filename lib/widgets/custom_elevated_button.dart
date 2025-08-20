@@ -21,7 +21,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.hasIcon = false,
     this.iconWidget,
     this.textStyle,
-    this.mainAxisAlignment = MainAxisAlignment.start,
+    this.mainAxisAlignment = MainAxisAlignment.center,
   });
 
   @override
@@ -50,10 +50,10 @@ class CustomElevatedButton extends StatelessWidget {
               children: [
                 iconWidget!,
                 SizedBox(width: width*0.02,),
-                Text(text, style: textStyle),
+                Text(text, style: AppStyles.medium20Black),
               ],
             ):
-            Text(text, style: textStyle?? AppStyles.medium20White,),
+            Text(text, style: textStyle?? AppStyles.medium20Black,),
     );
   }
 }

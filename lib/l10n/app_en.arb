@@ -34,7 +34,7 @@
 "re_password":"Re password",
 "name":"Name",
 "register":"Register",
-"create_one":"Create One",
+"create_account":"Create Account",
 "forget_password":"Forget Password?",
 "reset_password":"Reset Password",
 "please_enter_password":"Please Enter at least 6 Characters ",
@@ -45,5 +45,8 @@
 "already_have_account":"Already Have Account ?",
 "or":"Or",
 "login_with_google":"Login With Google",
-"exit":"Exit"
+"exit":"Exit",
+"dont_have_account": "Don't have Account ?",
+"please_enter_the_same_password": "Please enter the same password",
+  "phone_number": "Phone Number"
 }
