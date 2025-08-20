@@ -42,11 +42,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get create_watch_lists => 'Create WatchLists';
 
   @override
-  String get share_your_thoughts =>
-      'Share your thoughts on the movies you\'ve watched. Dive deep into film details and help others discover great movies with your reviews.';
+  String get save_movies_watchlist =>
+      'Save movies to your watchlist to keep track of what you want to watch next. Enjoy films in various qualities and genres.';
 
   @override
   String get rate_review_learn => 'Rate, Review, and Learn';
+
+  @override
+  String get share_your_thoughts =>
+      'Share your thoughts on the movies you\'ve watched. Dive deep into film details and help others discover great movies with your reviews.';
 
   @override
   String get start_watching_now => 'Start Watching Now';
@@ -118,19 +122,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get register => 'Register';
 
   @override
-  String get create_account => 'Create Account';
+  String get create_one => 'Create One';
 
   @override
-  String get forget_password => 'Forget Password ?';
-
-  @override
-  String get forget_password_bar => 'Forget Password';
+  String get forget_password => 'Forget Password?';
 
   @override
   String get reset_password => 'Reset Password';
-
-  @override
-  String get avatar => 'Avatar';
 
   @override
   String get please_enter_password => 'Please Enter at least 6 Characters ';
@@ -160,11 +158,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exit => 'Exit';
 
   @override
-  String get dont_have_account => 'Don\'t have Account ?';
-
-  @override
-  String get please_enter_the_same_password => 'Please enter the same password';
+  String get get_started => 'Get Started';
 
   @override
   String get phone_number => 'Phone Number';
+
+  @override
+  String get not_have_account => 'Don\'t Have Account';
+
+  @override
+  String get avatar => 'Avatar';
+
+  @override
+  String get please_enter_the_same_password => 'Please Enter The Same Password';
 }

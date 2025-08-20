@@ -111,12 +111,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: "${AppLocalizations.of(context)!
-                                .dont_have_account} ",
+                            text: "${AppLocalizations.of(context)!.not_have_account} ",
                             style: AppStyles.medium14White,
                           ),
                           TextSpan(
-                            text: AppLocalizations.of(context)!.create_account,
+                            text: AppLocalizations.of(context)!.create_one,
                             style: AppStyles.bold14Yellow,
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {

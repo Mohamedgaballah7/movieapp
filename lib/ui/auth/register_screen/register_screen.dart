@@ -201,7 +201,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       //todo: go back to login
                       login();
                     },
-                    text: AppLocalizations.of(context)!.create_account),
+                    text: AppLocalizations.of(context)!.create_one),
               ],
             ),
           )),
