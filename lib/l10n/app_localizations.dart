@@ -158,17 +158,23 @@ abstract class AppLocalizations {
   /// **'Create WatchLists'**
   String get create_watch_lists;
 
-  /// No description provided for @share_your_thoughts.
+  /// No description provided for @save_movies_watchlist.
   ///
   /// In en, this message translates to:
-  /// **'Share your thoughts on the movies you\'ve watched. Dive deep into film details and help others discover great movies with your reviews.'**
-  String get share_your_thoughts;
+  /// **'Save movies to your watchlist to keep track of what you want to watch next. Enjoy films in various qualities and genres.'**
+  String get save_movies_watchlist;
 
   /// No description provided for @rate_review_learn.
   ///
   /// In en, this message translates to:
   /// **'Rate, Review, and Learn'**
   String get rate_review_learn;
+
+  /// No description provided for @share_your_thoughts.
+  ///
+  /// In en, this message translates to:
+  /// **'Share your thoughts on the movies you\'ve watched. Dive deep into film details and help others discover great movies with your reviews.'**
+  String get share_your_thoughts;
 
   /// No description provided for @start_watching_now.
   ///
@@ -308,11 +314,11 @@ abstract class AppLocalizations {
   /// **'Register'**
   String get register;
 
-  /// No description provided for @create_account.
+  /// No description provided for @create_one.
   ///
   /// In en, this message translates to:
-  /// **'Create Account'**
-  String get create_account;
+  /// **'Create One'**
+  String get create_one;
 
   /// No description provided for @forget_password.
   ///
@@ -380,23 +386,35 @@ abstract class AppLocalizations {
   /// **'Exit'**
   String get exit;
 
-  /// No description provided for @dont_have_account.
+  /// No description provided for @get_started.
   ///
   /// In en, this message translates to:
-  /// **'Don\'t have Account ?'**
-  String get dont_have_account;
-
-  /// No description provided for @please_enter_the_same_password.
-  ///
-  /// In en, this message translates to:
-  /// **'Please enter the same password'**
-  String get please_enter_the_same_password;
+  /// **'Get Started'**
+  String get get_started;
 
   /// No description provided for @phone_number.
   ///
   /// In en, this message translates to:
   /// **'Phone Number'**
   String get phone_number;
+
+  /// No description provided for @not_have_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t Have Account'**
+  String get not_have_account;
+
+  /// No description provided for @avatar.
+  ///
+  /// In en, this message translates to:
+  /// **'Avatar'**
+  String get avatar;
+
+  /// No description provided for @please_enter_the_same_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Please Enter The Same Password'**
+  String get please_enter_the_same_password;
 }
 
 class _AppLocalizationsDelegate

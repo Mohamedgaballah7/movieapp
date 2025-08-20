@@ -20,7 +20,8 @@ class ForgetPasswordScreen extends StatelessWidget {
     return Scaffold(
       
       appBar:  AppBar(
-        title: Text(AppLocalizations.of(context)!.forget_password,style: AppStyles.medium16yellow,),
+        title: Text(AppLocalizations.of(context)!.forget_password,
+          style: AppStyles.medium16yellow,),
       ),
       body: Padding(
         padding: EdgeInsetsGeometry.symmetric(horizontal: width*0.044, ),

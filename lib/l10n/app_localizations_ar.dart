@@ -42,11 +42,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get create_watch_lists => 'أنشئ قوائم مشاهدة';
 
   @override
-  String get share_your_thoughts =>
-      'شارك أفكارك حول الأفلام التي شاهدتها. تعمق في تفاصيل الفيلم وساعد الآخرين على اكتشاف أفلام رائعة من خلال مراجعاتك.';
+  String get save_movies_watchlist =>
+      'احفظ الأفلام في قائمة المشاهدة الخاصة بك لتتابع ما تريد مشاهدته لاحقًا. استمتع بالأفلام بجودات وأنواع مختلفة.';
 
   @override
   String get rate_review_learn => 'قيّم، راجع، وتعلّم';
+
+  @override
+  String get share_your_thoughts =>
+      'شارك أفكارك حول الأفلام التي شاهدتها. تعمق في تفاصيل الفيلم وساعد الآخرين على اكتشاف أفلام رائعة من خلال مراجعاتك.';
 
   @override
   String get start_watching_now => 'ابدأ المشاهدة الآن';
@@ -118,7 +122,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get register => 'تسجيل';
 
   @override
-  String get create_account => 'Create Account';
+  String get create_one => 'أنشئ حساب';
 
   @override
   String get forget_password => 'نسيت كلمة المرور؟';
@@ -154,11 +158,17 @@ class AppLocalizationsAr extends AppLocalizations {
   String get exit => 'خروج';
 
   @override
-  String get dont_have_account => 'ليس لديك حساب؟';
-
-  @override
-  String get please_enter_the_same_password => 'من فضلك ادخل نفس كلمه المرور';
+  String get get_started => 'ابدأ';
 
   @override
   String get phone_number => 'رقم المحمول';
+
+  @override
+  String get not_have_account => 'ليس لديه حساب';
+
+  @override
+  String get avatar => 'الصورة الرمزية';
+
+  @override
+  String get please_enter_the_same_password => 'الرجاء إدخال نفس كلمة المرور';
 }
