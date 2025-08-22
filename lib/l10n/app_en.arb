@@ -51,5 +51,9 @@
   "phone_number": "Phone Number",
   "not_have_account":"Don't Have Account",
   "avatar": "Avatar",
-  "please_enter_the_same_password":"Please Enter The Same Password"
+  "please_enter_the_same_password": "Please Enter The Same Password",
+  "something_went_wrong": "Something went wrong",
+  "try_again": "Try again",
+  "great_job": "Great Job!",
+  "lets_login": "Let's Login"
 }

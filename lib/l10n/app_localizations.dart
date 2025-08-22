@@ -415,6 +415,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please Enter The Same Password'**
   String get please_enter_the_same_password;
+
+  /// No description provided for @something_went_wrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong'**
+  String get something_went_wrong;
+
+  /// No description provided for @try_again.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get try_again;
+
+  /// No description provided for @great_job.
+  ///
+  /// In en, this message translates to:
+  /// **'Great Job!'**
+  String get great_job;
+
+  /// No description provided for @lets_login.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s Login'**
+  String get lets_login;
 }
 
 class _AppLocalizationsDelegate

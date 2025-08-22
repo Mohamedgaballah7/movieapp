@@ -51,5 +51,11 @@
   "phone_number": "رقم المحمول",
   "not_have_account":"ليس لديه حساب",
   "avatar": "الصورة الرمزية",
-  "please_enter_the_same_password":"الرجاء إدخال نفس كلمة المرور"
+  "please_enter_the_same_password": "الرجاء إدخال نفس كلمة المرور",
+  "something_went_wrong": "هناك شي خطأ",
+  "try_again": "حاول مجددا",
+  "great_job": "عمل عظيم",
+  "lets_login": "هيا نسجل الدخول"
+
+
 }
