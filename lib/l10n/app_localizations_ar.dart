@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -171,4 +172,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get please_enter_the_same_password => 'الرجاء إدخال نفس كلمة المرور';
+
+  @override
+  String get something_went_wrong => 'هناك شي خطأ';
+
+  @override
+  String get try_again => 'حاول مجددا';
+
+  @override
+  String get great_job => 'عمل عظيم';
+
+  @override
+  String get lets_login => 'هيا نسجل الدخول';
 }
