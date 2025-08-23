@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movieapproute/onboarding_screens/onboarding_screens.dart';
 import 'package:movieapproute/ui/auth/forget_password_screen/forget_password_screen.dart';
 import 'package:movieapproute/ui/auth/login_screen/login_screen.dart';
 import 'package:movieapproute/ui/auth/register_screen/register_screen.dart';
 import 'package:movieapproute/ui/auth/update_profile/update_profile.dart';
 import 'package:movieapproute/ui/home/homescreen.dart';
+import 'package:movieapproute/ui/onboarding_screens/onboarding_screens.dart';
 import 'package:movieapproute/utils/app_routes.dart';
 import 'package:movieapproute/utils/app_theme.dart';
 import 'package:movieapproute/utils/cubit_observer.dart';
