@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -183,4 +184,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get lets_login => 'هيا نسجل الدخول';
+
+  @override
+  String get logged_in_successfully => 'تم الدخول بنجاح';
+
+  @override
+  String get go_to_home => 'اذهب الى الصفحة الرئيسية';
 }

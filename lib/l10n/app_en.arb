@@ -55,5 +55,7 @@
   "something_went_wrong": "Something went wrong",
   "try_again": "Try again",
   "great_job": "Great Job!",
-  "lets_login": "Let's Login"
+  "lets_login": "Let's Login",
+  "logged_in_successfully": "Logged In Successfully",
+  "go_to_home": "Go To Home"
 }

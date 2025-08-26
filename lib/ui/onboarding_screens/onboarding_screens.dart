@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movieapproute/l10n/app_localizations.dart';
 import 'package:movieapproute/model/onboarding_model/onboarding_model.dart';
+import 'package:movieapproute/shared_preferences/shared_preferences.dart';
 import 'package:movieapproute/utils/app_assets.dart';
 import 'package:movieapproute/utils/app_colors.dart';
 import 'package:movieapproute/utils/app_routes.dart';
@@ -12,8 +13,8 @@ class OnboardingScreens extends StatefulWidget {
 
   @override
   State<OnboardingScreens> createState() => _OnboardingScreensState();
-  final PageController _pageController = PageController();
-  int _currentPage = 0;
+  final PageController pageController = PageController();
+  int currentPage = 0;
 }
 
 class _OnboardingScreensState extends State<OnboardingScreens> {
@@ -54,10 +55,10 @@ class _OnboardingScreensState extends State<OnboardingScreens> {
     ];
     return Scaffold(
       body: PageView.builder(
-        controller: widget._pageController,
+        controller: widget.pageController,
         onPageChanged: (index) {
           setState(() {
-            widget._currentPage = index;
+            widget.currentPage = index;
           });
         },
         itemCount: onboardingScreens.length,
@@ -100,14 +101,15 @@ class _OnboardingScreensState extends State<OnboardingScreens> {
                       SizedBox(
                         width: double.infinity,
                         child: CustomElevatedButton(
-                          onPressed: () {
+                          onPressed: () async {
                             if (index == onboardingScreens.length - 1) {
+                              await SharedPreferencesAll().onBoardingScreen();
                               Navigator.pushReplacementNamed(
                                 context,
                                 AppRoutes.loginRouteName,
                               );
                             } else {
-                              widget._pageController.nextPage(
+                              widget.pageController.nextPage(
                                 duration: const Duration(milliseconds: 400),
                                 curve: Curves.easeInOut,
                               );
@@ -128,7 +130,7 @@ class _OnboardingScreensState extends State<OnboardingScreens> {
                           width: double.infinity,
                           child: CustomElevatedButton(
                             onPressed: () {
-                              widget._pageController.previousPage(
+                              widget.pageController.previousPage(
                                 duration: Duration(milliseconds: 400),
                                 curve: Curves.easeInOut,
                               );
