@@ -7,6 +7,8 @@ import 'package:movieapproute/model/api_responses/login_response.dart';
 import 'package:movieapproute/model/api_responses/register_response.dart';
 import 'package:movieapproute/shared_preferences/shared_preferences.dart';
 
+import '../model/api_responses/movie_response.dart';
+
 class ApiManager {
 
   //todo: register auth
@@ -43,6 +45,26 @@ class ApiManager {
       throw e;
     }
   }
+  static Future<MovieResponse> getMovies({String? genre})async{
+    var url = Uri.https(
+        ApiConstants.movieBaseUrl,
+        ApiEndPoints.movieEndPoint,{
+        'genre': genre,
+    }
+    );
+    try{
+      var response=await http.get(url);
+      var responseBody=response.body;
+      var json=jsonDecode(responseBody);
+      return MovieResponse.fromJson(json);
+    }
+    catch(e){
+      throw e;
+    }
+
+  }
+
+}
 
   // todo: login auth
   static Future<LoginResponse> postLoginData(String email,
