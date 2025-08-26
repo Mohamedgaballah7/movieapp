@@ -228,7 +228,7 @@ class _LoginScreenState extends State<LoginScreen> {
               PosAction: () {
                 //todo: navigate to home
                 Navigator.pushReplacementNamed(
-                    context, AppRoutes.homeRouteName);
+                    context, AppRoutes.updateProfileRouteName);
               },
             );
           }

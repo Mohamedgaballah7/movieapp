@@ -141,7 +141,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         .please_enter_email;
                                   }
                                   final bool emailValid = RegExp(
-                                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+                                    r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
                                   ).hasMatch(text);
                                   if (!emailValid) {
                                     return AppLocalizations.of(context)!
@@ -297,8 +297,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             PosActionName: AppLocalizations.of(context)!.try_again,
             PosAction: () {
               //todo: return to register
-              Navigator.pushReplacementNamed(
-                context, AppRoutes.registerRouteName,);
+              Navigator.pushNamedAndRemoveUntil(
+                  context, AppRoutes.registerRouteName, (route) => false);
             },
           );
         } else if (state is RegisterSuccessState) {
@@ -309,7 +309,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             PosActionName: AppLocalizations.of(context)!.lets_login,
             PosAction: () {
               //todo: navigate to login
-              Navigator.pushReplacementNamed(context, AppRoutes.loginRouteName);
+              Navigator.pushNamedAndRemoveUntil(
+                context, AppRoutes.loginRouteName, (route) => false,);
             },
           );
         }
