@@ -55,7 +55,8 @@
   "something_went_wrong": "هناك شي خطأ",
   "try_again": "حاول مجددا",
   "great_job": "عمل عظيم",
-  "lets_login": "هيا نسجل الدخول"
-
+  "lets_login": "هيا نسجل الدخول",
+  "logged_in_successfully": "تم الدخول بنجاح",
+  "go_to_home": "اذهب الى الصفحة الرئيسية"
 
 }
