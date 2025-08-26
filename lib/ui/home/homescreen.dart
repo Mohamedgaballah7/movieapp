@@ -5,7 +5,6 @@ import 'package:movieapproute/ui/home/tabs/profile/profile_tabs.dart';
 import 'package:movieapproute/ui/home/tabs/search/search_tab.dart';
 
 import '../../utils/app_colors.dart';
-import '../../utils/app_styles.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -45,6 +44,7 @@ class _HomescreenState extends State<Homescreen> {
           });
         },
         items: [
+
           buildBottomNavigationBarItem(
             index: 0,
             selectedIconName: Icons.home,

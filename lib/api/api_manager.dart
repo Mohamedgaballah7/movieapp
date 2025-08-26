@@ -8,9 +8,8 @@ import 'package:movieapproute/model/api_responses/register_response.dart';
 import 'package:movieapproute/shared_preferences/shared_preferences.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../model/api_responses/profile_response.dart';
-
 import '../model/api_responses/movie_response.dart';
+import '../model/api_responses/profile_response.dart';
 
 class ApiManager {
 
@@ -64,9 +63,6 @@ class ApiManager {
     }
 
   }
-
-}
-
   // todo: login auth
   static Future<LoginResponse> postLoginData(String email,
       String password,) async {
@@ -118,12 +114,12 @@ class ApiManager {
         throw Exception('Failed to load profile: ${response.statusCode}');
       }
     } catch (e) {
-      throw Exception('Error fetching profile: $e');
+      throw e;
     }
   }
 
   //todo: deleteProfile
-  static Future<void> deleteProfile() async {
+  static Future<ProfileResponse> deleteProfile() async {
     Uri url = Uri.https(
         ApiConstants.baseUrl, ApiEndPoints.profileEndPoint);
     try {
@@ -136,14 +132,42 @@ class ApiManager {
           'Authorization': 'Bearer $token'
         },);
 
-      if (response.statusCode == 200) {
-        await SharedPreferencesAll.clearToken();
-      } else {
-        throw Exception('Failed to delete profile: ${response.statusCode}');
-      }
+      var responseBody = response.body; //todo: string
+      var json = jsonDecode(responseBody); //todo: json
+      return ProfileResponse.fromJson(json);
     } catch (e) {
-      throw Exception('Error delete profile: $e');
+      throw e;
+    }
+  }
+
+  static Future<ProfileResponse> updateProfile(
+      {String? name, int? avatarId, String? phoneNumber}) async {
+    Uri url = Uri.https(
+        ApiConstants.baseUrl, ApiEndPoints.profileEndPoint);
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final token = prefs.getString("authToken");
+
+      var response = await http.patch(url,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer $token'
+        }, body: jsonEncode({
+          if (name != null) "name": name,
+          if (avatarId != null) "avaterId": avatarId,
+          if (phoneNumber != null) "phone": phoneNumber,
+        }),);
+
+      var responseBody = response.body; //todo: string
+      var json = jsonDecode(responseBody); //todo: json
+      return ProfileResponse.fromJson(json);
+    } catch (e) {
+      throw e;
     }
   }
 
 }
+
+
+
+

@@ -228,7 +228,7 @@ class _LoginScreenState extends State<LoginScreen> {
               PosAction: () {
                 //todo: navigate to home
                 Navigator.pushReplacementNamed(
-                    context, AppRoutes.updateProfileRouteName);
+                    context, AppRoutes.homeRouteName);
               },
             );
           }
@@ -236,11 +236,11 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
   void login(){
-    if(formKey.currentState?.validate()==true){
+    if(viewModel.formKey.currentState?.validate()==true){
       //todo: Login
       Navigator.pushNamed(context, AppRoutes.homeRouteName);
     }
   }
 }
-}
+
 

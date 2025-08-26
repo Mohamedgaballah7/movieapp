@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movieapproute/utils/app_colors.dart';
 
-import '../../../utils/app_assets.dart';
+import '../../../../utils/app_assets.dart';
+
 
 class ChooseAvater extends StatefulWidget {
   int selectedAvatar;

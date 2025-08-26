@@ -2,19 +2,26 @@
 /// data : {"id":"68ab301e4ad29a01dc38547e","email":"amr82@gmail.com","password":"$2b$10$xITffkIMT3LVJ.T6y3YwA.F0dlHdVtn3H6dYcx/RviugKO88sqEH2","name":"amr mustafa","phone":"+201141209334","avaterId":1,"createdAt":"2025-08-24T15:30:38.201Z","updatedAt":"2025-08-24T15:30:38.201Z","_v":0}
 
 class ProfileResponse {
-  ProfileResponse({this.message, this.data});
+  ProfileResponse({this.message, this.data, this.statusCode, this.error});
 
   ProfileResponse.fromJson(dynamic json) {
     message = json['message'];
+    error = json['error'];
+    statusCode = json['statusCode'];
     data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   String? message;
   Data? data;
+  String? error;
+
+  int? statusCode;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['message'] = message;
+    map['error'] = error;
+    map['statusCode '] = statusCode;
     if (data != null) {
       map['data'] = data?.toJson();
     }
