@@ -10,6 +10,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../model/api_responses/profile_response.dart';
 
+import '../model/api_responses/movie_response.dart';
+
 class ApiManager {
 
   //todo: register auth
@@ -44,6 +46,26 @@ class ApiManager {
       throw e;
     }
   }
+  static Future<MovieResponse> getMovies({String? genre})async{
+    var url = Uri.https(
+        ApiConstants.movieBaseUrl,
+        ApiEndPoints.movieEndPoint,{
+        'genre': genre,
+    }
+    );
+    try{
+      var response=await http.get(url);
+      var responseBody=response.body;
+      var json=jsonDecode(responseBody);
+      return MovieResponse.fromJson(json);
+    }
+    catch(e){
+      throw e;
+    }
+
+  }
+
+}
 
   // todo: login auth
   static Future<LoginResponse> postLoginData(String email,
@@ -73,6 +95,7 @@ class ApiManager {
       throw e;
     }
   }
+
 
   //todo: getProfile
   static Future<ProfileResponse> getUserData() async {

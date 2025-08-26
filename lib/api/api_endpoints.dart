@@ -1,5 +1,7 @@
 class ApiEndPoints {
   static const String registerEndPoint = '/auth/register';
+  static const String movieEndPoint = '/api/v2/list_movies.json';
   static const String loginEndPoint = '/auth/login';
   static const String profileEndPoint = '/profile';
 }
+

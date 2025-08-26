@@ -235,4 +235,12 @@ class _LoginScreenState extends State<LoginScreen> {
         }
     );
   }
+  void login(){
+    if(formKey.currentState?.validate()==true){
+      //todo: Login
+      Navigator.pushNamed(context, AppRoutes.homeRouteName);
+    }
+  }
 }
+}
+
