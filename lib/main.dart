@@ -18,13 +18,15 @@ void main() async {
   Bloc.observer = MyBlocObserver();
   final prefs = await SharedPreferences.getInstance();
   final bool showOnBoarding = prefs.getBool("OnBoardingScreen") ?? true;
-  final String? token = prefs.getString("authToken");
+  //final String? token = prefs.getString("authToken");
   String initialRoute;
   if (showOnBoarding) {
     initialRoute = AppRoutes.onBoardingRouteName;
-  } else if (token != null && token.isNotEmpty) {
-    initialRoute = AppRoutes.homeRouteName;
-  } else {
+  }
+  // else if (token != null && token.isNotEmpty) {
+  //   initialRoute = AppRoutes.homeRouteName;
+  // }
+  else {
     initialRoute = AppRoutes.loginRouteName;
   }
   runApp(MyApp(initialRoute: initialRoute));
