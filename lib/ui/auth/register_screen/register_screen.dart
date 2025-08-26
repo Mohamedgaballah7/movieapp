@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movieapproute/ui/auth/register_screen/cubit/register_states.dart';
-import 'package:movieapproute/ui/auth/register_screen/cubit/register_view_model.dart';
 import 'package:movieapproute/utils/app_assets.dart';
 import 'package:movieapproute/utils/app_colors.dart';
 import 'package:movieapproute/utils/app_routes.dart';
@@ -13,6 +12,7 @@ import 'package:movieapproute/widgets/custom_text_field.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../widgets/custom_elevated_button.dart';
+import 'cubit/register_view_model.dart';
 
 class RegisterScreen extends StatefulWidget {
    RegisterScreen({super.key});

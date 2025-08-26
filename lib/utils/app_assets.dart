@@ -10,7 +10,6 @@ class AppAssets{
   static const String phonePrefixIcon='assets/images/phone_prefix_icon.png';
   static const String googleIcon = 'assets/images/google_icon.png';
   static const String profileIcon = 'assets/images/profile.png';
-
   static const String avatar1Image = 'assets/images/avatar_1.png';
   static const String avatar2Image = 'assets/images/avatar_2.png';
   static const String avatar3Image = 'assets/images/avatar_3.png';
@@ -20,13 +19,13 @@ class AppAssets{
   static const String avatar7Image = 'assets/images/avatar_7.png';
   static const String avatar8Image = 'assets/images/avatar_8.png';
   static const String avatar9Image = 'assets/images/avatar_9.png';
-
-  static const String forgetPasswordImage =
-      'assets/images/forget_password_image.png';
+  static const String forgetPasswordImage = 'assets/images/forget_password_image.png';
   static const String moviePoster = 'assets/images/movie_poster.png';
   static const String discoverMovies = 'assets/images/discover_movies.png';
   static const String exploreMovies = 'assets/images/explore_movies.png';
   static const String createWatchlists = 'assets/images/create_watchlists.png';
   static const String rateMovies = 'assets/images/rate_movies.png';
   static const String startWatching = 'assets/images/start_watching.png';
+  static const String watchNow = 'assets/images/watch_now.png';
+  static const String availableNow = 'assets/images/available_now.png';
 }
