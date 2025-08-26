@@ -374,6 +374,12 @@ abstract class AppLocalizations {
   /// **'Or'**
   String get or;
 
+  /// No description provided for @ok.
+  ///
+  /// In en, this message translates to:
+  /// **'Ok'**
+  String get ok;
+
   /// No description provided for @login_with_google.
   ///
   /// In en, this message translates to:
@@ -439,6 +445,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Let\'s Login'**
   String get lets_login;
+
+  /// No description provided for @logged_in_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Logged In Successfully'**
+  String get logged_in_successfully;
+
+  /// No description provided for @go_to_home.
+  ///
+  /// In en, this message translates to:
+  /// **'Go To Home'**
+  String get go_to_home;
 }
 
 class _AppLocalizationsDelegate

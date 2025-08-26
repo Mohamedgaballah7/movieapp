@@ -152,6 +152,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get or => 'Or';
 
   @override
+  String get ok => 'Ok';
+
+  @override
   String get login_with_google => 'Login With Google';
 
   @override
@@ -183,4 +186,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get lets_login => 'Let\'s Login';
+
+  @override
+  String get logged_in_successfully => 'Logged In Successfully';
+
+  @override
+  String get go_to_home => 'Go To Home';
 }

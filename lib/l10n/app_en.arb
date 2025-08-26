@@ -45,6 +45,7 @@
 "please_enter_name":"Please Enter Name",
 "already_have_account":"Already Have Account ?",
 "or":"Or",
+"ok":"Ok",
 "login_with_google":"Login With Google",
   "exit": "Exit",
   "get_started": "Get Started",
@@ -55,5 +56,7 @@
   "something_went_wrong": "Something went wrong",
   "try_again": "Try again",
   "great_job": "Great Job!",
-  "lets_login": "Let's Login"
+  "lets_login": "Let's Login",
+  "logged_in_successfully": "Logged In Successfully",
+  "go_to_home": "Go To Home"
 }

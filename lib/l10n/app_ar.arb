@@ -45,6 +45,7 @@
   "please_enter_name": "من فضلك أدخل الاسم",
   "already_have_account": "لديك حساب بالفعل؟",
   "or": "أو",
+  "ok":"حسنا",
   "login_with_google": "تسجيل الدخول باستخدام جوجل",
   "exit": "خروج",
   "get_started": "ابدأ",
@@ -55,7 +56,8 @@
   "something_went_wrong": "هناك شي خطأ",
   "try_again": "حاول مجددا",
   "great_job": "عمل عظيم",
-  "lets_login": "هيا نسجل الدخول"
-
+  "lets_login": "هيا نسجل الدخول",
+  "logged_in_successfully": "تم الدخول بنجاح",
+  "go_to_home": "اذهب الى الصفحة الرئيسية"
 
 }

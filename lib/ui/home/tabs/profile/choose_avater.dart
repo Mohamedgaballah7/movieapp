@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movieapproute/utils/app_colors.dart';
 
-import '../../../utils/app_assets.dart';
+import '../../../../utils/app_assets.dart';
+
 
 class ChooseAvater extends StatefulWidget {
   int selectedAvatar;
@@ -32,21 +33,19 @@ class _ChooseAvaterState extends State<ChooseAvater> {
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: width * 0.02,
-        vertical: height * 0.01,
+        vertical: height * 0.015,
       ),
       height: height * 0.46,
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 15,
         ),
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              widget.selectedAvatar = index;
-              Navigator.pop(context, widget.selectedAvatar);
-              setState(() {});
+              Navigator.pop(context, index);
             },
             child: Container(
               decoration: BoxDecoration(
@@ -56,7 +55,7 @@ class _ChooseAvaterState extends State<ChooseAvater> {
                 borderRadius: BorderRadius.circular(25),
                 border: Border.all(color: AppColors.yellowColor, width: 1.5),
               ),
-              child: Image.asset(avatars[index], scale: 0.9),
+              child: Image.asset(avatars[index], scale: 1.0),
             ),
           );
         },
