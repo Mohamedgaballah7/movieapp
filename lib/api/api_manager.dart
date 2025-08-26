@@ -64,9 +64,6 @@ class ApiManager {
     }
 
   }
-
-}
-
   // todo: login auth
   static Future<LoginResponse> postLoginData(String email,
       String password,) async {
@@ -147,3 +144,7 @@ class ApiManager {
   }
 
 }
+
+
+
+
