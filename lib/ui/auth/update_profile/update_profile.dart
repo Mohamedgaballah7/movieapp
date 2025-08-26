@@ -49,91 +49,89 @@ class _UpdateProfileState extends State<UpdateProfile> {
           horizontal: width * 0.037,
           vertical: height * 0.02,
         ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  changeAvatar();
-                },
-                child: Image.asset(avatars[selectedAvatar], scale: 0.6),
-              ),
-              SizedBox(height: height * 0.02),
-              Expanded(
-                child: Form(
-                  key: formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      CustomTextField(
-                        controller: nameController,
+        child: Column(
+          children: [
+            GestureDetector(
+              onTap: () {
+                changeAvatar();
+              },
+              child: Image.asset(avatars[selectedAvatar], scale: 0.6),
+            ),
+            SizedBox(height: height * 0.02),
+            Expanded(
+              child: Form(
+                key: formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    CustomTextField(
+                      controller: nameController,
+                      style: AppStyles.medium16White,
+                      prefixIcon: ImageIcon(
+                        AssetImage(AppAssets.profileIcon),
+                        color: AppColors.whiteColor,
+                      ),
+                      hintText: AppLocalizations.of(context)!.name,
+                      validator: (text) {
+                        if (text == null || text.isEmpty) {
+                          return AppLocalizations.of(
+                            context,
+                          )!.please_enter_name;
+                        }
+                        return null;
+                      },
+                      keyboardType: TextInputType.text,
+                    ),
+                    SizedBox(height: height * 0.02),
+                    CustomTextField(
+                      controller: phoneController,
+                      style: AppStyles.medium16White,
+                      prefixIcon: ImageIcon(
+                        AssetImage(AppAssets.phonePrefixIcon),
+                        color: AppColors.whiteColor,
+                      ),
+                      hintText: AppLocalizations.of(context)!.phone_number,
+                      validator: (text) {
+                        if (text == null || text.isEmpty) {
+                          return AppLocalizations.of(
+                            context,
+                          )!.please_enter_password;
+                        }
+                        return null;
+                      },
+                      keyboardType: TextInputType.phone,
+                    ),
+                    SizedBox(height: height * 0.02),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Text(
+                        textAlign: TextAlign.start,
+                        AppLocalizations.of(context)!.reset_password,
                         style: AppStyles.medium16White,
-                        prefixIcon: ImageIcon(
-                          AssetImage(AppAssets.profileIcon),
-                          color: AppColors.whiteColor,
-                        ),
-                        hintText: AppLocalizations.of(context)!.name,
-                        validator: (text) {
-                          if (text == null || text.isEmpty) {
-                            return AppLocalizations.of(
-                              context,
-                            )!.please_enter_name;
-                          }
-                          return null;
-                        },
-                        keyboardType: TextInputType.text,
                       ),
-                      SizedBox(height: height * 0.02),
-                      CustomTextField(
-                        controller: phoneController,
-                        style: AppStyles.medium16White,
-                        prefixIcon: ImageIcon(
-                          AssetImage(AppAssets.phonePrefixIcon),
-                          color: AppColors.whiteColor,
-                        ),
-                        hintText: AppLocalizations.of(context)!.phone_number,
-                        validator: (text) {
-                          if (text == null || text.isEmpty) {
-                            return AppLocalizations.of(
-                              context,
-                            )!.please_enter_password;
-                          }
-                          return null;
-                        },
-                        keyboardType: TextInputType.phone,
-                      ),
-                      SizedBox(height: height * 0.02),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Text(
-                          textAlign: TextAlign.start,
-                          AppLocalizations.of(context)!.reset_password,
-                          style: AppStyles.medium16White,
-                        ),
-                      ),
-                      Spacer(),
-                      CustomElevatedButton(
-                        backgroundColor: AppColors.redColor,
-                        textStyle: AppStyles.medium20White,
-                        onPressed: () {
-                          //todo: go back to login
-                        },
-                        text: AppLocalizations.of(context)!.delete_account,
-                      ),
-                      SizedBox(height: height * 0.02),
-                      CustomElevatedButton(
-                        onPressed: () {
-                          //todo: go back to login
-                        },
-                        text: AppLocalizations.of(context)!.update_data,
-                      ),
-                      SizedBox(height: height * 0.02),
-                    ],
-                  ),
+                    ),
+                    Spacer(),
+                    CustomElevatedButton(
+                      backgroundColor: AppColors.redColor,
+                      textStyle: AppStyles.medium20White,
+                      onPressed: () {
+                        //todo: go back to login
+                      },
+                      text: AppLocalizations.of(context)!.delete_account,
+                    ),
+                    SizedBox(height: height * 0.02),
+                    CustomElevatedButton(
+                      onPressed: () {
+                        //todo: go back to login
+                      },
+                      text: AppLocalizations.of(context)!.update_data,
+                    ),
+                    SizedBox(height: height * 0.02),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

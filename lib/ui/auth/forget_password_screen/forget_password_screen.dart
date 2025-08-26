@@ -25,7 +25,6 @@ class ForgetPasswordScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsetsGeometry.symmetric(horizontal: width*0.044, ),
-
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -55,15 +54,12 @@ class ForgetPasswordScreen extends StatelessWidget {
                   keyboardType: TextInputType.emailAddress,
                 ),
                 SizedBox(height: height*0.024,),
-
                 CustomElevatedButton(
                     onPressed: (){
                       //todo: go back to login
                       login();
                     },
                     text: AppLocalizations.of(context)!.verify_email),
-
-
               ],
             ))
 
@@ -71,12 +67,10 @@ class ForgetPasswordScreen extends StatelessWidget {
         ),
       ),
     );
-    
   }
    void login(){
      if(formKey.currentState?.validate()==true){
        //todo: Login
      }
    }
-
 }

@@ -3,9 +3,13 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:movieapproute/api/api_constants.dart';
 import 'package:movieapproute/api/api_endpoints.dart';
+import 'package:movieapproute/model/api_responses/login_response.dart';
 import 'package:movieapproute/model/api_responses/register_response.dart';
+import 'package:movieapproute/shared_preferences/shared_preferences.dart';
 
 class ApiManager {
+
+  //todo: register auth
   static Future<RegisterResponse> postRegisterData(
     String name,
     String email,
@@ -14,16 +18,13 @@ class ApiManager {
     String phone,
     int avatarId,
   ) async {
-    //todo: register api:  https://  route-movie-apis.vercel.app  /auth/register
-
     Uri url = Uri.https(
-      ApiConstants.registerBaseUrl,
+      ApiConstants.baseUrl,
       ApiEndPoints.registerEndPoint,
     );
     try {
       var response = await http.post(
-        url,
-        headers: <String, String>{
+        url, headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(<String, dynamic>{
@@ -38,6 +39,35 @@ class ApiManager {
       var responseBody = response.body; //todo: string
       var json = jsonDecode(responseBody); //todo: json
       return RegisterResponse.fromJson(json); //todo: dart obj
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  // todo: login auth
+  static Future<LoginResponse> postLoginData(String email,
+      String password,) async {
+    Uri url = Uri.https(ApiConstants.baseUrl, ApiEndPoints.loginEndPoint);
+    try {
+      var response = await http.post(
+        url, headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+        body: jsonEncode(<String, dynamic>{
+          "email": email,
+          "password": password,
+        }),
+      );
+      var responseBody = response.body; //todo: string
+      var json = jsonDecode(responseBody); //todo: json
+      var loginResponse = LoginResponse.fromJson(json); //todo: dart obj
+      if (loginResponse.data != null && loginResponse.data!.isNotEmpty) {
+        await SharedPreferencesAll.saveToken(loginResponse.data!);
+        print("Token saved: ${loginResponse.data}");
+      } else {
+        print("No token found in response");
+      }
+      return loginResponse;
     } catch (e) {
       throw e;
     }
