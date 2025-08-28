@@ -135,6 +135,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get please_enter_password => 'Please Enter at least 6 Characters ';
 
   @override
+  String get please_enter_your_phone => 'Please Enter Your Phone ';
+
+  @override
   String get please_valid_password => 'Please Enter Valid Password';
 
   @override

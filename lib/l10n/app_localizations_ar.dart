@@ -135,6 +135,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get please_enter_password => 'من فضلك أدخل على الأقل 6 أحرف';
 
   @override
+  String get please_enter_your_phone => 'من فضلك ادخل رقم هاتفك ';
+
+  @override
   String get please_valid_password => 'من فضلك أدخل كلمة مرور صحيحة';
 
   @override

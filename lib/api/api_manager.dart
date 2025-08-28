@@ -26,7 +26,8 @@ class ApiManager {
       var response = await http.post(
         url, headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-        },
+
+      },
         body: jsonEncode(<String, dynamic>{
           "name": name,
           "email": email,
@@ -36,6 +37,7 @@ class ApiManager {
           "avaterId": avatarId,
         }),
       );
+
       var responseBody = response.body; //todo: string
       var json = jsonDecode(responseBody); //todo: json
       return RegisterResponse.fromJson(json); //todo: dart obj

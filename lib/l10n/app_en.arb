@@ -39,6 +39,7 @@
   "forget_password": "Forget Password",
 "reset_password":"Reset Password",
 "please_enter_password":"Please Enter at least 6 Characters ",
+  "please_enter_your_phone": "Please Enter Your Phone ",
 "please_valid_password":"Please Enter Valid Password",
 "please_enter_email":"Please Enter Email",
 "please_valid_email":"Please Enter Valid Email",
