@@ -6,6 +6,7 @@ import 'package:movieapproute/ui/home/tabs/search/search_tab.dart';
 
 import '../../utils/app_assets.dart';
 import '../../utils/app_colors.dart';
+
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
 
@@ -44,6 +45,7 @@ class _HomescreenState extends State<Homescreen> {
           });
         },
         items: [
+
           buildBottomNavigationBarItem(
               index: 0,
               selectedIconName: AppAssets.selectedHomeTabIcon,

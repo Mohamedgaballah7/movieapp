@@ -40,10 +40,12 @@ class MyApp extends StatelessWidget {
       initialRoute: initialRoute,
       routes: {
         AppRoutes.onBoardingRouteName: (context) => OnboardingScreens(),
+
         AppRoutes.homeRouteName: (context) => Homescreen(),
         AppRoutes.loginRouteName: (context) => LoginScreen(),
         AppRoutes.registerRouteName: (context) => RegisterScreen(),
         AppRoutes.forgetPasswordRouteName: (context) => ForgetPasswordScreen(),
+
       },
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
