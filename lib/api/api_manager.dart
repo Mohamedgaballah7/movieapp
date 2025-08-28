@@ -8,9 +8,8 @@ import 'package:movieapproute/model/api_responses/register_response.dart';
 import 'package:movieapproute/shared_preferences/shared_preferences.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../model/api_responses/profile_response.dart';
-
 import '../model/api_responses/movie_response.dart';
+import '../model/api_responses/profile_response.dart';
 
 class ApiManager {
 
@@ -29,7 +28,8 @@ class ApiManager {
       var response = await http.post(
         url, headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-        },
+
+      },
         body: jsonEncode(<String, dynamic>{
           "name": name,
           "email": email,
@@ -39,6 +39,7 @@ class ApiManager {
           "avaterId": avatarId,
         }),
       );
+
       var responseBody = response.body; //todo: string
       var json = jsonDecode(responseBody); //todo: json
       return RegisterResponse.fromJson(json); //todo: dart obj

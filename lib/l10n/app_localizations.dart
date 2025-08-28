@@ -338,6 +338,12 @@ abstract class AppLocalizations {
   /// **'Please Enter at least 6 Characters '**
   String get please_enter_password;
 
+  /// No description provided for @please_enter_your_phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Please Enter Your Phone '**
+  String get please_enter_your_phone;
+
   /// No description provided for @please_valid_password.
   ///
   /// In en, this message translates to:
