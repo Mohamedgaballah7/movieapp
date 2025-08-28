@@ -1,10 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movieapproute/api/api_manager.dart';
 import 'package:movieapproute/ui/home/tabs/home/cubit/home_movie_states.dart';
 
+import '../../../../../model/api_responses/movie_response.dart';
+
 class HomeMovieViewModel extends Cubit<HomeMovieStates> {
   HomeMovieViewModel() : super(HomeMovieLoadingState());
-
+  int selectedIndex = 0;
+  Movies? movies;
+  ScrollController actionScrollController = ScrollController();
   //todo: handle Logic " states holds the data"
   void getMovie() async{
     try {

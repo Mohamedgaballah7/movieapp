@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movieapproute/l10n/app_localizations.dart';
@@ -6,6 +7,7 @@ import 'package:movieapproute/ui/home/tabs/home/custom_movie_card.dart';
 import 'package:movieapproute/utils/app_assets.dart';
 import 'package:movieapproute/utils/app_colors.dart';
 import 'package:movieapproute/utils/app_styles.dart';
+
 import 'cubit/home_movie_view_model.dart';
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
@@ -16,6 +18,7 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
+
   @override
   void initState() {
     // TODO: implement initState
@@ -40,13 +43,18 @@ class _HomeTabState extends State<HomeTab> {
                     Stack(
                       children: [
                         Opacity(
-                          opacity: 0.5,
-                          child: Image.asset(
-                            //todo: image change by changing the movie
-                            AppAssets.discoverMovies,
-                            fit: BoxFit.cover,
-                            height: height * 0.75,
-                            width: double.infinity,
+                          opacity: 0.4,
+                          child: CachedNetworkImage(
+                            imageUrl: state.allMovies[viewModel.selectedIndex]
+                                .largeCoverImage ?? '',
+                            placeholder: (context, url) =>
+                                Center(
+                                  child: CircularProgressIndicator(
+                                    color: AppColors.yellowColor,
+                                  ),
+                                ),
+                            errorWidget: (context, url, error) =>
+                                Icon(Icons.error),
                           ),
                         ),
                         SafeArea(
@@ -60,20 +68,38 @@ class _HomeTabState extends State<HomeTab> {
                                   padding: EdgeInsets.symmetric(
                                       horizontal: width *
                                           0.02),
-                                  child: SizedBox(
+                                  child:
+                                  SizedBox(
                                     height: height * 0.4,
-                                    child: ListView.separated(
-                                        scrollDirection: Axis.horizontal,
-                                        itemBuilder: (context, index) {
-                                          return CustomMovieCard(
-                                              movie: state.allMovies[index]);
-                                        },
-                                        separatorBuilder: (context, index) {
-                                          return SizedBox(width: width * 0.02,);
-                                        },
-                                        itemCount: state.allMovies.length
+                                    child: PageView.builder(
+                                      controller: PageController(
+                                        viewportFraction: 0.6,
+                                      ),
+                                      itemCount: state.allMovies.length,
+                                      onPageChanged: (index) {
+                                        setState(() {
+                                          viewModel.selectedIndex = index;
+                                        });
+                                      },
+                                      itemBuilder: (context, index) {
+                                        bool isSelected = index ==
+                                            viewModel.selectedIndex;
+
+                                        return Transform.scale(
+                                          scale: isSelected ? 0.9 : 0.7,
+                                          child: Padding(
+                                            padding: EdgeInsets.only(
+                                              top: isSelected ? 0 : 5,
+                                            ),
+                                            child: CustomMovieCard(
+                                              movie: state.allMovies[index],
+                                            ),
+                                          ),
+                                        );
+                                      },
                                     ),
                                   ),
+
                                 ),
                                 Image.asset(AppAssets.watchNow),
                               ],
@@ -92,7 +118,12 @@ class _HomeTabState extends State<HomeTab> {
                           TextButton(
                             onPressed: () {
                               //todo:make action movies swipe
-
+                              viewModel.actionScrollController.animateTo(
+                                viewModel.actionScrollController.offset +
+                                    (width * 0.4),
+                                duration: Duration(milliseconds: 500),
+                                curve: Curves.easeInOut,
+                              );
                             },
                             child: Row(
                               children: [
@@ -112,6 +143,7 @@ class _HomeTabState extends State<HomeTab> {
                       child: SizedBox(
                         height: height * 0.2,
                         child: ListView.separated(
+                            controller: viewModel.actionScrollController,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
                               return CustomMovieCard(

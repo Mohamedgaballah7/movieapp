@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movieapproute/utils/app_colors.dart';
 import 'package:movieapproute/utils/app_styles.dart';
@@ -18,9 +19,18 @@ class CustomMovieCard extends StatelessWidget {
         Container(
           clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
-          borderRadius: BorderRadiusGeometry.circular(width*0.02),
+          borderRadius: BorderRadiusGeometry.circular(width * 0.04),
         ),
-        child: Image.network(movie.largeCoverImage??'',fit: BoxFit.fill,)
+          child: CachedNetworkImage(
+            imageUrl: movie.largeCoverImage ?? '',
+            placeholder: (context, url) =>
+                Center(
+                  child: CircularProgressIndicator(
+                    color: AppColors.yellowColor,
+                  ),
+                ),
+            errorWidget: (context, url, error) => Icon(Icons.error),
+          ),
       ),
         Container(
           margin: EdgeInsets.symmetric(horizontal: width*0.02,vertical: height*0.01),
