@@ -36,9 +36,10 @@
 "name":"Name",
 "register":"Register",
 "create_one":"Create One",
-"forget_password":"Forget Password?",
+  "forget_password": "Forget Password",
 "reset_password":"Reset Password",
 "please_enter_password":"Please Enter at least 6 Characters ",
+  "please_enter_your_phone": "Please Enter Your Phone ",
 "please_valid_password":"Please Enter Valid Password",
 "please_enter_email":"Please Enter Email",
 "please_valid_email":"Please Enter Valid Email",
@@ -58,5 +59,12 @@
   "great_job": "Great Job!",
   "lets_login": "Let's Login",
   "logged_in_successfully": "Logged In Successfully",
-  "go_to_home": "Go To Home"
+  "go_to_home": "Go To Home",
+  "old_password": "Old Password",
+  "new_password": "New Password",
+  "confirm_new_password": "Confirm New Password",
+  "please_enter_new_password": "Please Enter New Password",
+  "please_enter_old_password": "Please Enter Old Password",
+  "please_confirm_new_password": "Please Confirm New Password",
+  "change_password": "Change Password"
 }

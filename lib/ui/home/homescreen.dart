@@ -4,6 +4,7 @@ import 'package:movieapproute/ui/home/tabs/home/home_tab.dart';
 import 'package:movieapproute/ui/home/tabs/profile/profile_tabs.dart';
 import 'package:movieapproute/ui/home/tabs/search/search_tab.dart';
 
+import '../../utils/app_assets.dart';
 import '../../utils/app_colors.dart';
 
 class Homescreen extends StatefulWidget {
@@ -31,8 +32,8 @@ class _HomescreenState extends State<Homescreen> {
     return Scaffold(
       body: tabs[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        // showSelectedLabels: false,
-        // showUnselectedLabels: false,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         selectedItemColor: AppColors.yellowColor,
         unselectedItemColor: AppColors.whiteColor,
         backgroundColor: AppColors.greyDarkColor,
@@ -46,29 +47,29 @@ class _HomescreenState extends State<Homescreen> {
         items: [
 
           buildBottomNavigationBarItem(
-            index: 0,
-            selectedIconName: Icons.home,
-            unSelectedIconName: Icons.home_outlined,
-            name: 'home'
+              index: 0,
+              selectedIconName: AppAssets.selectedHomeTabIcon,
+              unSelectedIconName: AppAssets.unSelectedHomeTabIcon,
+              name: 'home'
           ),
           buildBottomNavigationBarItem(
-            index: 1,
-            selectedIconName: Icons.search,
-            unSelectedIconName: Icons.search_outlined,
-            name: 'search'
+              index: 1,
+              selectedIconName: AppAssets.selectedSearchTabIcon,
+              unSelectedIconName: AppAssets.unSelectedSearchTabIcon,
+              name: 'search'
 
           ),
           buildBottomNavigationBarItem(
-            index: 2,
-            selectedIconName: Icons.explore,
-            unSelectedIconName: Icons.explore_outlined,
-            name: 'browse'
+              index: 2,
+              selectedIconName: AppAssets.selectedBrowseTabIcon,
+              unSelectedIconName: AppAssets.unSelectedBrowseTabIcon,
+              name: 'browse'
           ),
           buildBottomNavigationBarItem(
-            index: 3,
-            selectedIconName: Icons.person,
-            unSelectedIconName: Icons.person_outline,
-            name: 'profile'
+              index: 3,
+              selectedIconName: AppAssets.selectedProfileTabIcon,
+              unSelectedIconName: AppAssets.unSelectedProfileTabIcon,
+              name: 'profile'
           ),
         ],
       ),
@@ -78,16 +79,13 @@ class _HomescreenState extends State<Homescreen> {
   BottomNavigationBarItem buildBottomNavigationBarItem({
     required int index,
     required String name,
-    required IconData selectedIconName,
-    required IconData unSelectedIconName,
+    required String selectedIconName,
+    required String unSelectedIconName,
   }) {
     return BottomNavigationBarItem(
-      icon: Icon(
+      icon: ImageIcon(AssetImage(
         selectedIndex == index ? selectedIconName : unSelectedIconName,
-        size: width * 0.055,
-        color: selectedIndex == index
-            ? AppColors.yellowColor
-            : AppColors.whiteColor,
+      )
       ),
       label: name,
 

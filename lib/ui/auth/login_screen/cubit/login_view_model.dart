@@ -6,8 +6,11 @@ import 'package:movieapproute/ui/auth/login_screen/cubit/login_states.dart';
 
 class LoginViewModel extends Cubit<LoginStates> {
   LoginViewModel() : super(LoginInitialState());
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController(
+      text: 'ahmed21585@gmail.com');
+  TextEditingController passwordController = TextEditingController(
+      text: 'Ahmed@215');
+  bool isObscure = true;
   var formKey = GlobalKey<FormState>();
 
   //todo: handle Logic "register states holds the data"
@@ -33,7 +36,6 @@ class LoginViewModel extends Cubit<LoginStates> {
       emit(LoginErrorState(errorMessage: e.toString()));
     }
   }
-
   void onPressedLogin() {
     if (formKey.currentState?.validate() == true) {
       //todo: Login

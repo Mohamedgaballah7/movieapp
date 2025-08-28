@@ -12,6 +12,9 @@ import '../../../../widgets/custom_elevated_button.dart';
 import '../../../../widgets/custom_text_field.dart';
 import 'choose_avater.dart';
 
+import 'reset_password_screen/reset_password_screen.dart';
+
+
 class ProfileTab extends StatefulWidget {
   const ProfileTab({super.key});
 
@@ -23,7 +26,11 @@ class _UpdateProfileState extends State<ProfileTab> {
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   var formKey = GlobalKey<FormState>();
+
   var selectedAvatar = -1;
+ 
+  bool isReset = false;
+
 
   List<String> avatars = [
     AppAssets.avatar1Image,
@@ -42,6 +49,7 @@ class _UpdateProfileState extends State<ProfileTab> {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
+
         appBar: AppBar(
           scrolledUnderElevation: 0,
           title: Text(
@@ -56,10 +64,13 @@ class _UpdateProfileState extends State<ProfileTab> {
                 child: CircularProgressIndicator(
                   color: AppColors.yellowColor,
                 ),
+
               );
             } else if (snapshot.hasData) {
               nameController.text = snapshot.data!.data!.name!;
               phoneController.text = snapshot.data!.data!.phone!;
+              
+
               if (selectedAvatar == -1 &&
                   snapshot.data!.data!.avaterId != null) {
                 selectedAvatar = snapshot.data!.data!.avaterId!;
@@ -69,6 +80,7 @@ class _UpdateProfileState extends State<ProfileTab> {
                   horizontal: width * 0.037,
                   vertical: height * 0.02,
                 ),
+                
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
@@ -225,15 +237,14 @@ class _UpdateProfileState extends State<ProfileTab> {
     final selected = await showModalBottomSheet(
       backgroundColor: AppColors.transparentColor,
       context: context,
-      builder: (context) =>
-          Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                color: AppColors.blackColor,
-              ),
-              margin: EdgeInsets.only(left: 13, right: 13, bottom: 30),
-
-              child: ChooseAvater(selectedAvatar: selectedAvatar)),
+      builder: (context) => Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25),
+          color: AppColors.blackColor,
+        ),
+        margin: EdgeInsets.only(left: 13, right: 13, bottom: 30),
+        child: ChooseAvater(selectedAvatar: selectedAvatar),
+      ),
     );
 
     if (selected != null) {
@@ -244,7 +255,6 @@ class _UpdateProfileState extends State<ProfileTab> {
   }
 
 
-}
-/*
 
- */
+}
+

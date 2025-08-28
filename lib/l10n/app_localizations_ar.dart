@@ -134,6 +134,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get please_enter_password => 'من فضلك أدخل على الأقل 6 أحرف';
 
   @override
+  String get please_enter_your_phone => 'من فضلك ادخل رقم هاتفك ';
+
+  @override
   String get please_valid_password => 'من فضلك أدخل كلمة مرور صحيحة';
 
   @override
@@ -192,4 +195,25 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get go_to_home => 'اذهب الى الصفحة الرئيسية';
+
+  @override
+  String get old_password => 'كلمة السر القديمة';
+
+  @override
+  String get new_password => 'كلمة السر الجديدة';
+
+  @override
+  String get confirm_new_password => 'تأكيد كلمة السر الجديدة';
+
+  @override
+  String get please_enter_new_password => 'ادخل كلمة السر الجديدة';
+
+  @override
+  String get please_enter_old_password => 'ادخل كلمة السر القديمة';
+
+  @override
+  String get please_confirm_new_password => 'اعد ادخل كلمة السر الجديدة';
+
+  @override
+  String get change_password => 'تغيير كلمة السر';
 }

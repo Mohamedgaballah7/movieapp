@@ -28,4 +28,17 @@ class AppAssets{
   static const String startWatching = 'assets/images/start_watching.png';
   static const String watchNow = 'assets/images/watch_now.png';
   static const String availableNow = 'assets/images/available_now.png';
+  static const String unSelectedBrowseTabIcon =
+      'assets/images/explore_icon.png';
+  static const String unSelectedHomeTabIcon = 'assets/images/home_icon.png';
+  static const String unSelectedSearchTabIcon = 'assets/images/search_icon.png';
+  static const String unSelectedProfileTabIcon =
+      'assets/images/Profile_icon.png';
+  static const String selectedBrowseTabIcon =
+      'assets/images/selected_explore.png';
+  static const String selectedHomeTabIcon = 'assets/images/selected_home.png';
+  static const String selectedSearchTabIcon =
+      'assets/images/selected_search.png';
+  static const String selectedProfileTabIcon =
+      'assets/images/selected_profile.png';
 }

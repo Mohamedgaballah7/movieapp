@@ -42,6 +42,7 @@
   "please_valid_password": "من فضلك أدخل كلمة مرور صحيحة",
   "please_enter_email": "من فضلك أدخل البريد الإلكتروني",
   "please_valid_email": "من فضلك أدخل بريد إلكتروني صحيح",
+  "please_enter_your_phone": "من فضلك ادخل رقم هاتفك ",
   "please_enter_name": "من فضلك أدخل الاسم",
   "already_have_account": "لديك حساب بالفعل؟",
   "or": "أو",
@@ -58,6 +59,13 @@
   "great_job": "عمل عظيم",
   "lets_login": "هيا نسجل الدخول",
   "logged_in_successfully": "تم الدخول بنجاح",
-  "go_to_home": "اذهب الى الصفحة الرئيسية"
+  "go_to_home": "اذهب الى الصفحة الرئيسية",
+  "old_password": "كلمة السر القديمة",
+  "new_password": "كلمة السر الجديدة",
+  "confirm_new_password": "تأكيد كلمة السر الجديدة",
+  "please_enter_new_password": "ادخل كلمة السر الجديدة",
+  "please_enter_old_password": "ادخل كلمة السر القديمة",
+  "please_confirm_new_password": "اعد ادخل كلمة السر الجديدة",
+  "change_password": "تغيير كلمة السر"
 
 }
