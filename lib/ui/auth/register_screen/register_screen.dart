@@ -22,8 +22,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  bool isObscure = true;
-  bool isObscureRe = true;
+
   List<String> avatars = [
     AppAssets.avatar1Image,
     AppAssets.avatar2Image,
@@ -161,7 +160,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                                 suffixIcon: GestureDetector(
                                   onTap: () {
-                                    isObscure = !isObscure;
+                                    viewModel.isObscure = !viewModel.isObscure;
                                     setState(() {});
                                   },
                                   child: ImageIcon(
@@ -182,7 +181,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   }
                                   return null;
                                 },
-                                obscureText: isObscure,
+                                obscureText: viewModel.isObscure,
                               ),
                               SizedBox(height: height * 0.024),
                               CustomTextField(
@@ -194,7 +193,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                                 suffixIcon: GestureDetector(
                                   onTap: () {
-                                    isObscureRe = !isObscureRe;
+                                    viewModel.isObscureRe =
+                                    !viewModel.isObscureRe;
                                     setState(() {});
                                   },
                                   child: ImageIcon(
@@ -202,12 +202,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     color: AppColors.whiteColor,
                                   ),
                                 ),
-                                hintText: AppLocalizations.of(
-                                  context,
-                                )!.re_password,
+                                hintText: AppLocalizations.of(context,)!
+                                    .re_password,
                                 validator: (text) {
                                   if (text == null || text.isEmpty) {
-                                    return AppLocalizations.of(context,)!
+                                    return AppLocalizations.of(context)!
                                         .please_enter_password;
                                   }
                                   if (text !=
@@ -217,7 +216,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   }
                                   return null;
                                 },
-                                obscureText: isObscureRe,
+                                obscureText: viewModel.isObscureRe,
                               ),
                               SizedBox(height: height * 0.024),
                               CustomTextField(

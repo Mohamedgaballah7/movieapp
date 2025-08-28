@@ -323,7 +323,7 @@ abstract class AppLocalizations {
   /// No description provided for @forget_password.
   ///
   /// In en, this message translates to:
-  /// **'Forget Password?'**
+  /// **'Forget Password'**
   String get forget_password;
 
   /// No description provided for @reset_password.
@@ -457,6 +457,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Go To Home'**
   String get go_to_home;
+
+  /// No description provided for @old_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Old Password'**
+  String get old_password;
+
+  /// No description provided for @new_password.
+  ///
+  /// In en, this message translates to:
+  /// **'New Password'**
+  String get new_password;
+
+  /// No description provided for @confirm_new_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm New Password'**
+  String get confirm_new_password;
+
+  /// No description provided for @please_enter_new_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Please Enter New Password'**
+  String get please_enter_new_password;
+
+  /// No description provided for @please_enter_old_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Please Enter Old Password'**
+  String get please_enter_old_password;
+
+  /// No description provided for @please_confirm_new_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Please Confirm New Password'**
+  String get please_confirm_new_password;
+
+  /// No description provided for @change_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Password'**
+  String get change_password;
 }
 
 class _AppLocalizationsDelegate
