@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -132,6 +133,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get please_enter_password => 'من فضلك أدخل على الأقل 6 أحرف';
+
+  @override
+  String get please_enter_your_phone => 'من فضلك ادخل رقم هاتفك ';
 
   @override
   String get please_valid_password => 'من فضلك أدخل كلمة مرور صحيحة';
