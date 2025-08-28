@@ -48,7 +48,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    return BlocConsumer(
+    return BlocConsumer<RegisterViewModel, RegisterStates>(
       bloc: viewModel,
       builder: (context, state) {
         if (state is RegisterInitialState ||
@@ -103,37 +103,53 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       child: Form(
                         key: viewModel.formKey,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            CustomTextField(
-                              controller: viewModel.nameController,
-                              style: AppStyles.medium16White,
-                              prefixIcon: ImageIcon(
-                                AssetImage(AppAssets.namePrefixIcon),
-                                color: AppColors.whiteColor,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              CustomTextField(
+                                controller: viewModel.nameController,
+                                style: AppStyles.medium16White,
+                                prefixIcon: ImageIcon(
+                                  AssetImage(AppAssets.namePrefixIcon),
+                                  color: AppColors.whiteColor,
+                                ),
+                                hintText: AppLocalizations.of(context)!.name,
+                                validator: (text) {
+                                  if (text == null || text.isEmpty) {
+                                    return "please enter your name";
+                                  }
+                                  if (text.length > 30) {
+                                    return "please enter a shorter name";
+                                  }
+                                  return null;
+                                },
                               ),
-                              hintText: AppLocalizations.of(context)!.name,
-                              validator: (text) {
-                                if (text == null || text.isEmpty) {
-                                  return AppLocalizations.of(context)!
-                                      .please_enter_name;
-                                }
-                                if (text.length > 30) {
-                                  return "please enter a shorter name";
-                                }
-                                return null;
-                              },
-                            ),
-                            SizedBox(height: height * 0.024),
-                            CustomTextField(
-                              controller: viewModel.emailController,
-                              style: AppStyles.medium16White,
-                              prefixIcon: ImageIcon(
-                                AssetImage(AppAssets.emailPrefixIcon),
-                                color: AppColors.whiteColor,
+                              SizedBox(height: height * 0.024),
+                              CustomTextField(
+                                controller: viewModel.emailController,
+                                style: AppStyles.medium16White,
+                                prefixIcon: ImageIcon(
+                                  AssetImage(AppAssets.emailPrefixIcon),
+                                  color: AppColors.whiteColor,
+                                ),
+                                hintText: AppLocalizations.of(context)!.email,
+                                validator: (text) {
+                                  if (text == null || text.isEmpty) {
+                                    return AppLocalizations.of(context,)!
+                                        .please_enter_email;
+                                  }
+                                  final bool emailValid = RegExp(
+                                    r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+                                  ).hasMatch(text);
+                                  if (!emailValid) {
+                                    return AppLocalizations.of(context)!
+                                        .please_valid_email;
+                                  }
+                                  return null;
+                                },
+                                keyboardType: TextInputType.emailAddress,
                               ),
-
                               SizedBox(height: height * 0.024),
                               CustomTextField(
                                 controller: viewModel.passwordController,
@@ -166,42 +182,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   return null;
                                 },
                                 obscureText: viewModel.isObscure,
-                                
-                              hintText: AppLocalizations.of(context)!.email,
-                              validator: (text) {
-                                if (text == null || text.isEmpty) {
-                                  return AppLocalizations.of(context,)!
-                                      .please_enter_email;
-                                }
-                                final bool emailValid = RegExp(
-                                  r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-                                ).hasMatch(text);
-                                if (!emailValid) {
-                                  return AppLocalizations.of(context)!
-                                      .please_valid_email;
-                                }
-                                return null;
-                              },
-                              keyboardType: TextInputType.emailAddress,
-                            ),
-                            SizedBox(height: height * 0.024),
-                            CustomTextField(
-                              controller: viewModel.passwordController,
-                              style: AppStyles.medium16White,
-                              prefixIcon: ImageIcon(
-                                AssetImage(AppAssets.passwordPrefixIcon),
-                                color: AppColors.whiteColor,
                               ),
-                              suffixIcon: GestureDetector(
-                                onTap: () {
-                                  isObscure = !isObscure;
-                                  setState(() {});
-                                },
-                                child: ImageIcon(
-                                  AssetImage(AppAssets.passwordSuffixIcon),
+                              SizedBox(height: height * 0.024),
+                              CustomTextField(
+                                controller: viewModel.confirmPasswordController,
+                                style: AppStyles.medium16White,
+                                prefixIcon: ImageIcon(
+                                  AssetImage(AppAssets.passwordPrefixIcon),
                                   color: AppColors.whiteColor,
                                 ),
-
                                 suffixIcon: GestureDetector(
                                   onTap: () {
                                     viewModel.isObscureRe =
@@ -229,105 +218,36 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 },
                                 obscureText: viewModel.isObscureRe,
                               ),
-                              hintText: AppLocalizations.of(context)!
-                                  .password,
-                              validator: (text) {
-                                if (text == null || text.isEmpty) {
-                                  return AppLocalizations.of(context)!
-                                      .please_enter_password;
-                                }
-                                if (text.length < 6) {
-                                  return AppLocalizations.of(context)!
-                                      .please_valid_password;
-                                }
-                                final bool passwordValidate = RegExp(
-                                  r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$',
-                                ).hasMatch(text);
-                                if (!passwordValidate) {
-                                  return 'Enter valid password';
-                                } else {
-                                  return null;
-                                }
-
-                                return null;
-                              },
-
-
-                              obscureText: isObscure,
-                            ),
-                            SizedBox(height: height * 0.024),
-                            CustomTextField(
-                              controller: viewModel.confirmPasswordController,
-                              style: AppStyles.medium16White,
-                              prefixIcon: ImageIcon(
-                                AssetImage(AppAssets.passwordPrefixIcon),
-                                color: AppColors.whiteColor,
-                              ),
-                              suffixIcon: GestureDetector(
-                                onTap: () {
-                                  isObscureRe = !isObscureRe;
-                                  setState(() {});
-                                },
-                                child: ImageIcon(
-                                  AssetImage(AppAssets.passwordSuffixIcon),
+                              SizedBox(height: height * 0.024),
+                              CustomTextField(
+                                controller: viewModel.phoneController,
+                                style: AppStyles.medium16White,
+                                prefixIcon: ImageIcon(
+                                  AssetImage(AppAssets.phonePrefixIcon),
                                   color: AppColors.whiteColor,
                                 ),
+                                hintText: AppLocalizations.of(context,)!
+                                    .phone_number,
+                                validator: (text) {
+                                  if (text == null || text.isEmpty) {
+                                    return 'please enter your phone';
+                                  }
+                                  if (text.length < 13) {
+                                    return 'please enter a right phone';
+                                  }
+                                  return null;
+                                },
                               ),
-                              hintText: AppLocalizations.of(
-                                context,
-                              )!.re_password,
-                              validator: (text) {
-                                if (text == null || text.isEmpty) {
-                                  return AppLocalizations.of(context,)!
-                                      .please_enter_password;
-                                }
-                                if (text !=
-                                    viewModel.passwordController.text) {
-                                  return AppLocalizations.of(context,)!
-                                      .please_enter_the_same_password;
-                                }
-                                return null;
-                              },
-                              obscureText: isObscureRe,
-                            ),
-                            SizedBox(height: height * 0.024),
-                            CustomTextField(
-                              controller: viewModel.phoneController,
-                              style: AppStyles.medium16White,
-                              prefixIcon: ImageIcon(
-                                AssetImage(AppAssets.phonePrefixIcon),
-                                color: AppColors.whiteColor,
+                              SizedBox(height: height * 0.024),
+                              CustomElevatedButton(
+                                onPressed: () {
+                                  //todo: go back to login
+                                  viewModel.onPressedRegister();
+                                },
+                                text: AppLocalizations.of(context)!.create_one,
                               ),
-                              hintText: AppLocalizations.of(context,)!
-                                  .phone_number,
-                              validator: (text) {
-                                if (text == null || text.isEmpty) {
-                                  return AppLocalizations.of(context)!
-                                      .please_enter_your_phone;
-                                }
-                                final bool phoneNumber = RegExp(
-                                  r'^\+20(10|11|12|15)[0-9]{8}$',
-                                ).hasMatch(text);
-                                if (!phoneNumber) {
-                                  return 'please enter +20 country code';
-                                }
-
-                                if (text.length < 13) {
-                                  return 'please enter a right phone';
-                                }
-
-                                return null;
-                              },
-                            ),
-                            SizedBox(height: height * 0.024),
-                            CustomElevatedButton(
-                              onPressed: () {
-                                //todo: go back to login
-                                viewModel.onPressedRegister();
-                              },
-                              text: AppLocalizations.of(context)!.create_one,
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -377,7 +297,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             PosAction: () {
               //todo: return to register
               Navigator.pushReplacementNamed(
-                context, AppRoutes.registerRouteName,);
+                  context, AppRoutes.registerRouteName);
             },
           );
         } else if (state is RegisterSuccessState) {
