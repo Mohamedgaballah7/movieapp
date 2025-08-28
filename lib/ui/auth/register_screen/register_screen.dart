@@ -22,8 +22,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  bool isObscure = true;
-  bool isObscureRe = true;
+
   List<String> avatars = [
     AppAssets.avatar1Image,
     AppAssets.avatar2Image,
@@ -134,6 +133,40 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 AssetImage(AppAssets.emailPrefixIcon),
                                 color: AppColors.whiteColor,
                               ),
+
+                              SizedBox(height: height * 0.024),
+                              CustomTextField(
+                                controller: viewModel.passwordController,
+                                style: AppStyles.medium16White,
+                                prefixIcon: ImageIcon(
+                                  AssetImage(AppAssets.passwordPrefixIcon),
+                                  color: AppColors.whiteColor,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    viewModel.isObscure = !viewModel.isObscure;
+                                    setState(() {});
+                                  },
+                                  child: ImageIcon(
+                                    AssetImage(AppAssets.passwordSuffixIcon),
+                                    color: AppColors.whiteColor,
+                                  ),
+                                ),
+                                hintText: AppLocalizations.of(context)!
+                                    .password,
+                                validator: (text) {
+                                  if (text == null || text.isEmpty) {
+                                    return AppLocalizations.of(context)!
+                                        .please_enter_password;
+                                  }
+                                  if (text.length < 6) {
+                                    return AppLocalizations.of(context)!
+                                        .please_valid_password;
+                                  }
+                                  return null;
+                                },
+                                obscureText: viewModel.isObscure,
+                                
                               hintText: AppLocalizations.of(context)!.email,
                               validator: (text) {
                                 if (text == null || text.isEmpty) {
@@ -168,6 +201,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   AssetImage(AppAssets.passwordSuffixIcon),
                                   color: AppColors.whiteColor,
                                 ),
+
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    viewModel.isObscureRe =
+                                    !viewModel.isObscureRe;
+                                    setState(() {});
+                                  },
+                                  child: ImageIcon(
+                                    AssetImage(AppAssets.passwordSuffixIcon),
+                                    color: AppColors.whiteColor,
+                                  ),
+                                ),
+                                hintText: AppLocalizations.of(context,)!
+                                    .re_password,
+                                validator: (text) {
+                                  if (text == null || text.isEmpty) {
+                                    return AppLocalizations.of(context)!
+                                        .please_enter_password;
+                                  }
+                                  if (text !=
+                                      viewModel.passwordController.text) {
+                                    return AppLocalizations.of(context,)!
+                                        .please_enter_the_same_password;
+                                  }
+                                  return null;
+                                },
+                                obscureText: viewModel.isObscureRe,
                               ),
                               hintText: AppLocalizations.of(context)!
                                   .password,

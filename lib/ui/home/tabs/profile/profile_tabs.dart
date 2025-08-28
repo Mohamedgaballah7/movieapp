@@ -11,6 +11,7 @@ import '../../../../widgets/alert_dialog.dart';
 import '../../../../widgets/custom_elevated_button.dart';
 import '../../../../widgets/custom_text_field.dart';
 import 'choose_avater.dart';
+import 'reset_password_screen/reset_password_screen.dart';
 
 class ProfileTab extends StatefulWidget {
   const ProfileTab({super.key});
@@ -24,6 +25,7 @@ class _UpdateProfileState extends State<ProfileTab> {
   TextEditingController phoneController = TextEditingController();
   var formKey = GlobalKey<FormState>();
   var selectedAvatar = 0;
+  bool isReset = false;
 
   List<String> avatars = [
     AppAssets.avatar1Image,
@@ -42,19 +44,19 @@ class _UpdateProfileState extends State<ProfileTab> {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            AppLocalizations.of(context)!.pick_avatar,
-            style: AppStyles.medium16yellow,
-          ),
+      appBar: AppBar(
+        title: Text(
+          AppLocalizations.of(context)!.pick_avatar,
+          style: AppStyles.medium16yellow,
         ),
-        body: FutureBuilder<ProfileResponse>(future: ApiManager.getUserData(),
+      ),
+      body: SingleChildScrollView(
+        child: FutureBuilder<ProfileResponse>(
+          future: ApiManager.getUserData(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
-                child: CircularProgressIndicator(
-                  color: AppColors.yellowColor,
-                ),
+                child: CircularProgressIndicator(color: AppColors.yellowColor),
               );
             } else if (snapshot.hasData) {
               nameController.text = snapshot.data!.data!.name!;
@@ -105,8 +107,9 @@ class _UpdateProfileState extends State<ProfileTab> {
                               AssetImage(AppAssets.phonePrefixIcon),
                               color: AppColors.whiteColor,
                             ),
-                            hintText: AppLocalizations.of(context)!
-                                .phone_number,
+                            hintText: AppLocalizations.of(
+                              context,
+                            )!.phone_number,
                             validator: (text) {
                               if (text == null || text.isEmpty) {
                                 return AppLocalizations.of(
@@ -119,52 +122,78 @@ class _UpdateProfileState extends State<ProfileTab> {
                           ),
                           SizedBox(height: height * 0.02),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              //todo: reset password
+                              isReset = !isReset;
+                              setState(() {});
+                            },
                             child: Text(
                               textAlign: TextAlign.start,
                               AppLocalizations.of(context)!.reset_password,
                               style: AppStyles.medium16White,
                             ),
                           ),
-                          SizedBox(height: height * 0.29,),
-                          CustomElevatedButton(
-                            backgroundColor: AppColors.redColor,
-                            textStyle: AppStyles.medium20White,
-                            onPressed: () async {
-                              //todo: delete profile
-                              try {
-                                await ApiManager.deleteProfile();
-                                DialogUtils.showMassege(
-                                  context: context,
-                                  message: "deleted Account Successfully",
-                                  Title: AppLocalizations.of(context)!
-                                      .great_job,
-                                  PosActionName: AppLocalizations.of(context)!
-                                      .ok,
-                                  PosAction: () {
-                                    //todo: navigate to login
-                                    Navigator.pushNamedAndRemoveUntil(
-                                      context, AppRoutes.loginRouteName, (
-                                        route) => false,);
-                                  },
-                                );
-                              } catch (e) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content: Text(
-                                        "Failed to delete account: $e"))
-                                );
-                              }
-                            },
-                            text: AppLocalizations.of(context)!.delete_account,
-                          ),
-                          SizedBox(height: height * 0.02),
-                          CustomElevatedButton(
-                            onPressed: () {
-                              //todo: go back to login
-                            },
-                            text: AppLocalizations.of(context)!.update_data,
-                          ),
-                          SizedBox(height: height * 0.02),
+                          isReset == true
+                              ? ResetPasswordScreen()
+                              : Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    SizedBox(height: height * 0.2),
+                                    CustomElevatedButton(
+                                      backgroundColor: AppColors.redColor,
+                                      textStyle: AppStyles.medium20White,
+                                      onPressed: () async {
+                                        //todo: delete profile
+                                        try {
+                                          await ApiManager.deleteProfile();
+                                          DialogUtils.showMassege(
+                                            context: context,
+                                            message:
+                                                "deleted Account Successfully",
+                                            Title: AppLocalizations.of(
+                                              context,
+                                            )!.great_job,
+                                            PosActionName: AppLocalizations.of(
+                                              context,
+                                            )!.ok,
+                                            PosAction: () {
+                                              //todo: navigate to login
+                                              Navigator.pushNamedAndRemoveUntil(
+                                                context,
+                                                AppRoutes.loginRouteName,
+                                                (route) => false,
+                                              );
+                                            },
+                                          );
+                                        } catch (e) {
+                                          ScaffoldMessenger.of(
+                                            context,
+                                          ).showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                "Failed to delete account: $e",
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                      },
+                                      text: AppLocalizations.of(
+                                        context,
+                                      )!.delete_account,
+                                    ),
+                                    SizedBox(height: height * 0.02),
+                                    CustomElevatedButton(
+                                      onPressed: () {
+                                        //todo: go back to login
+                                      },
+                                      text: AppLocalizations.of(
+                                        context,
+                                      )!.update_data,
+                                    ),
+                                    SizedBox(height: height * 0.02),
+                                  ],
+                                ),
                         ],
                       ),
                     ),
@@ -172,10 +201,16 @@ class _UpdateProfileState extends State<ProfileTab> {
                 ),
               );
             } else {
-              return Center(child: Text(
-                "Not Found Data", style: AppStyles.semiBold20Yellow,),);
+              return Center(
+                child: Text(
+                  "Not Found Data",
+                  style: AppStyles.semiBold20Yellow,
+                ),
+              );
             }
-          },)
+          },
+        ),
+      ),
     );
   }
 
@@ -183,15 +218,14 @@ class _UpdateProfileState extends State<ProfileTab> {
     final selected = await showModalBottomSheet(
       backgroundColor: AppColors.transparentColor,
       context: context,
-      builder: (context) =>
-          Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                color: AppColors.blackColor,
-              ),
-              margin: EdgeInsets.only(left: 13, right: 13, bottom: 30),
-
-              child: ChooseAvater(selectedAvatar: selectedAvatar)),
+      builder: (context) => Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25),
+          color: AppColors.blackColor,
+        ),
+        margin: EdgeInsets.only(left: 13, right: 13, bottom: 30),
+        child: ChooseAvater(selectedAvatar: selectedAvatar),
+      ),
     );
 
     if (selected != null) {
@@ -200,9 +234,8 @@ class _UpdateProfileState extends State<ProfileTab> {
       });
     }
   }
-
-
 }
+
 /*
 
  */

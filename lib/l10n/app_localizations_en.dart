@@ -126,7 +126,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get create_one => 'Create One';
 
   @override
-  String get forget_password => 'Forget Password?';
+  String get forget_password => 'Forget Password';
 
   @override
   String get reset_password => 'Reset Password';
@@ -196,4 +196,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get go_to_home => 'Go To Home';
+
+  @override
+  String get old_password => 'Old Password';
+
+  @override
+  String get new_password => 'New Password';
+
+  @override
+  String get confirm_new_password => 'Confirm New Password';
+
+  @override
+  String get please_enter_new_password => 'Please Enter New Password';
+
+  @override
+  String get please_enter_old_password => 'Please Enter Old Password';
+
+  @override
+  String get please_confirm_new_password => 'Please Confirm New Password';
+
+  @override
+  String get change_password => 'Change Password';
 }

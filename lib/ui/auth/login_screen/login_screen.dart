@@ -21,7 +21,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-   bool isObscure = true;
    LoginViewModel viewModel = LoginViewModel();
   @override
   Widget build(BuildContext context) {
@@ -88,7 +87,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   suffixIcon:
                                   GestureDetector(
                                       onTap: () {
-                                        isObscure = !isObscure;
+                                        viewModel.isObscure =
+                                        !viewModel.isObscure;
                                         setState(() {
 
                                         });
@@ -112,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     }
                                     return null;
                                   },
-                                  obscureText: isObscure,
+                                  obscureText: viewModel.isObscure,
                                 ),
                                 SizedBox(height: height * 0.02,),
                                 Row(
@@ -234,12 +234,6 @@ class _LoginScreenState extends State<LoginScreen> {
           }
         }
     );
-  }
-  void login(){
-    if(viewModel.formKey.currentState?.validate()==true){
-      //todo: Login
-      Navigator.pushNamed(context, AppRoutes.homeRouteName);
-    }
   }
 }
 

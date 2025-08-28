@@ -5,6 +5,7 @@ import 'package:movieapproute/api/api_constants.dart';
 import 'package:movieapproute/api/api_endpoints.dart';
 import 'package:movieapproute/model/api_responses/login_response.dart';
 import 'package:movieapproute/model/api_responses/register_response.dart';
+import 'package:movieapproute/model/api_responses/reset_password_response.dart';
 import 'package:movieapproute/shared_preferences/shared_preferences.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,11 +15,8 @@ import '../model/api_responses/profile_response.dart';
 class ApiManager {
 
   //todo: register auth
-  static Future<RegisterResponse> postRegisterData(String name,
-      String email,
-      String password,
-      String confirmPassword,
-      String phone,
+  static Future<RegisterResponse> postRegisterData(String name, String email,
+      String password, String confirmPassword, String phone,
       int avatarId,) async {
     Uri url = Uri.https(
       ApiConstants.baseUrl,
@@ -47,6 +45,8 @@ class ApiManager {
       throw e;
     }
   }
+
+  //todo: get movies
   static Future<MovieResponse> getMovies({String? genre})async{
     var url = Uri.https(
         ApiConstants.movieBaseUrl,
@@ -93,8 +93,6 @@ class ApiManager {
       throw e;
     }
   }
-
-
   //todo: getProfile
   static Future<ProfileResponse> getUserData() async {
     Uri url = Uri.https(
@@ -119,7 +117,6 @@ class ApiManager {
       throw Exception('Error fetching profile: $e');
     }
   }
-
   //todo: deleteProfile
   static Future<void> deleteProfile() async {
     Uri url = Uri.https(
@@ -144,6 +141,34 @@ class ApiManager {
     }
   }
 
+  //todo: reset password
+  static Future<ResetPasswordResponse> patchResetPassword(String oldPassword,
+      String newPassword,) async {
+    Uri url = Uri.https(
+        ApiConstants.baseUrl, ApiEndPoints.resetPasswordEndPoint);
+    try {
+      String? token = await SharedPreferencesAll.getToken();
+      if (token == null || token.isEmpty) {
+        throw Exception("Token not found");
+      }
+      ResetPasswordResponse requestBody = ResetPasswordResponse(
+        oldPassword: oldPassword, newPassword: newPassword,
+      );
+      var response = await http.patch(
+        url, headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer $token',
+      },
+        body: jsonEncode(requestBody.toJson()),
+      );
+      var responseBody = response.body;
+      var json = jsonDecode(responseBody);
+      var resetResponse = ResetPasswordResponse.fromJson(json);
+      return resetResponse;
+    } catch (e) {
+      throw e;
+    }
+  }
 }
 
 
