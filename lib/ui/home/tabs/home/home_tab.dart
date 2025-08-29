@@ -156,6 +156,7 @@ class _HomeTabState extends State<HomeTab> {
                         ),
                       ),
                     ),
+                    SizedBox(height: height * 0.02,)
                   ],
                 ),
               );

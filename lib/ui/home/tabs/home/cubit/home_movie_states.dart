@@ -1,6 +1,6 @@
 import '../../../../../model/api_responses/movie_response.dart';
 
-class HomeMovieStates{}
+abstract class HomeMovieStates {}
 
 class HomeMovieLoadingState extends HomeMovieStates {}
 

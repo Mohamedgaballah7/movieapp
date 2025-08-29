@@ -9,7 +9,7 @@ class LoginViewModel extends Cubit<LoginStates> {
   TextEditingController emailController = TextEditingController(
       text: 'ahmed21585@gmail.com');
   TextEditingController passwordController = TextEditingController(
-      text: 'Ahmed@215');
+      text: 'Ahmed@123');
   bool isObscure = true;
   var formKey = GlobalKey<FormState>();
 

@@ -4,16 +4,16 @@ import 'package:movieapproute/utils/app_colors.dart';
 import '../../../../utils/app_assets.dart';
 
 
-class ChooseAvater extends StatefulWidget {
+class ChooseAvatar extends StatefulWidget {
   int selectedAvatar;
 
-  ChooseAvater({super.key, required this.selectedAvatar});
+  ChooseAvatar({super.key, required this.selectedAvatar});
 
   @override
-  State<ChooseAvater> createState() => _ChooseAvaterState();
+  State<ChooseAvatar> createState() => _ChooseAvatarState();
 }
 
-class _ChooseAvaterState extends State<ChooseAvater> {
+class _ChooseAvatarState extends State<ChooseAvatar> {
   List<String> avatars = [
     AppAssets.avatar1Image,
     AppAssets.avatar2Image,

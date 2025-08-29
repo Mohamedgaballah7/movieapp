@@ -26,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    return BlocConsumer(
+    return BlocConsumer<LoginViewModel, LoginStates>(
         bloc: viewModel,
         builder: (context, state) {
           if (state is LoginInitialState || state is LoginSuccessState ||
