@@ -61,10 +61,8 @@ class _UpdateProfileState extends State<ProfileTab> {
               return const Center(
                 child: CircularProgressIndicator(
                     color: AppColors.yellowColor),);
-            } else
-            if (state is SuccessGetState || state is SuccessUpdateState ||
-                state is SuccessChangeState) {
-              return Padding(
+            } else if (state is SuccessGetState || state is SuccessUpdateState) {
+            return Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: width * 0.037,
                   vertical: height * 0.02,
@@ -194,15 +192,6 @@ class _UpdateProfileState extends State<ProfileTab> {
                 SnackBar(
                   content: Text(textAlign: TextAlign.center,
                     "update Account Successfully",
-                  ),
-                  backgroundColor: Colors.green,
-                ),
-              );
-            } else if (state is SuccessChangeState) {
-              ScaffoldMessenger.of(context,).showSnackBar(
-                SnackBar(
-                  content: Text(textAlign: TextAlign.center,
-                    "Password updated successfully",
                   ),
                   backgroundColor: Colors.green,
                 ),

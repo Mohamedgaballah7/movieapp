@@ -179,6 +179,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     return AppLocalizations.of(context)!
                                         .please_valid_password;
                                   }
+                                  final bool passwordValidate = RegExp(
+                                    r'^(?=.?[A-Z])(?=.?[a-z])(?=.?[0-9])(?=.?[!@#\$&*~]).{8,}$',
+                                  ).hasMatch(text);
+                                  if (!passwordValidate) {
+                                    return 'Enter valid password';
+                                  }
                                   return null;
                                 },
                                 obscureText: viewModel.isObscure,
@@ -230,11 +236,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     .phone_number,
                                 validator: (text) {
                                   if (text == null || text.isEmpty) {
-                                    return 'please enter your phone';
+                                    return AppLocalizations.of(context)!
+                                        .please_enter_your_phone;
                                   }
+                                  final bool phoneNumber = RegExp(
+                                    r'^\+20(10|11|12|15)[0-9]{8}$',
+                                  ).hasMatch(text);
+                                  if (!phoneNumber) {
+                                    return 'please enter +20 country code';
+                                  }
+
                                   if (text.length < 13) {
                                     return 'please enter a right phone';
                                   }
+
                                   return null;
                                 },
                               ),

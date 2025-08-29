@@ -30,8 +30,3 @@ class SuccessUpdateState extends UpdateProfileStates {
   SuccessUpdateState({required this.successMessage});
 }
 
-class SuccessChangeState extends UpdateProfileStates {
-  String successMessage;
-
-  SuccessChangeState({required this.successMessage});
-}
