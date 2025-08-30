@@ -56,6 +56,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             state is RegisterErrorState) {
           return Scaffold(
             appBar: AppBar(
+              scrolledUnderElevation: 0,
               title: Text(
                 AppLocalizations.of(context)!.register,
                 style: AppStyles.medium16yellow,
@@ -175,18 +176,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     return AppLocalizations.of(context)!
                                         .please_enter_password;
                                   }
-                                  if (text.length < 6) {
+
+                                  if (text.length < 8) {
                                     return AppLocalizations.of(context)!
                                         .please_valid_password;
                                   }
+
                                   final bool passwordValidate = RegExp(
-                                    r'^(?=.?[A-Z])(?=.?[a-z])(?=.?[0-9])(?=.?[!@#\$&*~]).{8,}$',
+                                    r'^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$&*~]).{8,}$',
                                   ).hasMatch(text);
+
                                   if (!passwordValidate) {
-                                    return 'Enter valid password';
+                                    return 'Password must contain uppercase, lowercase, number, and special character';
                                   }
+
                                   return null;
                                 },
+
                                 obscureText: viewModel.isObscure,
                               ),
                               SizedBox(height: height * 0.024),

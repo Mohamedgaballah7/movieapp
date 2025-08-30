@@ -5,15 +5,11 @@ import 'package:movieapproute/ui/auth/register_screen/cubit/register_states.dart
 
 class RegisterViewModel extends Cubit<RegisterStates> {
   RegisterViewModel() : super(RegisterInitialState());
-  TextEditingController phoneController = TextEditingController(
-      text: '+201276496469');
-  TextEditingController nameController = TextEditingController(text: 'ahmed');
-  TextEditingController emailController = TextEditingController(
-      text: 'ahmed21585@gmail.com');
-  TextEditingController passwordController = TextEditingController(
-      text: 'Ahmed@123');
-  TextEditingController confirmPasswordController = TextEditingController(
-      text: 'Ahmed@123');
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
   int currentPage = 3;
   bool isObscure = true;
   bool isObscureRe = true;

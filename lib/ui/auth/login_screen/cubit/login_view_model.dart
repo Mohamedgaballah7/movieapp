@@ -6,10 +6,8 @@ import 'package:movieapproute/ui/auth/login_screen/cubit/login_states.dart';
 
 class LoginViewModel extends Cubit<LoginStates> {
   LoginViewModel() : super(LoginInitialState());
-  TextEditingController emailController = TextEditingController(
-      text: 'ahmed21585@gmail.com');
-  TextEditingController passwordController = TextEditingController(
-      text: 'Ahmed@123');
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   bool isObscure = true;
   var formKey = GlobalKey<FormState>();
 
@@ -21,7 +19,7 @@ class LoginViewModel extends Cubit<LoginStates> {
       if (response.message == "Success Login") {
         if (response.data != null && response.data!.isNotEmpty) {
           await SharedPreferencesAll.saveToken(response.data!);
-          print("✅ Token Saved: ${response.data}");
+          print("Token Saved: ${response.data}");
         }
         emit(LoginSuccessState(successMessage: response.message!));
         return;
