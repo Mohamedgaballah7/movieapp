@@ -34,8 +34,18 @@ class _AnimatedToggleButtonThemeState extends State<AnimatedToggleButtonTheme> {
         inactiveBgColor: AppColors.transparentColor,
         totalSwitches: 2,
         customWidgets: [
-          Icon(Icons.nightlight_round_outlined),
-          Icon(Icons.sunny),
+          Icon(
+            Icons.nightlight_round_outlined,
+            color: themeModel.appTheme == ThemeMode.dark
+                ? AppColors.whiteColor
+                : AppColors.blackColor,
+          ),
+          Icon(
+            Icons.sunny,
+            color: themeModel.appTheme == ThemeMode.dark
+                ? AppColors.whiteColor
+                : AppColors.blackColor,
+          ),
         ],
         initialLabelIndex: themeModel.appTheme == ThemeMode.dark ? 0 : 1,
         radiusStyle: true,
