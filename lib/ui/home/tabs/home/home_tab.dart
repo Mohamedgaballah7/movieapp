@@ -6,6 +6,7 @@ import 'package:movieapproute/ui/home/tabs/home/cubit/home_movie_states.dart';
 import 'package:movieapproute/ui/home/tabs/home/custom_movie_card.dart';
 import 'package:movieapproute/utils/app_assets.dart';
 import 'package:movieapproute/utils/app_colors.dart';
+import 'package:movieapproute/utils/app_routes.dart';
 import 'package:movieapproute/utils/app_styles.dart';
 
 import 'cubit/home_movie_view_model.dart';
@@ -91,8 +92,15 @@ class _HomeTabState extends State<HomeTab> {
                                             padding: EdgeInsets.only(
                                               top: isSelected ? 0 : 5,
                                             ),
-                                            child: CustomMovieCard(
-                                              movie: state.allMovies[index],
+                                            child: InkWell(
+                                              onTap: () {
+                                                Navigator.of(context).pushNamed(
+                                                    AppRoutes
+                                                        .movieDetailsRouteName);
+                                              },
+                                              child: CustomMovieCard(
+                                                movie: state.allMovies[index],
+                                              ),
                                             ),
                                           ),
                                         );

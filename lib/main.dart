@@ -6,6 +6,7 @@ import 'package:movieapproute/ui/auth/forget_password_screen/forget_password_scr
 import 'package:movieapproute/ui/auth/login_screen/login_screen.dart';
 import 'package:movieapproute/ui/auth/register_screen/register_screen.dart';
 import 'package:movieapproute/ui/home/homescreen.dart';
+import 'package:movieapproute/ui/home/movie_details/movie_details.dart';
 import 'package:movieapproute/ui/home/tabs/profile/reset_password_screen/reset_password_screen.dart';
 import 'package:movieapproute/ui/onboarding_screens/onboarding_screens.dart';
 import 'package:movieapproute/utils/app_routes.dart';
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
   final String initialRoute;
   @override
   Widget build(BuildContext context) {
+
     return BlocBuilder<ChangeTheme, ThemeState>(
       builder: (BuildContext context, state) {
         ThemeMode appTheme = ThemeMode.dark;
@@ -63,11 +65,11 @@ class MyApp extends StatelessWidget {
           initialRoute: initialRoute,
           routes: {
             AppRoutes.onBoardingRouteName: (context) => OnboardingScreens(),
-
             AppRoutes.homeRouteName: (context) => Homescreen(),
             AppRoutes.loginRouteName: (context) => LoginScreen(),
             AppRoutes.registerRouteName: (context) => RegisterScreen(),
             AppRoutes.resetRouteName: (context) => ResetPasswordScreen(),
+            AppRoutes.movieDetailsRouteName: (context) => MovieDetails(),
             AppRoutes.forgetPasswordRouteName: (context) =>
                 ForgetPasswordScreen(),
 
