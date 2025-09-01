@@ -10,6 +10,7 @@ import 'package:movieapproute/utils/app_routes.dart';
 import 'package:movieapproute/utils/app_styles.dart';
 import 'package:movieapproute/widgets/alert_dialog.dart';
 import 'package:movieapproute/widgets/animated_toggle_button.dart';
+import 'package:movieapproute/widgets/animated_toggle_button_theme.dart';
 import 'package:movieapproute/widgets/custom_elevated_button.dart';
 import 'package:movieapproute/widgets/custom_text_field.dart';
 
@@ -144,7 +145,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                       TextSpan(
                                         text: "${AppLocalizations.of(context)!
                                             .not_have_account} ",
-                                        style: AppStyles.medium14White,
+                                        style: Theme
+                                            .of(context)
+                                            .textTheme
+                                            .labelMedium,
                                       ),
                                       TextSpan(
                                         text: AppLocalizations.of(context)!
@@ -193,7 +197,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                   hasIcon: true,
                                 ),
                                 SizedBox(height: height * 0.036,),
-                                AnimatedToggleButtonLanguage()
+                                AnimatedToggleButtonLanguage(),
+                                SizedBox(height: height * 0.02,),
+                                AnimatedToggleButtonTheme(),
+
                               ],
                             )
                         ),

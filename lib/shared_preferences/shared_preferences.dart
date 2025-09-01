@@ -20,4 +20,9 @@ class SharedPreferencesAll {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove("authToken");
   }
+
+  static void saveTheme(bool theme) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('theme', theme);
+  }
 }

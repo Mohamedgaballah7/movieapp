@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'app_colors.dart';
 import 'app_styles.dart';
 
@@ -16,6 +17,7 @@ class AppTheme {
           labelSmall: AppStyles.medium12Gray,
           labelMedium: AppStyles.medium14Black,
           headlineMedium: AppStyles.medium24Black,
+          bodyLarge: AppStyles.medium16Black,
           headlineLarge: AppStyles.medium20Black));
   static final ThemeData darkTheme = ThemeData(
 
@@ -32,6 +34,8 @@ class AppTheme {
           labelMedium: AppStyles.medium14White,
           labelSmall: AppStyles.medium12Gray,
           headlineMedium: AppStyles.medium24White,
+          bodyLarge: AppStyles.medium16White,
+
           headlineLarge: AppStyles.medium20White)); // TextTheme, ThemeData
 
 
