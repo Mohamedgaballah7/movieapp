@@ -11,6 +11,7 @@ import 'package:movieapproute/widgets/animated_toggle_button.dart';
 import 'package:movieapproute/widgets/custom_text_field.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../widgets/animated_toggle_button_theme.dart';
 import '../../../widgets/custom_elevated_button.dart';
 import 'cubit/register_view_model.dart';
 
@@ -281,7 +282,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             text:
                             "${AppLocalizations.of(context)!
                                 .already_have_account} ",
-                            style: AppStyles.medium14White,
+                            style: Theme
+                                .of(context)
+                                .textTheme
+                                .labelMedium,
                           ),
                           TextSpan(
                             text: AppLocalizations.of(context)!.login,
@@ -300,6 +304,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     SizedBox(height: height * 0.036),
                     AnimatedToggleButtonLanguage(),
+                    SizedBox(height: height * 0.02,),
+                    AnimatedToggleButtonTheme(),
                   ],
                 ),
               ),

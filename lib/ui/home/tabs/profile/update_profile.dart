@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movieapproute/cubit_theme&language/theme/theme_view_model.dart';
 import 'package:movieapproute/l10n/app_localizations.dart';
 import 'package:movieapproute/ui/home/tabs/profile/cubit/update_profile_states.dart';
 import 'package:movieapproute/ui/home/tabs/profile/cubit/update_profile_view_model.dart';
@@ -44,6 +45,7 @@ class _UpdateProfileState extends State<ProfileTab> {
 
   @override
   Widget build(BuildContext context) {
+    var themeModel = context.read<ChangeTheme>();
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -53,6 +55,21 @@ class _UpdateProfileState extends State<ProfileTab> {
           AppLocalizations.of(context)!.pick_avatar,
           style: AppStyles.medium16yellow,
         ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                themeModel.changeTheme(
+                  themeModel.appTheme == ThemeMode.dark
+                      ? ThemeMode.light
+                      : ThemeMode.dark,
+                );
+              },
+              icon: Icon(context
+                  .watch<ChangeTheme>()
+                  .appTheme == ThemeMode.dark
+                  ? Icons.nightlight_round_outlined
+                  : Icons.sunny, color: AppColors.yellowColor)),
+        ],
       ),
       body: BlocConsumer<UpdateProfileViewModel, UpdateProfileStates>(
           bloc: viewModel,
@@ -134,7 +151,10 @@ class _UpdateProfileState extends State<ProfileTab> {
                               child: Text(
                                 textAlign: TextAlign.start,
                                 AppLocalizations.of(context)!.reset_password,
-                                style: AppStyles.medium16White,
+                                style: Theme
+                                    .of(context)
+                                    .textTheme
+                                    .bodyLarge,
                               ),
                             ),
                             SizedBox(height: height * 0.29),

@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:movieapproute/api/api_constants.dart';
 import 'package:movieapproute/api/api_endpoints.dart';
 import 'package:movieapproute/model/api_responses/login_response.dart';
+import 'package:movieapproute/model/api_responses/movie_details_response.dart';
 import 'package:movieapproute/model/api_responses/register_response.dart';
 import 'package:movieapproute/model/api_responses/reset_password_response.dart';
 import 'package:movieapproute/shared_preferences/shared_preferences.dart';
@@ -193,6 +194,25 @@ class ApiManager {
       throw e;
     }
   }
+
+  //todo : getMovieDetails
+  static Future<MovieDetailsResponse> getMovieDetails(int movieId) async {
+    Uri url = Uri.https(
+        ApiConstants.movieBaseUrl, ApiEndPoints.movieDetailsEndPoint, {
+      'movie_id': movieId,
+      'with_images': true,
+      'with_cast': true
+    });
+    try {
+      var response = await http.get(url);
+      var responseBody = response.body;
+      var json = jsonDecode(responseBody);
+      return MovieDetailsResponse.fromJson(json);
+    } catch (e) {
+      throw e;
+    }
+  }
+
 }
 
 

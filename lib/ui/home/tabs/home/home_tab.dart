@@ -122,7 +122,10 @@ class _HomeTabState extends State<HomeTab> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(AppLocalizations.of(context)!.action,
-                              style: AppStyles.bold16White),
+                              style: Theme
+                                  .of(context)
+                                  .textTheme
+                                  .labelLarge),
                           TextButton(
                             onPressed: () {
                               //todo:make action movies swipe
