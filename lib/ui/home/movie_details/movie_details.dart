@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:movieapproute/ui/home/movie_details/widgets/custom_cast_container.dart';
+import 'package:movieapproute/ui/home/movie_details/widgets/custom_genres_container.dart';
 import 'package:movieapproute/ui/home/movie_details/widgets/custom_react_time_like_container.dart';
 import 'package:movieapproute/utils/app_assets.dart';
 import 'package:movieapproute/utils/app_colors.dart';
@@ -116,6 +118,35 @@ class MovieDetails extends StatelessWidget {
                     style: AppStyles.medium14White,
                   ),
                   Text('Cast', style: AppStyles.bold16White),
+                  CustomCastContainer(imagePath: AppAssets.discoverMovies,
+                      name: 'hayele atwel',
+                      character: 'captin carter'),
+                  CustomCastContainer(imagePath: AppAssets.discoverMovies,
+                      name: 'hayele atwel',
+                      character: 'captin carter'),
+                  CustomCastContainer(imagePath: AppAssets.discoverMovies,
+                      name: 'hayele atwel',
+                      character: 'captin carter'),
+                  CustomCastContainer(imagePath: AppAssets.discoverMovies,
+                      name: 'hayele atwel',
+                      character: 'captin carter'),
+                  Text('Genres', style: AppStyles.bold16White),
+                  Row(
+                    children: [
+                      CustomGenresContainer(type: 'Action'),
+                      CustomGenresContainer(type: 'Action'),
+                      CustomGenresContainer(type: 'Action'),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      CustomGenresContainer(type: 'Action'),
+                      CustomGenresContainer(type: 'Action'),
+                    ],
+                  ),
+
+
+
                 ],
               ),
             ),
