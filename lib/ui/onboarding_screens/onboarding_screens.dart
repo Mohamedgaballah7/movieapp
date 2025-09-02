@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movieapproute/l10n/app_localizations.dart';
 import 'package:movieapproute/model/onboarding_model/onboarding_model.dart';
 import 'package:movieapproute/shared_preferences/shared_preferences.dart';
+import 'package:movieapproute/ui/onboarding_screens/cubit/onboarding_states.dart'
+    show OnboardingState, OnboardingPageChangedState;
+import 'package:movieapproute/ui/onboarding_screens/cubit/onboarding_view_model.dart';
 import 'package:movieapproute/utils/app_assets.dart';
 import 'package:movieapproute/utils/app_colors.dart';
 import 'package:movieapproute/utils/app_routes.dart';
 import 'package:movieapproute/utils/app_styles.dart';
 import 'package:movieapproute/widgets/custom_elevated_button.dart';
 
-class OnboardingScreens extends StatefulWidget {
+class OnboardingScreens extends StatelessWidget {
+  final PageController pageController = PageController();
+
   OnboardingScreens({super.key});
 
-  @override
-  State<OnboardingScreens> createState() => _OnboardingScreensState();
-  final PageController pageController = PageController();
-  int currentPage = 0;
-}
-
-class _OnboardingScreensState extends State<OnboardingScreens> {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
+
     List<OnboardingModel> onboardingScreens = [
       OnboardingModel(
         imagePath: AppAssets.moviePoster,
@@ -53,99 +53,107 @@ class _OnboardingScreensState extends State<OnboardingScreens> {
         title: AppLocalizations.of(context)!.start_watching_now,
       ),
     ];
+
     return Scaffold(
-      body: PageView.builder(
-        controller: widget.pageController,
-        onPageChanged: (index) {
-          setState(() {
-            widget.currentPage = index;
-          });
-        },
-        itemCount: onboardingScreens.length,
-        itemBuilder: (context, index) {
-          return Stack(
-            children: [
-              Image.asset(onboardingScreens[index].imagePath, fit: BoxFit.fill),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: width * 0.1,
-                    vertical: height * 0.02,
-                  ),
-                  decoration: BoxDecoration(
-                    color: index == 0
-                        ? AppColors.transparentColor
-                        : AppColors.blackColor,
-                    borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(40),
+      body: BlocBuilder<OnboardingViewModel, OnboardingState>(
+        builder: (context, state) {
+          int currentPage = 0;
+          if (state is OnboardingPageChangedState) {
+            currentPage = state.currentPage;
+          }
+
+          return PageView.builder(
+            controller: pageController,
+            onPageChanged: (index) {
+              context.read<OnboardingViewModel>().changePage(index);
+            },
+            itemCount: onboardingScreens.length,
+            itemBuilder: (context, index) {
+              return Stack(
+                children: [
+                  Image.asset(
+                      onboardingScreens[index].imagePath, fit: BoxFit.fill),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: width * 0.1,
+                        vertical: height * 0.02,
+                      ),
+                      decoration: BoxDecoration(
+                        color: index == 0
+                            ? AppColors.transparentColor
+                            : AppColors.blackColor,
+                        borderRadius: const BorderRadius.vertical(
+                          top: Radius.circular(40),
+                        ),
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            onboardingScreens[index].title,
+                            style: AppStyles.bold24White,
+                            textAlign: TextAlign.center,
+                          ),
+                          SizedBox(height: height * 0.02),
+                          if (onboardingScreens[index].description != null)
+                            Text(
+                              onboardingScreens[index].description!,
+                              style: AppStyles.regular16White,
+                              textAlign: TextAlign.center,
+                            ),
+                          SizedBox(height: height * 0.02),
+                          SizedBox(
+                            width: double.infinity,
+                            child: CustomElevatedButton(
+                              onPressed: () async {
+                                if (index == onboardingScreens.length - 1) {
+                                  await SharedPreferencesAll()
+                                      .onBoardingScreen();
+                                  Navigator.pushReplacementNamed(
+                                    context, AppRoutes.loginRouteName,);
+                                } else {
+                                  pageController.nextPage(
+                                    duration: const Duration(milliseconds: 400),
+                                    curve: Curves.easeInOut,
+                                  );
+                                }
+                              },
+                              text: index == 0
+                                  ? AppLocalizations.of(context)!.explore_now
+                                  : (index == onboardingScreens.length - 1
+                                  ? AppLocalizations.of(context)!.get_started
+                                  : AppLocalizations.of(context)!.next),
+                              backgroundColor: AppColors.yellowColor,
+                              textStyle: AppStyles.semiBold20Black,
+                            ),
+                          ),
+                          SizedBox(height: height * 0.02),
+                          if (index != 0 && index != 1)
+                            SizedBox(
+                              width: double.infinity,
+                              child: CustomElevatedButton(
+                                onPressed: () {
+                                  pageController.previousPage(
+                                    duration: const Duration(milliseconds: 400),
+                                    curve: Curves.easeInOut,
+                                  );
+                                },
+                                text: AppLocalizations.of(context)!.back,
+                                backgroundColor: Colors.transparent,
+                                borderSideColor: AppColors.yellowColor,
+                                textStyle: AppStyles.semiBold20Yellow,
+                              ),
+                            ),
+                        ],
+                      ),
                     ),
                   ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        onboardingScreens[index].title,
-                        style: AppStyles.bold24White,
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: height * 0.02),
-                      if (onboardingScreens[index].description != null)
-                        Text(
-                          onboardingScreens[index].description!,
-                          style: AppStyles.regular16White,
-                          textAlign: TextAlign.center,
-                        ),
-                      SizedBox(height: height * 0.02),
-                      SizedBox(
-                        width: double.infinity,
-                        child: CustomElevatedButton(
-                          onPressed: () async {
-                            if (index == onboardingScreens.length - 1) {
-                              await SharedPreferencesAll().onBoardingScreen();
-                              Navigator.pushReplacementNamed(
-                                context,
-                                AppRoutes.loginRouteName,
-                              );
-                            } else {
-                              widget.pageController.nextPage(
-                                duration: const Duration(milliseconds: 400),
-                                curve: Curves.easeInOut,
-                              );
-                            }
-                          },
-                          text: index == 0
-                              ? AppLocalizations.of(context)!.explore_now
-                              : (index == onboardingScreens.length - 1
-                                    ? AppLocalizations.of(context)!.get_started
-                                    : AppLocalizations.of(context)!.next),
-                          backgroundColor: AppColors.yellowColor,
-                          textStyle: AppStyles.semiBold20Black,
-                        ),
-                      ),
-                      SizedBox(height: height * 0.02),
-                      if (index != 0 && index != 1)
-                        SizedBox(
-                          width: double.infinity,
-                          child: CustomElevatedButton(
-                            onPressed: () {
-                              widget.pageController.previousPage(
-                                duration: Duration(milliseconds: 400),
-                                curve: Curves.easeInOut,
-                              );
-                            },
-                            text: AppLocalizations.of(context)!.back,
-                            backgroundColor: Colors.transparent,
-                            borderSideColor: AppColors.yellowColor,
-                            textStyle: AppStyles.semiBold20Yellow,
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+                ],
+              );
+            },
           );
         },
       ),

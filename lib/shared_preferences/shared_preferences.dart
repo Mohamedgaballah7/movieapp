@@ -25,4 +25,9 @@ class SharedPreferencesAll {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool('theme', theme);
   }
+
+  static void saveLanguage(String languageCode) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('languageCode', languageCode);
+  }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movieapproute/cubit_theme&language/theme/app_state.dart';
+import 'package:movieapproute/cubit_theme&language/language/langauge_view_model.dart';
+import 'package:movieapproute/cubit_theme&language/language/language_states.dart';
+import 'package:movieapproute/cubit_theme&language/theme/theme_state.dart';
 import 'package:movieapproute/cubit_theme&language/theme/theme_view_model.dart';
 import 'package:movieapproute/ui/auth/forget_password_screen/forget_password_screen.dart';
 import 'package:movieapproute/ui/auth/login_screen/login_screen.dart';
@@ -23,10 +25,11 @@ void main() async {
   final bool showOnBoarding = prefs.getBool("OnBoardingScreen") ?? true;
   final bool appThemeLight = prefs.getBool('theme') ?? true;
   ThemeMode themeMode = appThemeLight ? ThemeMode.light : ThemeMode.dark;
+  final String savedLang = prefs.getString("languageCode") ?? "en";
 
 
-  //final String? token = prefs.getString("authToken");
   String initialRoute;
+  final String? token = prefs.getString("authToken");
   if (showOnBoarding) {
     initialRoute = AppRoutes.onBoardingRouteName;
   }
@@ -42,7 +45,10 @@ void main() async {
           create: (BuildContext context) =>
           ChangeTheme(themeMode)
             ..changeTheme(appThemeLight ? ThemeMode.light : ThemeMode.dark),
-        )
+        ),
+        BlocProvider<LanguageViewModel>(
+          create: (BuildContext context) => LanguageViewModel(savedLang),
+        ),
       ],
       child: MyApp(initialRoute: initialRoute)));
 }
@@ -51,38 +57,46 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key, required this.initialRoute});
 
   final String initialRoute;
+
   @override
   Widget build(BuildContext context) {
 
     return BlocBuilder<ChangeTheme, ThemeState>(
-      builder: (BuildContext context, state) {
+      builder: (BuildContext context, themeState) {
         ThemeMode appTheme = ThemeMode.dark;
-        if (state is ThemeChangedState) {
-          appTheme = state.themeMode;
+        if (themeState is ThemeChangedState) {
+          appTheme = themeState.themeMode;
         }
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          initialRoute: initialRoute,
-          routes: {
-            AppRoutes.onBoardingRouteName: (context) => OnboardingScreens(),
-            AppRoutes.homeRouteName: (context) => Homescreen(),
-            AppRoutes.loginRouteName: (context) => LoginScreen(),
-            AppRoutes.registerRouteName: (context) => RegisterScreen(),
-            AppRoutes.resetRouteName: (context) => ResetPasswordScreen(),
-            AppRoutes.movieDetailsRouteName: (context) => MovieDetails(),
-            AppRoutes.forgetPasswordRouteName: (context) =>
-                ForgetPasswordScreen(),
 
+        return BlocBuilder<LanguageViewModel, LanguageState>(
+          builder: (context, languageState) {
+            String langCode = 'en';
+            if (languageState is LanguageChangeState) {
+              langCode = languageState.languageCode;
+            }
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              initialRoute: initialRoute,
+              routes: {
+                AppRoutes.onBoardingRouteName: (context) => OnboardingScreens(),
+                AppRoutes.homeRouteName: (context) => Homescreen(),
+                AppRoutes.loginRouteName: (context) => LoginScreen(),
+                AppRoutes.registerRouteName: (context) => RegisterScreen(),
+                AppRoutes.resetRouteName: (context) => ResetPasswordScreen(),
+                AppRoutes.movieDetailsRouteName: (context) => MovieDetails(),
+                AppRoutes.forgetPasswordRouteName: (context) =>
+                    ForgetPasswordScreen(),
+              },
+              theme: AppTheme.lightTheme,
+              darkTheme: AppTheme.darkTheme,
+              themeMode: appTheme,
+              locale: Locale(langCode),
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+            );
           },
-          theme: AppTheme.lightTheme,
-          darkTheme: AppTheme.darkTheme,
-          themeMode: appTheme,
-          locale: Locale('en'),
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
         );
       },
-
     );
   }
 }

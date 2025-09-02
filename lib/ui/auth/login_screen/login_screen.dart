@@ -200,7 +200,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                 AnimatedToggleButtonLanguage(),
                                 SizedBox(height: height * 0.02,),
                                 AnimatedToggleButtonTheme(),
-
                               ],
                             )
                         ),
