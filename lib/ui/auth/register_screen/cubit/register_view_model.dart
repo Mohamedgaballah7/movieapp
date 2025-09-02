@@ -19,8 +19,7 @@ class RegisterViewModel extends Cubit<RegisterStates> {
     initialPage: 3,
   );
   //todo: handle Logic "register states holds the data"
-  Future<void> register(
-    String name,
+  Future<void> register(String name,
     String email,
     String password,
     String confirmPassword,
