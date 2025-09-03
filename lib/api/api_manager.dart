@@ -11,6 +11,7 @@ import 'package:movieapproute/shared_preferences/shared_preferences.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../model/api_responses/movie_response.dart';
+import '../model/api_responses/movie_suggestion_response.dart';
 import '../model/api_responses/profile_response.dart';
 
 class ApiManager {
@@ -213,6 +214,22 @@ class ApiManager {
     }
   }
 
+  //todo : get movie suggestions
+  static Future<MovieSuggestionResponse> getMovieSuggestions(
+      int movieId) async {
+    Uri url = Uri.https(
+        ApiConstants.movieBaseUrl, ApiEndPoints.movieSuggestionsEndPoint, {
+      'movie_id': movieId,
+    });
+    try {
+      var response = await http.get(url);
+      var responseBody = response.body;
+      var json = jsonDecode(responseBody);
+      return MovieSuggestionResponse.fromJson(json);
+    } catch (e) {
+      throw e;
+    }
+  }
 }
 
 
