@@ -20,7 +20,7 @@ class CustomReactTimeLikeContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: width * 0.01,
+        horizontal: width * 0.07,
         vertical: width * 0.01,
       ),
       margin: EdgeInsets.symmetric(horizontal: width * 0.01),

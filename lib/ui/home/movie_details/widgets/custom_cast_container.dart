@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart'
+    show CachedNetworkImage;
 import 'package:flutter/material.dart';
 import 'package:movieapproute/utils/app_colors.dart';
 import 'package:movieapproute/utils/app_styles.dart';
@@ -33,10 +35,16 @@ class CustomCastContainer extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadiusGeometry.circular(width * 0.02),
-            child: Image.asset(
-              imagePath,
-              fit: BoxFit.cover,
-              width: width * 0.15,
+            child: CachedNetworkImage(
+              imageUrl: imagePath,
+              placeholder: (context, url) =>
+                  Center(
+                    child: CircularProgressIndicator(
+                      color: AppColors.yellowColor,
+                    ),
+                  ),
+              errorWidget: (context, url, error) =>
+                  Icon(Icons.error),
             ),
           ),
           SizedBox(width: width * 0.03),
@@ -45,11 +53,19 @@ class CustomCastContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('Name: $name', style: AppStyles.medium16White),
-              Text('Character: $character', style: AppStyles.medium16White),
+              Text(truncateText(' Character: $character', 35),
+                style: AppStyles.medium16White,
+                overflow: TextOverflow.ellipsis,
+              ),
             ],
           ),
         ],
       ),
     );
   }
+}
+
+String truncateText(String text, int maxLength) {
+  if (text.length <= maxLength) return text;
+  return text.substring(0, maxLength) + '...';
 }

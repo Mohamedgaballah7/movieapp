@@ -1,29 +1,82 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movieapproute/ui/home/movie_details/cubit/movie_details_states.dart';
+import 'package:movieapproute/ui/home/movie_details/cubit/movie_details_view_model.dart';
 import 'package:movieapproute/ui/home/movie_details/widgets/custom_cast_container.dart';
 import 'package:movieapproute/ui/home/movie_details/widgets/custom_genres_container.dart';
 import 'package:movieapproute/ui/home/movie_details/widgets/custom_react_time_like_container.dart';
+import 'package:movieapproute/ui/home/movie_details/widgets/custom_screen_shots_images.dart';
 import 'package:movieapproute/utils/app_assets.dart';
 import 'package:movieapproute/utils/app_colors.dart';
 import 'package:movieapproute/utils/app_styles.dart';
 import 'package:movieapproute/widgets/custom_elevated_button.dart';
 
-class MovieDetails extends StatelessWidget {
+class MovieDetails extends StatefulWidget {
   const MovieDetails({super.key});
+
+  @override
+  State<MovieDetails> createState() => _MovieDetailsState();
+}
+
+
+class _MovieDetailsState extends State<MovieDetails> {
+  late int movieId;
+  MovieDetailsViewModel viewModel = MovieDetailsViewModel();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      viewModel.getMovieDetails(movieId);
+    },);
+  }
 
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    return Scaffold(
+    movieId = ModalRoute
+        .of(context)!
+        .settings
+        .arguments as int;
+
+    return BlocBuilder<MovieDetailsViewModel, MovieDetailsStates>
+      (bloc: viewModel,
+      builder: (context, state) {
+        if (state is LoadingState) {
+          return Center(
+            child: CircularProgressIndicator(
+              color: AppColors.yellowColor,
+            ),
+          );
+        }
+        else if (state is ErrorState) {
+          return Column(
+            children: [
+              Text(state.message, style: AppStyles.semiBold20Yellow,),
+              ElevatedButton(
+                  onPressed: () {
+                    //todo: try again
+                  },
+                  child: Text('Try Again',
+                    style: AppStyles.medium16yellow,))
+            ],
+          );
+        }
+        else if (state is SuccessState) {
+          return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
+
             Container(
               decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(AppAssets.discoverMovies),
 
+                image: DecorationImage(
+                  image: NetworkImage(state.backGroundImage,),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -38,7 +91,9 @@ class MovieDetails extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
                             icon: Icon(
                               Icons.arrow_back_ios_new,
                               color: AppColors.whiteColor,
@@ -48,8 +103,9 @@ class MovieDetails extends StatelessWidget {
                         ],
                       ),
                       Image.asset(AppAssets.videoPlayIcon),
+                      //todo: Movie name
                       Text(
-                        'Doctor Strange in the Multiverse of Madness',
+                        state.movieName,
                         style: AppStyles.bold16White,
                       ),
                     ],
@@ -63,13 +119,15 @@ class MovieDetails extends StatelessWidget {
                 spacing: height * 0.02,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Center(child: Text('2020', style: AppStyles.medium12Gray)),
+                  //todo: year of the movie
+                  Center(child: Text(
+                      '${state.year}', style: AppStyles.medium12Gray)),
                   SizedBox(
                     width: double.infinity,
                     child: CustomElevatedButton(
                       backgroundColor: AppColors.redColor,
                       onPressed: () {},
-                      text: 'Watch',
+                      text: 'Watch', textStyle: AppStyles.medium20White,
                     ),
                   ),
                   Row(
@@ -77,76 +135,69 @@ class MovieDetails extends StatelessWidget {
                     children: [
                       CustomReactTimeLikeContainer(
                         width: width,
-                        text: '15',
+                        //todo: likes number
+                        text: '${state.likes}',
                         icon: CupertinoIcons.heart_solid,
                       ),
                       CustomReactTimeLikeContainer(
                         width: width,
-                        text: '90',
+                        //todo: movie duration
+                        text: '${state.time}',
                         icon: CupertinoIcons.clock_fill,
                       ),
                       CustomReactTimeLikeContainer(
                         width: width,
-                        text: '7.6',
+                        //todo: rating of the movie
+                        text: '${state.rate}',
                         icon: CupertinoIcons.star_fill,
                       ),
                     ],
                   ),
                   Text('Screen Shots', style: AppStyles.bold16White),
-                  ClipRRect(
-                    borderRadius: BorderRadiusGeometry.circular(width * 0.02),
-                    child: Image.asset(
-                      AppAssets.exploreMovies,
-                      fit: BoxFit.fill,
-                      width: double.infinity,
-                      height: height * 0.2,
-                    ),
-                  ),
-                  ClipRRect(
-                    borderRadius: BorderRadiusGeometry.circular(width * 0.02),
-                    child: Image.asset(
-                      AppAssets.exploreMovies,
-                      fit: BoxFit.fill,
-                      width: double.infinity,
-                      height: height * 0.2,
-                    ),
-                  ),
+                  CustomScreenShotsImages(imagePath: state.screenShot1),
+                  CustomScreenShotsImages(imagePath: state.screenShot2),
+                  CustomScreenShotsImages(imagePath: state.screenShot3),
                   Text('Similar', style: AppStyles.bold16White),
                   Text('Summary', style: AppStyles.bold16White),
+                  //todo:summary of tha movie
                   Text(
-                    'Following the events of Spider-Man No Way Home, Doctor Strange unwittingly casts a forbidden spell that accidentally opens up the multiverse. With help from Wong and Scarlet Witch, Strange confronts various versions of himself as well as teaming up with the young America Chavez while traveling through various realities and working to restore reality as he knows it. Along the way, Strange and his allies realize they must take on a powerful new adversary who seeks to take over the multiverse.—Blazer346',
+                    state.summary,
+                    //'Following the events of Spider-Man No Way Home, Doctor Strange unwittingly casts a forbidden spell that accidentally opens up the multiverse. With help from Wong and Scarlet Witch, Strange confronts various versions of himself as well as teaming up with the young America Chavez while traveling through various realities and working to restore reality as he knows it. Along the way, Strange and his allies realize they must take on a powerful new adversary who seeks to take over the multiverse.—Blazer346',
                     style: AppStyles.medium14White,
                   ),
                   Text('Cast', style: AppStyles.bold16White),
-                  CustomCastContainer(imagePath: AppAssets.discoverMovies,
-                      name: 'hayele atwel',
-                      character: 'captin carter'),
-                  CustomCastContainer(imagePath: AppAssets.discoverMovies,
-                      name: 'hayele atwel',
-                      character: 'captin carter'),
-                  CustomCastContainer(imagePath: AppAssets.discoverMovies,
-                      name: 'hayele atwel',
-                      character: 'captin carter'),
-                  CustomCastContainer(imagePath: AppAssets.discoverMovies,
-                      name: 'hayele atwel',
-                      character: 'captin carter'),
-                  Text('Genres', style: AppStyles.bold16White),
-                  Row(
-                    children: [
-                      CustomGenresContainer(type: 'Action'),
-                      CustomGenresContainer(type: 'Action'),
-                      CustomGenresContainer(type: 'Action'),
-                    ],
+                  SizedBox(
+                    height: height * 0.45,
+                    child: ListView.separated(
+                        padding: EdgeInsets.zero,
+                        itemBuilder: (context, index) {
+                          return CustomCastContainer(
+                              imagePath: state.cast[index].urlSmallImage ?? '',
+                              //todo: name of the actor
+                              name: '${state.cast[index].name}',
+                              character: '${state.cast[index].characterName}');
+                        },
+                        separatorBuilder: (context, index) {
+                          return SizedBox(height: height * 0.02,);
+                        },
+                        itemCount: state.cast.length
+                    ),
                   ),
-                  Row(
-                    children: [
-                      CustomGenresContainer(type: 'Action'),
-                      CustomGenresContainer(type: 'Action'),
-                    ],
-                  ),
-
-
-
+                  SizedBox(
+                    height: height * 0.30,
+                    child: GridView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemCount: state.genres.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          childAspectRatio: 3.447368421,
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10
+                      ),
+                      itemBuilder: (context, index) {
+                        return CustomGenresContainer(type: state.genres[index]);
+                      },),
+                  )
                 ],
               ),
             ),
@@ -154,5 +205,11 @@ class MovieDetails extends StatelessWidget {
         ),
       ),
     );
+        }
+        return Container();
+      },);
   }
 }
+
+
+
