@@ -12,10 +12,17 @@ import 'package:movieapproute/utils/app_routes.dart';
 import 'package:movieapproute/utils/app_styles.dart';
 import 'package:movieapproute/widgets/custom_elevated_button.dart';
 
-class OnboardingScreens extends StatelessWidget {
-  final PageController pageController = PageController();
+class OnboardingScreens extends StatefulWidget {
 
   OnboardingScreens({super.key});
+
+  @override
+  State<OnboardingScreens> createState() => _OnboardingScreensState();
+}
+
+class _OnboardingScreensState extends State<OnboardingScreens> {
+  OnboardingViewModel viewModel = OnboardingViewModel();
+  final PageController pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +63,7 @@ class OnboardingScreens extends StatelessWidget {
 
     return Scaffold(
       body: BlocBuilder<OnboardingViewModel, OnboardingState>(
+        bloc: viewModel,
         builder: (context, state) {
           int currentPage = 0;
           if (state is OnboardingPageChangedState) {

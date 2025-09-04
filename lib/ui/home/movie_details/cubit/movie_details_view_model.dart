@@ -15,9 +15,9 @@ class MovieDetailsViewModel extends Cubit<MovieDetailsStates> {
       if (response.status == "ok") {
         emit(
           SuccessState(
-            backGroundImage: response.data?.movie?.backgroundImage ?? '',
+            backGroundImage: response.data?.movie?.backgroundImageOriginal ?? '',
             movieName: response.data?.movie?.title ?? '',
-              movieUrl: Uri.parse(response.data?.movie?.url ?? ''),
+              movieUrl: response.data?.movie?.url ?? '',
             year: response.data?.movie?.year ?? 0,
             likes: response.data?.movie?.likeCount ?? 0,
             time: response.data?.movie?.runtime ?? 0,

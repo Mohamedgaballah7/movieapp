@@ -12,7 +12,7 @@ class SuccessState extends MovieDetailsStates {
   //todo: movieDetails API data
   String backGroundImage;
   String movieName;
-  Uri movieUrl;
+  String movieUrl;
   int year;
   int likes;
   int time;

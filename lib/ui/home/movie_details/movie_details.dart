@@ -8,11 +8,12 @@ import 'package:movieapproute/ui/home/movie_details/widgets/custom_genres_contai
 import 'package:movieapproute/ui/home/movie_details/widgets/custom_movie_suggestion_card.dart';
 import 'package:movieapproute/ui/home/movie_details/widgets/custom_react_time_like_container.dart';
 import 'package:movieapproute/ui/home/movie_details/widgets/custom_screen_shots_images.dart';
-import 'package:movieapproute/utils/app_assets.dart';
-import 'package:movieapproute/utils/app_colors.dart';
-import 'package:movieapproute/utils/app_styles.dart';
-import 'package:movieapproute/widgets/custom_elevated_button.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../../utils/app_assets.dart';
+import '../../../utils/app_colors.dart';
+import '../../../utils/app_styles.dart';
+import '../../../widgets/custom_elevated_button.dart';
 
 class MovieDetails extends StatefulWidget {
   const MovieDetails({super.key});
@@ -77,7 +78,6 @@ class _MovieDetailsState extends State<MovieDetails> {
 
             Container(
               decoration: BoxDecoration(
-
                 image: DecorationImage(
                   image: NetworkImage(state.backGroundImage,),
                   fit: BoxFit.fill,
@@ -131,10 +131,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                       backgroundColor: AppColors.redColor,
                       //todo:open movie url
                       onPressed: () async {
-                        if (await canLaunchUrl(state.movieUrl)) {
-                          await launchUrl(state.movieUrl,
-                            mode: LaunchMode.externalApplication,);
-                        }
+                        launch(state.movieUrl);
                       },
                       text: 'Watch', textStyle: AppStyles.medium20White,
                     ),
