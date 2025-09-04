@@ -1,4 +1,5 @@
 import 'package:movieapproute/model/api_responses/movie_details_response.dart';
+import 'package:movieapproute/model/api_responses/movie_suggestion_response.dart';
 
 abstract class MovieDetailsStates {}
 
@@ -11,6 +12,7 @@ class SuccessState extends MovieDetailsStates {
   //todo: movieDetails API data
   String backGroundImage;
   String movieName;
+  Uri movieUrl;
   int year;
   int likes;
   int time;
@@ -21,10 +23,12 @@ class SuccessState extends MovieDetailsStates {
   String summary;
   List<Cast> cast;
   List<String> genres;
+  List<MoviesSuggestion>similarMovie;
 
   SuccessState({
     required this.backGroundImage,
     required this.movieName,
+    required this.movieUrl,
     required this.year,
     required this.likes,
     required this.time,
@@ -35,6 +39,7 @@ class SuccessState extends MovieDetailsStates {
     required this.summary,
     required this.cast,
     required this.genres,
+    required this.similarMovie
   });
   //todo: movieSuggestion API data
 }

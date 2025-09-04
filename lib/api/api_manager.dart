@@ -219,7 +219,7 @@ class ApiManager {
       int movieId) async {
     Uri url = Uri.https(
         ApiConstants.movieBaseUrl, ApiEndPoints.movieSuggestionsEndPoint, {
-      'movie_id': movieId,
+      'movie_id': movieId.toString(),
     });
     try {
       var response = await http.get(url);

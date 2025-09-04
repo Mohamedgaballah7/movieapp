@@ -159,8 +159,18 @@ class _HomeTabState extends State<HomeTab> {
                             controller: viewModel.actionScrollController,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
-                              return CustomMovieCard(
-                                  movie: state.actionMovies[index]);
+                              return
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.of(context).pushNamed(
+                                        AppRoutes
+                                            .movieDetailsRouteName,
+                                        arguments: state.actionMovies[index]
+                                            .id);
+                                  },
+                                  child: CustomMovieCard(
+                                      movie: state.actionMovies[index]),
+                                );
                             },
                             separatorBuilder: (context, index) {
                               return SizedBox(width: width * 0.02,);
