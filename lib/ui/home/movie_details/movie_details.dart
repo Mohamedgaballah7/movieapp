@@ -5,12 +5,14 @@ import 'package:movieapproute/ui/home/movie_details/cubit/movie_details_states.d
 import 'package:movieapproute/ui/home/movie_details/cubit/movie_details_view_model.dart';
 import 'package:movieapproute/ui/home/movie_details/widgets/custom_cast_container.dart';
 import 'package:movieapproute/ui/home/movie_details/widgets/custom_genres_container.dart';
+import 'package:movieapproute/ui/home/movie_details/widgets/custom_movie_suggestion_card.dart';
 import 'package:movieapproute/ui/home/movie_details/widgets/custom_react_time_like_container.dart';
 import 'package:movieapproute/ui/home/movie_details/widgets/custom_screen_shots_images.dart';
 import 'package:movieapproute/utils/app_assets.dart';
 import 'package:movieapproute/utils/app_colors.dart';
 import 'package:movieapproute/utils/app_styles.dart';
 import 'package:movieapproute/widgets/custom_elevated_button.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MovieDetails extends StatefulWidget {
   const MovieDetails({super.key});
@@ -55,6 +57,7 @@ class _MovieDetailsState extends State<MovieDetails> {
         }
         else if (state is ErrorState) {
           return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(state.message, style: AppStyles.semiBold20Yellow,),
               ElevatedButton(
@@ -126,7 +129,13 @@ class _MovieDetailsState extends State<MovieDetails> {
                     width: double.infinity,
                     child: CustomElevatedButton(
                       backgroundColor: AppColors.redColor,
-                      onPressed: () {},
+                      //todo:open movie url
+                      onPressed: () async {
+                        if (await canLaunchUrl(state.movieUrl)) {
+                          await launchUrl(state.movieUrl,
+                            mode: LaunchMode.externalApplication,);
+                        }
+                      },
                       text: 'Watch', textStyle: AppStyles.medium20White,
                     ),
                   ),
@@ -158,6 +167,25 @@ class _MovieDetailsState extends State<MovieDetails> {
                   CustomScreenShotsImages(imagePath: state.screenShot2),
                   CustomScreenShotsImages(imagePath: state.screenShot3),
                   Text('Similar', style: AppStyles.bold16White),
+                  //todo:suggestion movies
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: width * 0.02),
+                    child: SizedBox(
+                      height: height * 0.2,
+                      child:
+                      ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return CustomMovieSuggestionCard(
+                                movie: state.similarMovie[index]);
+                          },
+                          separatorBuilder: (context, index) {
+                            return SizedBox(width: width * 0.02,);
+                          },
+                          itemCount: state.similarMovie.length
+                      ),
+                    ),
+                  ),
                   Text('Summary', style: AppStyles.bold16White),
                   //todo:summary of tha movie
                   Text(
@@ -184,7 +212,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                     ),
                   ),
                   SizedBox(
-                    height: height * 0.30,
+                    height: height * 0.15,
                     child: GridView.builder(
                       scrollDirection: Axis.vertical,
                       itemCount: state.genres.length,
