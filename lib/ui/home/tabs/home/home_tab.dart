@@ -96,7 +96,9 @@ class _HomeTabState extends State<HomeTab> {
                                               onTap: () {
                                                 Navigator.of(context).pushNamed(
                                                     AppRoutes
-                                                        .movieDetailsRouteName);
+                                                        .movieDetailsRouteName,
+                                                    arguments: state
+                                                        .allMovies[index].id);
                                               },
                                               child: CustomMovieCard(
                                                 movie: state.allMovies[index],
