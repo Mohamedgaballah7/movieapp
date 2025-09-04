@@ -33,38 +33,29 @@ class _HomeTabState extends State<HomeTab> {
     var width=MediaQuery.of(context).size.width;
 
     return Scaffold(
-      body:BlocBuilder<HomeMovieViewModel,HomeMovieStates>(
-        bloc: viewModel,
-          builder: (context, state) {
-            //todo handle the success state
-            if (state is HomeMovieSuccessState) {
-              return SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: height * 0.7199,
-                      child: Stack(
+        body: BlocBuilder<HomeMovieViewModel, HomeMovieStates>(
+            bloc: viewModel,
+            builder: (context, state) {
+              //todo handle the success state
+              if (state is HomeMovieSuccessState) {
+                return SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Stack(
                         children: [
-                          CachedNetworkImage(
-                            imageUrl: state.allMovies[viewModel.selectedIndex]
-                                .largeCoverImage ?? '',
-                            placeholder: (context, url) =>
-                                Center(
-                                  child: CircularProgressIndicator(
-                                    color: AppColors.yellowColor,
+                          Opacity(
+                            opacity: 0.4,
+                            child: CachedNetworkImage(
+                              imageUrl: state.allMovies[viewModel.selectedIndex]
+                                  .largeCoverImage ?? '',
+                              placeholder: (context, url) =>
+                                  Center(
+                                    child: CircularProgressIndicator(
+                                      color: AppColors.yellowColor,
+                                    ),
                                   ),
-                                ),
-                            errorWidget: (context, url, error) =>
-                                Icon(Icons.error),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                                gradient: LinearGradient(colors: [
-                                  AppColors.transparentColor,
-                                  AppColors.blackColor
-                                ],
-                                    end: Alignment.bottomCenter,
-                                    begin: Alignment.topCenter)
+                              errorWidget: (context, url, error) =>
+                                  Icon(Icons.error),
                             ),
                           ),
                           SafeArea(
@@ -103,8 +94,7 @@ class _HomeTabState extends State<HomeTab> {
                                               ),
                                               child: InkWell(
                                                 onTap: () {
-                                                  Navigator
-                                                      .of(context)
+                                                  Navigator.of(context)
                                                       .pushNamed(
                                                       AppRoutes
                                                           .movieDetailsRouteName,
@@ -129,87 +119,87 @@ class _HomeTabState extends State<HomeTab> {
                           ),
                         ],
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: width * 0.02),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(AppLocalizations.of(context)!.action,
-                              style: Theme
-                                  .of(context)
-                                  .textTheme
-                                  .labelLarge),
-                          TextButton(
-                            onPressed: () {
-                              //todo:make action movies swipe
-                              viewModel.actionScrollController.animateTo(
-                                viewModel.actionScrollController.offset +
-                                    (width * 0.4),
-                                duration: Duration(milliseconds: 500),
-                                curve: Curves.easeInOut,
-                              );
-                            },
-                            child: Row(
-                              children: [
-                                Text(AppLocalizations.of(context)!.see_more,
-                                    style: AppStyles.bold14Yellow),
-                                SizedBox(width: width * 0.01),
-                                Icon(Icons.arrow_forward,
-                                    color: AppColors.yellowColor),
-                              ],
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: width * 0.02),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(AppLocalizations.of(context)!.action,
+                                style: Theme
+                                    .of(context)
+                                    .textTheme
+                                    .labelLarge),
+                            TextButton(
+                              onPressed: () {
+                                //todo:make action movies swipe
+                                viewModel.actionScrollController.animateTo(
+                                  viewModel.actionScrollController.offset +
+                                      (width * 0.4),
+                                  duration: Duration(milliseconds: 500),
+                                  curve: Curves.easeInOut,
+                                );
+                              },
+                              child: Row(
+                                children: [
+                                  Text(AppLocalizations.of(context)!.see_more,
+                                      style: AppStyles.bold14Yellow),
+                                  SizedBox(width: width * 0.01),
+                                  Icon(Icons.arrow_forward,
+                                      color: AppColors.yellowColor),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: width * 0.02),
-                      child: SizedBox(
-                        height: height * 0.2,
-                        child: ListView.separated(
-                            controller: viewModel.actionScrollController,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
-                              return InkWell(
-                                onTap: () {
-                                  Navigator.of(context).pushNamed(
-                                      AppRoutes
-                                          .movieDetailsRouteName,
-                                      arguments: state
-                                          .actionMovies[index].id);
-                                },
-                                child: CustomMovieCard(
-                                    movie: state.actionMovies[index]),
-                              );
-                            },
-                            separatorBuilder: (context, index) {
-                              return SizedBox(width: width * 0.02,);
-                            },
-                            itemCount: state.actionMovies.length
+                          ],
                         ),
                       ),
-                    ),
-                    SizedBox(height: height * 0.02,)
-                  ],
-                ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: width * 0.02),
+                        child: SizedBox(
+                          height: height * 0.2,
+                          child: ListView.separated(
+                              controller: viewModel.actionScrollController,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                return
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.of(context).pushNamed(
+                                          AppRoutes
+                                              .movieDetailsRouteName,
+                                          arguments: state.actionMovies[index]
+                                              .id);
+                                    },
+                                    child: CustomMovieCard(
+                                        movie: state.actionMovies[index]),
+                                  );
+                              },
+                              separatorBuilder: (context, index) {
+                                return SizedBox(width: width * 0.02,);
+                              },
+                              itemCount: state.actionMovies.length
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: height * 0.02,)
+                    ],
+                  ),
+                );
+              }
+              //todo handle the error server state
+              if (state is HomeMovieErrorState) {
+                return Center(
+                    child: Text(
+                        "Error: ${state.errorMessage}",
+                        style: AppStyles.bold14Yellow));
+              }
+              //todo handle the loading state
+              return const Center(
+                  child: CircularProgressIndicator(
+                    color: AppColors.yellowColor,
+                  )
               );
             }
-            //todo handle the error server state
-            if (state is HomeMovieErrorState) {
-              return Center(
-                  child: Text(
-                      "Error: ${state.errorMessage}",
-                      style: AppStyles.bold14Yellow));
-            }
-            //todo handle the loading state
-            return const Center(
-                child: CircularProgressIndicator(
-                  color: AppColors.yellowColor,
-                )
-            );
-          }
-    )
+        )
     );
   }
 }
