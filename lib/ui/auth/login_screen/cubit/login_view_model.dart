@@ -6,8 +6,10 @@ import 'package:movieapproute/ui/auth/login_screen/cubit/login_states.dart';
 
 class LoginViewModel extends Cubit<LoginStates> {
   LoginViewModel() : super(LoginInitialState());
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController(
+      text: "kareem741@gmail.com");
+  TextEditingController passwordController = TextEditingController(
+      text: "Kareem@123");
   bool isObscure = true;
   var formKey = GlobalKey<FormState>();
 

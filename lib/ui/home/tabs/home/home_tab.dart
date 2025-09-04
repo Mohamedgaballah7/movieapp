@@ -41,11 +41,11 @@ class _HomeTabState extends State<HomeTab> {
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    Stack(
-                      children: [
-                        Opacity(
-                          opacity: 0.4,
-                          child: CachedNetworkImage(
+                    SizedBox(
+                      height: height * 0.7199,
+                      child: Stack(
+                        children: [
+                          CachedNetworkImage(
                             imageUrl: state.allMovies[viewModel.selectedIndex]
                                 .largeCoverImage ?? '',
                             placeholder: (context, url) =>
@@ -57,66 +57,78 @@ class _HomeTabState extends State<HomeTab> {
                             errorWidget: (context, url, error) =>
                                 Icon(Icons.error),
                           ),
-                        ),
-                        SafeArea(
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: width *
-                                0.02),
-                            child: Column(
-                              children: [
-                                Image.asset(AppAssets.availableNow),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: width *
-                                          0.02),
-                                  child:
-                                  SizedBox(
-                                    height: height * 0.4,
-                                    child: PageView.builder(
-                                      controller: PageController(
-                                        viewportFraction: 0.6,
-                                      ),
-                                      itemCount: state.allMovies.length,
-                                      onPageChanged: (index) {
-                                        setState(() {
-                                          viewModel.selectedIndex = index;
-                                        });
-                                      },
-                                      itemBuilder: (context, index) {
-                                        bool isSelected = index ==
-                                            viewModel.selectedIndex;
-
-                                        return Transform.scale(
-                                          scale: isSelected ? 0.9 : 0.7,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(
-                                              top: isSelected ? 0 : 5,
-                                            ),
-                                            child: InkWell(
-                                              onTap: () {
-                                                Navigator.of(context).pushNamed(
-                                                    AppRoutes
-                                                        .movieDetailsRouteName,
-                                                    arguments: state
-                                                        .allMovies[index].id);
-                                              },
-                                              child: CustomMovieCard(
-                                                movie: state.allMovies[index],
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ),
-
-                                ),
-                                Image.asset(AppAssets.watchNow),
-                              ],
+                          Container(
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(colors: [
+                                  AppColors.transparentColor,
+                                  AppColors.blackColor
+                                ],
+                                    end: Alignment.bottomCenter,
+                                    begin: Alignment.topCenter)
                             ),
                           ),
-                        ),
-                      ],
+                          SafeArea(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: width *
+                                  0.02),
+                              child: Column(
+                                children: [
+                                  Image.asset(AppAssets.availableNow),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: width *
+                                            0.02),
+                                    child:
+                                    SizedBox(
+                                      height: height * 0.4,
+                                      child: PageView.builder(
+                                        controller: PageController(
+                                          viewportFraction: 0.6,
+                                        ),
+                                        itemCount: state.allMovies.length,
+                                        onPageChanged: (index) {
+                                          setState(() {
+                                            viewModel.selectedIndex = index;
+                                          });
+                                        },
+                                        itemBuilder: (context, index) {
+                                          bool isSelected = index ==
+                                              viewModel.selectedIndex;
+
+                                          return Transform.scale(
+                                            scale: isSelected ? 0.9 : 0.7,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                top: isSelected ? 0 : 5,
+                                              ),
+                                              child: InkWell(
+                                                onTap: () {
+                                                  Navigator
+                                                      .of(context)
+                                                      .pushNamed(
+                                                      AppRoutes
+                                                          .movieDetailsRouteName,
+                                                      arguments: state
+                                                          .allMovies[index].id);
+                                                },
+                                                child: CustomMovieCard(
+                                                  movie: state.allMovies[index],
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ),
+
+                                  ),
+                                  Image.asset(AppAssets.watchNow),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: width * 0.02),
@@ -159,18 +171,17 @@ class _HomeTabState extends State<HomeTab> {
                             controller: viewModel.actionScrollController,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
-                              return
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).pushNamed(
-                                        AppRoutes
-                                            .movieDetailsRouteName,
-                                        arguments: state.actionMovies[index]
-                                            .id);
-                                  },
-                                  child: CustomMovieCard(
-                                      movie: state.actionMovies[index]),
-                                );
+                              return InkWell(
+                                onTap: () {
+                                  Navigator.of(context).pushNamed(
+                                      AppRoutes
+                                          .movieDetailsRouteName,
+                                      arguments: state
+                                          .actionMovies[index].id);
+                                },
+                                child: CustomMovieCard(
+                                    movie: state.actionMovies[index]),
+                              );
                             },
                             separatorBuilder: (context, index) {
                               return SizedBox(width: width * 0.02,);

@@ -56,7 +56,7 @@ class UpdateProfileViewModel extends Cubit<UpdateProfileStates> {
           name: name, avatarId: avatarId, phoneNumber: phoneNumber
       );
       if (response.message == "Profile updated successfully") {
-        emit(SuccessUpdateState(successMessage: response.message!));
+        emit(SuccessUpdateState(successMessage: response.message!));  
       } else {
         emit(ErrorState(message: response.message!));
       }
