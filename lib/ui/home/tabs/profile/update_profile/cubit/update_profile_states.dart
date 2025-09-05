@@ -2,6 +2,8 @@ abstract class UpdateProfileStates {}
 
 class LoadingState extends UpdateProfileStates {}
 
+class InitialState extends UpdateProfileStates {}
+
 class UpdateProfileInitialState extends UpdateProfileStates {}
 
 class SuccessGetState extends UpdateProfileStates {

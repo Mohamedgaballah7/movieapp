@@ -13,6 +13,7 @@ class CustomElevatedButton extends StatelessWidget {
   Widget? iconWidget;
   TextStyle? textStyle;
   MainAxisAlignment? mainAxisAlignment;
+
   CustomElevatedButton({super.key,
     required this.onPressed,
     required this.text,
@@ -48,9 +49,10 @@ class CustomElevatedButton extends StatelessWidget {
             Row(
               mainAxisAlignment: mainAxisAlignment!,
               children: [
+                Text(text, style: textStyle),
+                SizedBox(width: width * 0.02,),
                 iconWidget!,
-                SizedBox(width: width*0.02,),
-                Text(text, style: AppStyles.medium20Black),
+
               ],
             ):
             Text(text, style: textStyle?? AppStyles.medium20Black,),

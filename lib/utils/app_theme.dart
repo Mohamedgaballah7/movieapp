@@ -13,6 +13,8 @@ class AppTheme {
           iconTheme: IconThemeData(color: AppColors.blackColor),
           centerTitle: true),
       textTheme: TextTheme(
+          titleLarge: AppStyles.bold20Black,
+
           labelLarge: AppStyles.bold16Black,
           labelSmall: AppStyles.medium12Gray,
           labelMedium: AppStyles.medium14Black,
@@ -30,6 +32,7 @@ class AppTheme {
         iconTheme: IconThemeData(color: AppColors.darkYellowColor),
       ), // AppBarTheme
       textTheme: TextTheme(
+          titleLarge: AppStyles.bold20WhiteR,
           labelLarge: AppStyles.bold16White,
           labelMedium: AppStyles.medium14White,
           labelSmall: AppStyles.medium12Gray,
