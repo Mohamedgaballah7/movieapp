@@ -10,6 +10,7 @@ import 'package:movieapproute/ui/auth/register_screen/register_screen.dart';
 import 'package:movieapproute/ui/home/homescreen.dart';
 import 'package:movieapproute/ui/home/movie_details/movie_details.dart';
 import 'package:movieapproute/ui/home/tabs/profile/reset_password_screen/reset_password_screen.dart';
+import 'package:movieapproute/ui/home/tabs/profile/update_profile/update_profile.dart';
 import 'package:movieapproute/ui/onboarding_screens/onboarding_screens.dart';
 import 'package:movieapproute/utils/app_routes.dart';
 import 'package:movieapproute/utils/app_theme.dart';
@@ -86,6 +87,7 @@ class MyApp extends StatelessWidget {
                 AppRoutes.movieDetailsRouteName: (context) => MovieDetails(),
                 AppRoutes.forgetPasswordRouteName: (context) =>
                     ForgetPasswordScreen(),
+                AppRoutes.updateProfileRouteName: (context) => UpdateProfile()
               },
               theme: AppTheme.lightTheme,
               darkTheme: AppTheme.darkTheme,

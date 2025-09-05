@@ -191,6 +191,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   },
                                   text: AppLocalizations.of(context)!
                                       .login_with_google,
+                                  textStyle: AppStyles.medium20Black,
                                   iconWidget: ImageIcon(
                                     AssetImage(AppAssets.googleIcon), size: 25,
                                     color: AppColors.blackColor,),

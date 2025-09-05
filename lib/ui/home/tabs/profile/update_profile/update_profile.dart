@@ -2,26 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movieapproute/cubit_theme&language/theme/theme_view_model.dart';
 import 'package:movieapproute/l10n/app_localizations.dart';
-import 'package:movieapproute/ui/home/tabs/profile/cubit/update_profile_states.dart';
-import 'package:movieapproute/ui/home/tabs/profile/cubit/update_profile_view_model.dart';
 import 'package:movieapproute/utils/app_assets.dart';
 import 'package:movieapproute/utils/app_colors.dart';
 import 'package:movieapproute/utils/app_routes.dart';
 import 'package:movieapproute/utils/app_styles.dart';
 
-import '../../../../widgets/alert_dialog.dart';
-import '../../../../widgets/custom_elevated_button.dart';
-import '../../../../widgets/custom_text_field.dart';
+import '../../../../../widgets/alert_dialog.dart';
+import '../../../../../widgets/custom_elevated_button.dart';
+import '../../../../../widgets/custom_text_field.dart';
 import 'choose_avatar.dart';
+import 'cubit/update_profile_states.dart';
+import 'cubit/update_profile_view_model.dart';
 
-class ProfileTab extends StatefulWidget {
-  const ProfileTab({super.key});
+class UpdateProfile extends StatefulWidget {
+  const UpdateProfile({super.key});
 
   @override
-  State<ProfileTab> createState() => _UpdateProfileState();
+  State<UpdateProfile> createState() => _UpdateProfileState();
 }
 
-class _UpdateProfileState extends State<ProfileTab> {
+class _UpdateProfileState extends State<UpdateProfile> {
   UpdateProfileViewModel viewModel = UpdateProfileViewModel();
 
   List<String> avatars = [

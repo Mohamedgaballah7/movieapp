@@ -43,4 +43,5 @@ class AppAssets{
       'assets/images/selected_profile.png';
   static const String videoPlayIcon = 'assets/images/video_play_icon.png';
   static const String watchListIcon = 'assets/images/watchList_icon.png';
+  static const String popcorn = 'assets/images/popcorn.png';
 }

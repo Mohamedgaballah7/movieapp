@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movieapproute/ui/home/tabs/browse/browse_tab.dart';
 import 'package:movieapproute/ui/home/tabs/home/home_tab.dart';
-import 'package:movieapproute/ui/home/tabs/profile/update_profile.dart';
+import 'package:movieapproute/ui/home/tabs/profile/profile_tab.dart';
 import 'package:movieapproute/ui/home/tabs/search/search_tab.dart';
 
 import '../../utils/app_assets.dart';

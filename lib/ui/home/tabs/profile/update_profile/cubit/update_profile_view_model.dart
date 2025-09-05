@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movieapproute/api/api_manager.dart';
 import 'package:movieapproute/model/api_responses/profile_response.dart';
-import 'package:movieapproute/ui/home/tabs/profile/cubit/update_profile_states.dart';
+import 'package:movieapproute/ui/home/tabs/profile/update_profile/cubit/update_profile_states.dart';
 
 class UpdateProfileViewModel extends Cubit<UpdateProfileStates> {
   TextEditingController nameController = TextEditingController();
@@ -10,7 +10,7 @@ class UpdateProfileViewModel extends Cubit<UpdateProfileStates> {
   var formKey = GlobalKey<FormState>();
   var selectedAvatar = 0;
 
-  UpdateProfileViewModel() :super(LoadingState());
+  UpdateProfileViewModel() :super(InitialState());
 
   Future<ProfileResponse?> getProfile() async {
     try {
@@ -36,6 +36,7 @@ class UpdateProfileViewModel extends Cubit<UpdateProfileStates> {
 
   Future<void> deleteProfile() async {
     try {
+      emit(LoadingState());
       var response = await ApiManager.deleteProfile();
       if (response.message == "Profile deleted successfully") {
         emit(SuccessDeleteState(successMessage: response.message!));
