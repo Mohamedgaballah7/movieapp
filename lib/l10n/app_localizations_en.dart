@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -65,6 +66,87 @@ class AppLocalizationsEn extends AppLocalizations {
   String get action => 'Action';
 
   @override
+  String get adult => 'Adult';
+
+  @override
+  String get adventure => 'Adventure';
+
+  @override
+  String get animation => 'Animation';
+
+  @override
+  String get biography => 'Biography';
+
+  @override
+  String get comedy => 'Comedy';
+
+  @override
+  String get crime => 'Crime';
+
+  @override
+  String get documentary => 'Documentary';
+
+  @override
+  String get drama => 'Drama';
+
+  @override
+  String get family => 'Family';
+
+  @override
+  String get fantasy => 'Fantasy';
+
+  @override
+  String get film_noir => 'Film Noir';
+
+  @override
+  String get game_show => 'Game Show';
+
+  @override
+  String get history => 'History';
+
+  @override
+  String get horror => 'Horror';
+
+  @override
+  String get musical => 'Musical';
+
+  @override
+  String get music => 'Music';
+
+  @override
+  String get mystery => 'Mystery';
+
+  @override
+  String get news => 'News';
+
+  @override
+  String get reality_tv => 'Reality-TV';
+
+  @override
+  String get romance => 'Romance';
+
+  @override
+  String get sci_fi => 'Sci-Fi';
+
+  @override
+  String get short => 'Short';
+
+  @override
+  String get sport => 'Sport';
+
+  @override
+  String get talk_show => 'Talk-Show';
+
+  @override
+  String get thriller => 'Thriller';
+
+  @override
+  String get war => 'War';
+
+  @override
+  String get western => 'Western';
+
+  @override
   String get see_more => 'See More';
 
   @override
@@ -90,9 +172,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get edit_profile => 'Edit Profile';
-
-  @override
-  String get history => 'History';
 
   @override
   String get pick_avatar => 'Pick Avatar';

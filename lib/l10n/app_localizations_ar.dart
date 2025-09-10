@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -65,6 +66,87 @@ class AppLocalizationsAr extends AppLocalizations {
   String get action => 'أكشن';
 
   @override
+  String get adult => 'للكبار فقط';
+
+  @override
+  String get adventure => 'مغامرة';
+
+  @override
+  String get animation => 'رسوم متحركة';
+
+  @override
+  String get biography => 'سيرة ذاتية';
+
+  @override
+  String get comedy => 'كوميديا';
+
+  @override
+  String get crime => 'جريمة';
+
+  @override
+  String get documentary => 'وثائقي';
+
+  @override
+  String get drama => 'دراما';
+
+  @override
+  String get family => 'عائلي';
+
+  @override
+  String get fantasy => 'فانتازيا';
+
+  @override
+  String get film_noir => 'فيلم نوار';
+
+  @override
+  String get game_show => 'برنامج ألعاب';
+
+  @override
+  String get history => 'السجل';
+
+  @override
+  String get horror => 'رعب';
+
+  @override
+  String get musical => 'موسيقي';
+
+  @override
+  String get music => 'موسيقى';
+
+  @override
+  String get mystery => 'غموض';
+
+  @override
+  String get news => 'أخبار';
+
+  @override
+  String get reality_tv => 'تلفزيون واقعي';
+
+  @override
+  String get romance => 'رومانسي';
+
+  @override
+  String get sci_fi => 'خيال علمي';
+
+  @override
+  String get short => 'قصير';
+
+  @override
+  String get sport => 'رياضي';
+
+  @override
+  String get talk_show => 'برنامج حواري';
+
+  @override
+  String get thriller => 'إثارة';
+
+  @override
+  String get war => 'حرب';
+
+  @override
+  String get western => 'غربي';
+
+  @override
   String get see_more => 'شاهد المزيد';
 
   @override
@@ -90,9 +172,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get edit_profile => 'تعديل الملف الشخصي';
-
-  @override
-  String get history => 'السجل';
 
   @override
   String get pick_avatar => 'اختر صورة رمزية';
