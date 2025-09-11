@@ -30,4 +30,9 @@ class SharedPreferencesAll {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('languageCode', languageCode);
   }
+
+  Future<void> saveLastSearch(String query) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('last_search', query);
+  }
 }
