@@ -230,7 +230,27 @@ class ApiManager {
       throw e;
     }
   }
+
+  //todo: search movies
+  static Future<MovieResponse> searchMovies({String? query}) async {
+    var url = Uri.https(
+      ApiConstants.movieBaseUrl,
+      ApiEndPoints.movieEndPoint,
+      {
+        'query_term': query,
+      },
+    );
+
+    try {
+      var response = await http.get(url);
+      var jsonData = jsonDecode(response.body);
+      return MovieResponse.fromJson(jsonData);
+    } catch (e) {
+      throw e;
+    }
+  }
 }
+
 
 
 

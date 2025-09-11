@@ -21,6 +21,7 @@ class CustomTextField extends StatelessWidget {
   int? maxLines;
   TextStyle? style;
   Color? filledColor;
+  Function(String)? onSubmitted;
   CustomTextField({super.key,
      this.colorBorderSide = AppColors.greyDarkColor,
      this.cursorColor=AppColors.whiteColor,
@@ -36,8 +37,9 @@ class CustomTextField extends StatelessWidget {
      this.obscureText = false,
      this.maxLines,
      this.style,
-    this.filledColor = AppColors.greyDarkColor
-   });
+    this.filledColor = AppColors.greyDarkColor,
+    this.onSubmitted,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -64,8 +66,8 @@ class CustomTextField extends StatelessWidget {
       keyboardType: keyboardType,
       obscureText: obscureText,
       maxLines: maxLines ?? 1,
-      style: style,
-    );
+      style: style,,
+      onFieldSubmitted: onSubmitted);
   }
   OutlineInputBorder builtDecorationBorder({required Color colorBorderSide}){
     return OutlineInputBorder(
