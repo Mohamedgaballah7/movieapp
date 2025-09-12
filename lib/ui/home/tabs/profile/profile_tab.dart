@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movieapproute/shared_preferences/shared_preferences.dart';
 import 'package:movieapproute/ui/home/tabs/profile/update_profile/cubit/update_profile_view_model.dart';
+import 'package:movieapproute/ui/home/tabs/profile/watch_list/watch_list.dart';
 import 'package:movieapproute/utils/app_colors.dart';
 import 'package:movieapproute/utils/app_routes.dart';
 
@@ -145,22 +146,7 @@ class _ProfileTabState extends State<ProfileTab> {
               child: TabBarView(
                 children: [
                   // todo: Watch List Content
-                  Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(AppAssets.popcorn),
-                        SizedBox(height: 10),
-                        Text(
-                          "No movies in Watch List",
-                          style: AppStyles.bold20WhiteR.copyWith(
-                            color: AppColors.yellowColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-
+                  WatchList(),
                   //todo: History Content
                   Center(
                     child: Column(

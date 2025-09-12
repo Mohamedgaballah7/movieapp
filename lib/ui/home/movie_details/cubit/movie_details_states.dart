@@ -1,15 +1,17 @@
 import 'package:movieapproute/model/api_responses/movie_details_response.dart';
 import 'package:movieapproute/model/api_responses/movie_suggestion_response.dart';
 
-abstract class MovieDetailsStates {}
+abstract class MovieDetailsStates {
+}
 
-//class InitialeState extends MovieDetailsStates{}
 class LoadingState extends MovieDetailsStates {
   //todo: this is the initial state
 }
 
 class SuccessState extends MovieDetailsStates {
   //todo: movieDetails API data
+  String removeMessage;
+  bool data;
   String backGroundImage;
   String movieName;
   String movieUrl;
@@ -24,8 +26,9 @@ class SuccessState extends MovieDetailsStates {
   List<Cast> cast;
   List<String> genres;
   List<MoviesSuggestion>similarMovie;
-
   SuccessState({
+    required this.removeMessage,
+    required this.data,
     required this.backGroundImage,
     required this.movieName,
     required this.movieUrl,
@@ -43,9 +46,24 @@ class SuccessState extends MovieDetailsStates {
   });
   //todo: movieSuggestion API data
 }
-
 class ErrorState extends MovieDetailsStates {
   String message;
 
   ErrorState({required this.message});
 }
+
+class AddFavoriteSuccessState extends MovieDetailsStates {
+  String message;
+
+  AddFavoriteSuccessState({required this.message});
+}
+
+class RemoveFavoriteSuccess extends MovieDetailsStates {
+}
+
+class IsFavoriteSuccess extends MovieDetailsStates {
+  bool data;
+
+  IsFavoriteSuccess({required this.data});
+}
+
