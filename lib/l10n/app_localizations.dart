@@ -661,6 +661,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Change Password'**
   String get change_password;
+
+  /// No description provided for @watch_list.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch List'**
+  String get watch_list;
+
+  /// No description provided for @no_movies.
+  ///
+  /// In en, this message translates to:
+  /// **'No Movies Found'**
+  String get no_movies;
 }
 
 class _AppLocalizationsDelegate

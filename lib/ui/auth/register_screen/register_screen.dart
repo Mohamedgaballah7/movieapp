@@ -6,6 +6,7 @@ import 'package:movieapproute/utils/app_assets.dart';
 import 'package:movieapproute/utils/app_colors.dart';
 import 'package:movieapproute/utils/app_routes.dart';
 import 'package:movieapproute/utils/app_styles.dart';
+import 'package:movieapproute/utils/validators.dart';
 import 'package:movieapproute/widgets/alert_dialog.dart';
 import 'package:movieapproute/widgets/animated_toggle_button.dart';
 import 'package:movieapproute/widgets/custom_text_field.dart';
@@ -111,54 +112,51 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             children: [
                               CustomTextField(
                                 controller: viewModel.nameController,
-                                style: AppStyles.medium16White,
+                                filledColor: AppColors.transparentColor,
+                                style: Theme
+                                    .of(context)
+                                    .textTheme
+                                    .titleLarge,
                                 prefixIcon: ImageIcon(
                                   AssetImage(AppAssets.namePrefixIcon),
-                                  color: AppColors.whiteColor,
+                                  color: Theme
+                                      .of(context)
+                                      .indicatorColor,
                                 ),
                                 hintText: AppLocalizations.of(context)!.name,
-                                validator: (text) {
-                                  if (text == null || text.isEmpty) {
-                                    return "please enter your name";
-                                  }
-                                  if (text.length > 30) {
-                                    return "please enter a shorter name";
-                                  }
-                                  return null;
-                                },
+                                validator: AppValidators.validateFullName,
                               ),
                               SizedBox(height: height * 0.024),
                               CustomTextField(
                                 controller: viewModel.emailController,
-                                style: AppStyles.medium16White,
+                                filledColor: AppColors.transparentColor,
+                                style: Theme
+                                    .of(context)
+                                    .textTheme
+                                    .titleLarge,
                                 prefixIcon: ImageIcon(
                                   AssetImage(AppAssets.emailPrefixIcon),
-                                  color: AppColors.whiteColor,
+                                  color: Theme
+                                      .of(context)
+                                      .indicatorColor,
                                 ),
                                 hintText: AppLocalizations.of(context)!.email,
-                                validator: (text) {
-                                  if (text == null || text.isEmpty) {
-                                    return AppLocalizations.of(context,)!
-                                        .please_enter_email;
-                                  }
-                                  final bool emailValid = RegExp(
-                                    r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-                                  ).hasMatch(text);
-                                  if (!emailValid) {
-                                    return AppLocalizations.of(context)!
-                                        .please_valid_email;
-                                  }
-                                  return null;
-                                },
+                                validator: AppValidators.validateEmail,
                                 keyboardType: TextInputType.emailAddress,
                               ),
                               SizedBox(height: height * 0.024),
                               CustomTextField(
                                 controller: viewModel.passwordController,
-                                style: AppStyles.medium16White,
+                                filledColor: AppColors.transparentColor,
+                                style: Theme
+                                    .of(context)
+                                    .textTheme
+                                    .titleLarge,
                                 prefixIcon: ImageIcon(
                                   AssetImage(AppAssets.passwordPrefixIcon),
-                                  color: AppColors.whiteColor,
+                                  color: Theme
+                                      .of(context)
+                                      .indicatorColor,
                                 ),
                                 suffixIcon: GestureDetector(
                                   onTap: () {
@@ -167,42 +165,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   },
                                   child: ImageIcon(
                                     AssetImage(AppAssets.passwordSuffixIcon),
-                                    color: AppColors.whiteColor,
+                                    color: Theme
+                                        .of(context)
+                                        .indicatorColor,
                                   ),
                                 ),
                                 hintText: AppLocalizations.of(context)!
                                     .password,
-                                validator: (text) {
-                                  if (text == null || text.isEmpty) {
-                                    return AppLocalizations.of(context)!
-                                        .please_enter_password;
-                                  }
-
-                                  if (text.length < 8) {
-                                    return AppLocalizations.of(context)!
-                                        .please_valid_password;
-                                  }
-
-                                  final bool passwordValidate = RegExp(
-                                    r'^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$&*~]).{8,}$',
-                                  ).hasMatch(text);
-
-                                  if (!passwordValidate) {
-                                    return 'Password must contain uppercase, lowercase, number, and special character';
-                                  }
-
-                                  return null;
-                                },
+                                validator: AppValidators.validatePassword,
 
                                 obscureText: viewModel.isObscure,
                               ),
                               SizedBox(height: height * 0.024),
                               CustomTextField(
                                 controller: viewModel.confirmPasswordController,
-                                style: AppStyles.medium16White,
+                                filledColor: AppColors.transparentColor,
+                                style: Theme
+                                    .of(context)
+                                    .textTheme
+                                    .titleLarge,
                                 prefixIcon: ImageIcon(
                                   AssetImage(AppAssets.passwordPrefixIcon),
-                                  color: AppColors.whiteColor,
+                                  color: Theme
+                                      .of(context)
+                                      .indicatorColor,
                                 ),
                                 suffixIcon: GestureDetector(
                                   onTap: () {
@@ -212,53 +198,36 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   },
                                   child: ImageIcon(
                                     AssetImage(AppAssets.passwordSuffixIcon),
-                                    color: AppColors.whiteColor,
+                                    color: Theme
+                                        .of(context)
+                                        .indicatorColor,
                                   ),
                                 ),
                                 hintText: AppLocalizations.of(context,)!
                                     .re_password,
-                                validator: (text) {
-                                  if (text == null || text.isEmpty) {
-                                    return AppLocalizations.of(context)!
-                                        .please_enter_password;
-                                  }
-                                  if (text !=
-                                      viewModel.passwordController.text) {
-                                    return AppLocalizations.of(context,)!
-                                        .please_enter_the_same_password;
-                                  }
-                                  return null;
+                                validator: (value) {
+                                  return AppValidators.validateConfirmPassword(
+                                      value, viewModel.passwordController.text);
                                 },
                                 obscureText: viewModel.isObscureRe,
                               ),
                               SizedBox(height: height * 0.024),
                               CustomTextField(
                                 controller: viewModel.phoneController,
-                                style: AppStyles.medium16White,
+                                filledColor: AppColors.transparentColor,
+                                style: Theme
+                                    .of(context)
+                                    .textTheme
+                                    .titleLarge,
                                 prefixIcon: ImageIcon(
                                   AssetImage(AppAssets.phonePrefixIcon),
-                                  color: AppColors.whiteColor,
+                                  color: Theme
+                                      .of(context)
+                                      .indicatorColor,
                                 ),
                                 hintText: AppLocalizations.of(context,)!
                                     .phone_number,
-                                validator: (text) {
-                                  if (text == null || text.isEmpty) {
-                                    return AppLocalizations.of(context)!
-                                        .please_enter_your_phone;
-                                  }
-                                  final bool phoneNumber = RegExp(
-                                    r'^\+20(10|11|12|15)[0-9]{8}$',
-                                  ).hasMatch(text);
-                                  if (!phoneNumber) {
-                                    return 'please enter +20 country code';
-                                  }
-
-                                  if (text.length < 13) {
-                                    return 'please enter a right phone';
-                                  }
-
-                                  return null;
-                                },
+                                validator: AppValidators.validatePhoneNumber,
                               ),
                               SizedBox(height: height * 0.024),
                               CustomElevatedButton(

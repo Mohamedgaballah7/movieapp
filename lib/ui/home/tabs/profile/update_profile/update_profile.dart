@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movieapproute/cubit_theme&language/language/langauge_view_model.dart';
 import 'package:movieapproute/cubit_theme&language/theme/theme_view_model.dart';
 import 'package:movieapproute/l10n/app_localizations.dart';
 import 'package:movieapproute/utils/app_assets.dart';
@@ -46,6 +47,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
   @override
   Widget build(BuildContext context) {
     var themeModel = context.read<ChangeTheme>();
+    var languageModel = context.read<LanguageViewModel>();
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -58,6 +60,14 @@ class _UpdateProfileState extends State<UpdateProfile> {
         actions: [
           IconButton(
               onPressed: () {
+                languageModel.isArabic ?
+                languageModel.changeLanguage('en') :
+                languageModel.changeLanguage('ar');
+              },
+            icon: Icon(Icons.language, color: AppColors.yellowColor),
+          ),
+          IconButton(
+              onPressed: () {
                 themeModel.changeTheme(
                   themeModel.appTheme == ThemeMode.dark
                       ? ThemeMode.light
@@ -68,7 +78,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   .watch<ChangeTheme>()
                   .appTheme == ThemeMode.dark
                   ? Icons.nightlight_round_outlined
-                  : Icons.sunny, color: AppColors.yellowColor)),
+                  : Icons.sunny, color: AppColors.yellowColor)
+          ),
         ],
       ),
       body: BlocConsumer<UpdateProfileViewModel, UpdateProfileStates>(
@@ -105,10 +116,16 @@ class _UpdateProfileState extends State<UpdateProfile> {
                           children: [
                             CustomTextField(
                               controller: viewModel.nameController,
-                              style: AppStyles.medium16White,
+                              filledColor: AppColors.transparentColor,
+                              style: Theme
+                                  .of(context)
+                                  .textTheme
+                                  .titleLarge,
                               prefixIcon: ImageIcon(
                                 AssetImage(AppAssets.profileIcon),
-                                color: AppColors.whiteColor,
+                                color: Theme
+                                    .of(context)
+                                    .indicatorColor,
                               ),
                               hintText: AppLocalizations.of(context)!.name,
                               validator: (text) {
@@ -124,10 +141,16 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             SizedBox(height: height * 0.02),
                             CustomTextField(
                               controller: viewModel.phoneController,
-                              style: AppStyles.medium16White,
+                              filledColor: AppColors.transparentColor,
+                              style: Theme
+                                  .of(context)
+                                  .textTheme
+                                  .titleLarge,
                               prefixIcon: ImageIcon(
                                 AssetImage(AppAssets.phonePrefixIcon),
-                                color: AppColors.whiteColor,
+                                color: Theme
+                                    .of(context)
+                                    .indicatorColor,
                               ),
                               hintText: AppLocalizations.of(
                                 context,

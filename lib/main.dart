@@ -26,6 +26,7 @@ void main() async {
   Bloc.observer = MyBlocObserver();
   final appDocumentsDir = await getApplicationDocumentsDirectory();
   Hive.init(appDocumentsDir.path);
+  await Hive.openBox("movies");
   final prefs = await SharedPreferences.getInstance();
   final bool showOnBoarding = prefs.getBool("OnBoardingScreen") ?? true;
   final bool appThemeLight = prefs.getBool('theme') ?? true;
@@ -38,9 +39,9 @@ void main() async {
   if (showOnBoarding) {
     initialRoute = AppRoutes.onBoardingRouteName;
   }
-  // else if (token != null && token.isNotEmpty) {
-  //   initialRoute = AppRoutes.homeRouteName;
-  // }
+  else if (token != null && token.isNotEmpty) {
+    initialRoute = AppRoutes.homeRouteName;
+  }
   else {
     initialRoute = AppRoutes.loginRouteName;
   }

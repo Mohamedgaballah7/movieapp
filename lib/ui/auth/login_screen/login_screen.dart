@@ -8,6 +8,7 @@ import 'package:movieapproute/utils/app_assets.dart';
 import 'package:movieapproute/utils/app_colors.dart';
 import 'package:movieapproute/utils/app_routes.dart';
 import 'package:movieapproute/utils/app_styles.dart';
+import 'package:movieapproute/utils/validators.dart';
 import 'package:movieapproute/widgets/alert_dialog.dart';
 import 'package:movieapproute/widgets/animated_toggle_button.dart';
 import 'package:movieapproute/widgets/animated_toggle_button_theme.dart';
@@ -50,41 +51,37 @@ class _LoginScreenState extends State<LoginScreen> {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 CustomTextField(
+                                  filledColor: AppColors.transparentColor,
+                                  style: Theme
+                                      .of(context)
+                                      .textTheme
+                                      .titleLarge,
                                   controller: viewModel.emailController,
-                                  style: AppStyles.medium16White,
                                   prefixIcon: ImageIcon(
                                     AssetImage(AppAssets.emailPrefixIcon),
-                                    color: AppColors.whiteColor,),
+                                    color: Theme
+                                        .of(context)
+                                        .indicatorColor,),
                                   hintText: AppLocalizations
                                       .of(context)
                                       ?.email,
-                                  validator: (text) {
-                                    if (text == null || text.isEmpty) {
-                                      return AppLocalizations
-                                          .of(context)
-                                          ?.please_enter_email;
-                                    }
-                                    final bool emailValid =
-                                    RegExp(
-                                        r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                        .hasMatch(text);
-                                    if (!emailValid) {
-                                      return AppLocalizations
-                                          .of(context)
-                                          ?.please_valid_email;
-                                    }
-                                    return null;
-                                  },
+                                  validator: AppValidators.validateEmail,
                                   keyboardType: TextInputType.emailAddress,
                                 ),
                                 SizedBox(height: height * 0.024,),
 
                                 CustomTextField(
+                                  filledColor: AppColors.transparentColor,
                                   controller: viewModel.passwordController,
-                                  style: AppStyles.medium16White,
+                                  style: Theme
+                                      .of(context)
+                                      .textTheme
+                                      .titleLarge,
                                   prefixIcon: ImageIcon(
                                     AssetImage(AppAssets.passwordPrefixIcon),
-                                    color: AppColors.whiteColor,),
+                                    color: Theme
+                                        .of(context)
+                                        .indicatorColor,),
                                   suffixIcon:
                                   GestureDetector(
                                       onTap: () {
@@ -96,23 +93,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                       },
                                       child: ImageIcon(AssetImage(
                                           AppAssets.passwordSuffixIcon),
-                                        color: AppColors.whiteColor,)),
+                                        color: Theme
+                                            .of(context)
+                                            .indicatorColor,)),
                                   hintText: AppLocalizations
                                       .of(context)
                                       ?.password,
-                                  validator: (text) {
-                                    if (text == null || text.isEmpty) {
-                                      return AppLocalizations
-                                          .of(context)
-                                          ?.please_enter_password;
-                                    }
-                                    if (text.length < 6) {
-                                      return AppLocalizations
-                                          .of(context)
-                                          ?.please_valid_password;
-                                    }
-                                    return null;
-                                  },
+                                  validator: AppValidators.validatePassword,
                                   obscureText: viewModel.isObscure,
                                 ),
                                 SizedBox(height: height * 0.02,),
@@ -242,9 +229,6 @@ class _LoginScreenState extends State<LoginScreen> {
         }
     );
   }
-
-  
-
 }
 
 

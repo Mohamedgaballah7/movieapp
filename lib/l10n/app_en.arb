@@ -93,5 +93,7 @@
   "please_enter_new_password": "Please Enter New Password",
   "please_enter_old_password": "Please Enter Old Password",
   "please_confirm_new_password": "Please Confirm New Password",
-  "change_password": "Change Password"
+  "change_password": "Change Password",
+  "watch_list": "Watch List",
+  "no_movies": "No Movies Found"
 }

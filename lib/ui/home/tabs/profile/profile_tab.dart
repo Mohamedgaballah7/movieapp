@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:movieapproute/l10n/app_localizations.dart';
 import 'package:movieapproute/shared_preferences/shared_preferences.dart';
 import 'package:movieapproute/ui/home/tabs/profile/history/history.dart';
 import 'package:movieapproute/ui/home/tabs/profile/update_profile/cubit/update_profile_view_model.dart';
@@ -70,14 +71,16 @@ class _ProfileTabState extends State<ProfileTab> {
                         children: [
                           Text("0", style: AppStyles.bold36White),
                           SizedBox(height: height * 0.015),
-                          Text("Watch List", style: AppStyles.bold20White),
+                          Text(AppLocalizations.of(context)!.watch_list,
+                              style: AppStyles.bold20White),
                         ],
                       ),
                       Column(
                         children: [
                           Text("$historyCount", style: AppStyles.bold36White),
                           SizedBox(height: height * 0.015),
-                          Text("History", style: AppStyles.bold20White),
+                          Text(AppLocalizations.of(context)!.history,
+                              style: AppStyles.bold20White),
                         ],
                       ),
                     ],
@@ -100,7 +103,7 @@ class _ProfileTabState extends State<ProfileTab> {
                               AppRoutes.updateProfileRouteName,
                             );
                           },
-                          text: "Edit Profile",
+                          text: AppLocalizations.of(context)!.edit_profile,
                         ),
                       ),
                       SizedBox(width: width * 0.04),
@@ -123,7 +126,7 @@ class _ProfileTabState extends State<ProfileTab> {
                             );
                             SharedPreferencesAll.clearToken();
                           },
-                          text: "Exit",
+                          text: AppLocalizations.of(context)!.exit,
                         ),
                       ),
                     ],
