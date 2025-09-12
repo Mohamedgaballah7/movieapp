@@ -43,7 +43,7 @@ class SuccessState extends MovieDetailsStates {
     required this.genres,
     required this.similarMovie
   });
-  //todo: movieSuggestion API data
+//todo: movieSuggestion API data
 }
 
 class ErrorState extends MovieDetailsStates {

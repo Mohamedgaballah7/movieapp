@@ -93,6 +93,8 @@
   "please_enter_new_password": "ادخل كلمة السر الجديدة",
   "please_enter_old_password": "ادخل كلمة السر القديمة",
   "please_confirm_new_password": "اعد ادخل كلمة السر الجديدة",
-  "change_password": "تغيير كلمة السر"
+  "change_password": "تغيير كلمة السر",
+  "watch_list": "قائمة المفضلات",
+  "no_movies": "لا يوجد افلام"
 
 }

@@ -16,20 +16,20 @@ class MovieDetailsViewModel extends Cubit<MovieDetailsStates> {
         emit(
           SuccessState(
               movie: response.data!.movie!,
-            backGroundImage: response.data?.movie?.backgroundImageOriginal ?? '',
-            movieName: response.data?.movie?.title ?? '',
+              backGroundImage: response.data?.movie?.backgroundImage ?? '',
+              movieName: response.data?.movie?.title ?? '',
               movieUrl: response.data?.movie?.url ?? '',
-            year: response.data?.movie?.year ?? 0,
-            likes: response.data?.movie?.likeCount ?? 0,
-            time: response.data?.movie?.runtime ?? 0,
+              year: response.data?.movie?.year ?? 0,
+              likes: response.data?.movie?.likeCount ?? 0,
+              time: response.data?.movie?.runtime ?? 0,
               rate: response.data?.movie?.rating ?? 0.0,
-            screenShot1: response.data?.movie?.largeScreenshotImage1 ?? '',
-            screenShot2: response.data?.movie?.largeScreenshotImage2 ?? '',
-            screenShot3: response.data?.movie?.largeScreenshotImage3 ?? '',
-            summary:
-                response.data?.movie?.descriptionIntro ?? 'there is no summary',
-            cast: response.data?.movie?.cast ?? [],
-            genres: response.data?.movie?.genres ?? [],
+              screenShot1: response.data?.movie?.largeScreenshotImage1 ?? '',
+              screenShot2: response.data?.movie?.largeScreenshotImage2 ?? '',
+              screenShot3: response.data?.movie?.largeScreenshotImage3 ?? '',
+              summary:
+              response.data?.movie?.descriptionIntro ?? 'there is no summary',
+              cast: response.data?.movie?.cast ?? [],
+              genres: response.data?.movie?.genres ?? [],
               similarMovie: responseSimilar.data?.movies ?? []
           ),
         );

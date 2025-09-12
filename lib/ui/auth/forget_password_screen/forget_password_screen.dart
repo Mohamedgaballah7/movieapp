@@ -50,10 +50,16 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                       CustomTextField(
                         obscureText: isObscureNew,
                         controller: newPasswordController,
-                        style: AppStyles.medium16White,
+                        filledColor: AppColors.transparentColor,
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .titleLarge,
                         prefixIcon: ImageIcon(
                           AssetImage(AppAssets.passwordPrefixIcon),
-                          color: AppColors.whiteColor,
+                          color: Theme
+                              .of(context)
+                              .indicatorColor,
                         ),
                         suffixIcon: GestureDetector(
                           onTap: () {
@@ -62,7 +68,9 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                           },
                           child: ImageIcon(
                             AssetImage(AppAssets.passwordSuffixIcon),
-                            color: AppColors.whiteColor,
+                            color: Theme
+                                .of(context)
+                                .indicatorColor,
                           ),
                         ),
                         hintText: AppLocalizations.of(context)!.new_password,
@@ -78,10 +86,16 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                       CustomTextField(
                         obscureText: isObscureConfirm,
                         controller: confirmNewPasswordController,
-                        style: AppStyles.medium16White,
+                        filledColor: AppColors.transparentColor,
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .titleLarge,
                         prefixIcon: ImageIcon(
                           AssetImage(AppAssets.passwordPrefixIcon),
-                          color: AppColors.whiteColor,
+                          color: Theme
+                              .of(context)
+                              .indicatorColor,
                         ),
                         suffixIcon: GestureDetector(
                           onTap: () {
@@ -90,7 +104,9 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                           },
                           child: ImageIcon(
                             AssetImage(AppAssets.passwordSuffixIcon),
-                            color: AppColors.whiteColor,
+                            color: Theme
+                                .of(context)
+                                .indicatorColor,
                           ),
                         ),
                         hintText: AppLocalizations.of(context)!

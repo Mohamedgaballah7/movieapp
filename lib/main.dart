@@ -39,9 +39,9 @@ void main() async {
   if (showOnBoarding) {
     initialRoute = AppRoutes.onBoardingRouteName;
   }
-  // else if (token != null && token.isNotEmpty) {
-  //   initialRoute = AppRoutes.homeRouteName;
-  // }
+  else if (token != null && token.isNotEmpty) {
+    initialRoute = AppRoutes.homeRouteName;
+  }
   else {
     initialRoute = AppRoutes.loginRouteName;
   }
