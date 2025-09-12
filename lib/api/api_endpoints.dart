@@ -7,5 +7,10 @@ class ApiEndPoints {
   static const String resetPasswordEndPoint = '/auth/reset-password';
   static const String movieSuggestionsEndPoint =
       '/api/v2/movie_suggestions.json';
+  static const String addMovieToFavoriteEndPoint = "/favorites/add";
+  static const String removeMovieEndPoint = "/favorites/remove/movieId";
+  static const String getAllFavoritesMoviesEndPoint = "/favorites/all";
+  static const String getMovieIsFavoriteEndPoint =
+      "/favorites/is-favorite/movieId";
 }
 
