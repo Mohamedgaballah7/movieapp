@@ -26,33 +26,26 @@ class _HistoryState extends State<History> {
 
   void getHistoryList() async {
     var box = await Hive.openBox('movies');
-    allMovies = box.values
-        .map((e) => Movies.fromJson(Map<String, dynamic>.from(e)))
-        .toList();
+    if (box.isEmpty) {
+      allMovies = [];
+    } else {
+      allMovies = box.values
+          .map((e) => Movies.fromJson(Map<String, dynamic>.from(e)))
+          .toList();
+    }
     setState(() {});
   }
 
-
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery
-        .of(context)
-        .size
-        .height;
-    var width = MediaQuery
-        .of(context)
-        .size
-        .width;
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     if (allMovies.isEmpty) {
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.history,
-              size: 80,
-              color: AppColors.yellowColor,
-            ),
+            Icon(Icons.history, size: 80, color: AppColors.yellowColor),
             SizedBox(height: 10),
             Text(
               "No movies in History",
@@ -65,19 +58,20 @@ class _HistoryState extends State<History> {
       );
     }
     return GridView.builder(
-
       padding: EdgeInsets.symmetric(
-          horizontal: width * 0.02, vertical: height * 0.02),
+        horizontal: width * 0.02,
+        vertical: height * 0.02,
+      ),
       itemBuilder: (context, index) {
         return GestureDetector(
-            onTap: () {
-              Navigator.of(context).pushNamed(
-                  AppRoutes
-                      .movieDetailsRouteName,
-                  arguments: allMovies[index]
-                      .id);
-            },
-            child: CustomMovieCard(movie: allMovies[index]));
+          onTap: () {
+            Navigator.of(context).pushNamed(
+              AppRoutes.movieDetailsRouteName,
+              arguments: allMovies[index].id,
+            );
+          },
+          child: CustomMovieCard(movie: allMovies[index]),
+        );
       },
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
