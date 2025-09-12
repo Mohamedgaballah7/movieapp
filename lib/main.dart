@@ -26,6 +26,7 @@ void main() async {
   Bloc.observer = MyBlocObserver();
   final appDocumentsDir = await getApplicationDocumentsDirectory();
   Hive.init(appDocumentsDir.path);
+  await Hive.openBox("movies");
   final prefs = await SharedPreferences.getInstance();
   final bool showOnBoarding = prefs.getBool("OnBoardingScreen") ?? true;
   final bool appThemeLight = prefs.getBool('theme') ?? true;

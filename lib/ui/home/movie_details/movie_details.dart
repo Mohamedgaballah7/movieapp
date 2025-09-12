@@ -133,7 +133,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                       backgroundColor: AppColors.redColor,
                       //todo:open movie url
                       onPressed: () async {
-                        var box = await Hive.openBox("movies");
+                        var box = Hive.box("movies");
                         await box.put(state.movie.id, state.movie.toJson());
                         print("Movie saved to history: $movieId");
                         launch(state.movieUrl);
