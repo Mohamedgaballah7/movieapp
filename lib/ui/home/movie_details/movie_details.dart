@@ -1,6 +1,8 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
 import 'package:movieapproute/ui/home/movie_details/cubit/movie_details_states.dart';
 import 'package:movieapproute/ui/home/movie_details/cubit/movie_details_view_model.dart';
 import 'package:movieapproute/ui/home/movie_details/widgets/custom_cast_container.dart';
@@ -131,6 +133,9 @@ class _MovieDetailsState extends State<MovieDetails> {
                       backgroundColor: AppColors.redColor,
                       //todo:open movie url
                       onPressed: () async {
+                        var box = await Hive.openBox("movies");
+                        await box.put(state.movie.id, state.movie.toJson());
+                        print("Movie saved to history: $movieId");
                         launch(state.movieUrl);
                       },
                       text: 'Watch', textStyle: AppStyles.medium20White,
