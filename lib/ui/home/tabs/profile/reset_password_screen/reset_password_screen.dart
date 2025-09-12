@@ -56,10 +56,16 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                               CustomTextField(
                                 obscureText: viewModel.isObscure,
                                 controller: viewModel.passwordController,
-                                style: AppStyles.medium16White,
+                                filledColor: AppColors.transparentColor,
+                                style: Theme
+                                    .of(context)
+                                    .textTheme
+                                    .titleLarge,
                                 prefixIcon: ImageIcon(
                                   AssetImage(AppAssets.passwordPrefixIcon),
-                                  color: AppColors.whiteColor,
+                                  color: Theme
+                                      .of(context)
+                                      .indicatorColor,
                                 ),
                                 suffixIcon: GestureDetector(
                                   onTap: () {
@@ -68,9 +74,13 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                   },
                                   child: viewModel.isObscure ? ImageIcon(
                                     AssetImage(AppAssets.passwordSuffixIcon),
-                                    color: AppColors.whiteColor,
+                                    color: Theme
+                                        .of(context)
+                                        .indicatorColor,
                                   ) : Icon(Icons.remove_red_eye,
-                                    color: AppColors.whiteColor, size: 30,),
+                                    color: Theme
+                                        .of(context)
+                                        .indicatorColor, size: 30,),
                                 ),
                                 hintText: AppLocalizations.of(context)!
                                     .old_password,
@@ -87,10 +97,16 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                               CustomTextField(
                                 obscureText: viewModel.isObscureNew,
                                 controller: viewModel.newPasswordController,
-                                style: AppStyles.medium16White,
+                                filledColor: AppColors.transparentColor,
+                                style: Theme
+                                    .of(context)
+                                    .textTheme
+                                    .titleLarge,
                                 prefixIcon: ImageIcon(
                                   AssetImage(AppAssets.passwordPrefixIcon),
-                                  color: AppColors.whiteColor,
+                                  color: Theme
+                                      .of(context)
+                                      .indicatorColor,
                                 ),
                                 suffixIcon: GestureDetector(
                                   onTap: () {
@@ -100,9 +116,13 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                   },
                                   child: viewModel.isObscureNew ? ImageIcon(
                                     AssetImage(AppAssets.passwordSuffixIcon),
-                                    color: AppColors.whiteColor,
+                                    color: Theme
+                                        .of(context)
+                                        .indicatorColor,
                                   ) : Icon(Icons.remove_red_eye,
-                                    color: AppColors.whiteColor, size: 30,),
+                                    color: Theme
+                                        .of(context)
+                                        .indicatorColor, size: 30,),
                                 ),
                                 hintText: AppLocalizations.of(context)!
                                     .new_password,
@@ -120,10 +140,16 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                 obscureText: viewModel.isObscureConfirm,
                                 controller: viewModel
                                     .confirmNewPasswordController,
-                                style: AppStyles.medium16White,
+                                filledColor: AppColors.transparentColor,
+                                style: Theme
+                                    .of(context)
+                                    .textTheme
+                                    .titleLarge,
                                 prefixIcon: ImageIcon(
                                   AssetImage(AppAssets.passwordPrefixIcon),
-                                  color: AppColors.whiteColor,
+                                  color: Theme
+                                      .of(context)
+                                      .indicatorColor,
                                 ),
                                 suffixIcon: GestureDetector(
                                   onTap: () {
@@ -133,9 +159,13 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                   },
                                   child: viewModel.isObscureConfirm ? ImageIcon(
                                     AssetImage(AppAssets.passwordSuffixIcon),
-                                    color: AppColors.whiteColor,
+                                    color: Theme
+                                        .of(context)
+                                        .indicatorColor,
                                   ) : Icon(Icons.remove_red_eye,
-                                    color: AppColors.whiteColor, size: 30,),
+                                    color: Theme
+                                        .of(context)
+                                        .indicatorColor, size: 30,),
                                 ),
                                 hintText: AppLocalizations.of(
                                   context,

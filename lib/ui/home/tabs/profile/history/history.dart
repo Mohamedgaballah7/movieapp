@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:movieapproute/l10n/app_localizations.dart';
 import 'package:movieapproute/ui/home/tabs/home/custom_movie_card.dart';
 
 import '../../../../../model/api_responses/movie_response.dart';
@@ -48,7 +49,7 @@ class _HistoryState extends State<History> {
             Icon(Icons.history, size: 80, color: AppColors.yellowColor),
             SizedBox(height: 10),
             Text(
-              "No movies in History",
+              AppLocalizations.of(context)!.no_movies,
               style: AppStyles.bold20WhiteR.copyWith(
                 color: AppColors.yellowColor,
               ),

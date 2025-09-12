@@ -53,7 +53,10 @@ class CustomTextField extends StatelessWidget {
         errorBorder: builtDecorationBorder(colorBorderSide: AppColors.redColor),
         focusedErrorBorder: builtDecorationBorder(colorBorderSide: AppColors.redColor),
         hintText: hintText,
-        hintStyle: hintStyle?? AppStyles.medium16White,
+        hintStyle: hintStyle ?? Theme
+            .of(context)
+            .textTheme
+            .labelMedium,
         labelText: labelText,
         labelStyle: labelStyle?? AppStyles.medium16White,
         prefixIcon: prefixIcon,
@@ -66,7 +69,7 @@ class CustomTextField extends StatelessWidget {
       keyboardType: keyboardType,
       obscureText: obscureText,
       maxLines: maxLines ?? 1,
-      style: style,,
+        style: style,
       onFieldSubmitted: onSubmitted);
   }
   OutlineInputBorder builtDecorationBorder({required Color colorBorderSide}){

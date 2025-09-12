@@ -266,9 +266,6 @@ class ApiManager {
       throw e;
     }
   }
-}
-
-
   static Future<AddMovieToFavoriteResponse> addMovieToFavorite(int movieId,
       String name,
       double rating,
@@ -372,4 +369,3 @@ class ApiManager {
     }
   }
 }
-

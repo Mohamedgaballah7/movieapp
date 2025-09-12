@@ -5,6 +5,7 @@ import 'package:movieapproute/ui/home/tabs/home/custom_movie_card.dart';
 import 'package:movieapproute/ui/home/tabs/search/cubit/search_states.dart';
 import 'package:movieapproute/ui/home/tabs/search/cubit/search_view_model.dart';
 import 'package:movieapproute/utils/app_assets.dart';
+import 'package:movieapproute/utils/app_colors.dart';
 import 'package:movieapproute/utils/app_routes.dart';
 import 'package:movieapproute/widgets/custom_text_field.dart';
 
@@ -35,12 +36,13 @@ class SearchTab extends StatelessWidget {
                     return CustomTextField(
                       controller: viewModel.searchController,
                       prefixIcon: Image.asset(
-                          AppAssets.unSelectedSearchTabIcon),
+                        AppAssets.unSelectedSearchTabIcon,
+                        color: Theme
+                            .of(context)
+                            .indicatorColor,
+                      ),
                       hintText: AppLocalizations.of(context)!.search,
-                      hintStyle: Theme
-                          .of(context)
-                          .textTheme
-                          .bodyLarge,
+                      filledColor: AppColors.transparentColor,
                       onSubmitted: (value) {
                         viewModel.searchMovies(value);
                       },
