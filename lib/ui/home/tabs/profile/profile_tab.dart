@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:movieapproute/shared_preferences/shared_preferences.dart';
+import 'package:movieapproute/ui/home/tabs/profile/history/history.dart';
 import 'package:movieapproute/ui/home/tabs/profile/update_profile/cubit/update_profile_view_model.dart';
 import 'package:movieapproute/ui/home/tabs/profile/watch_list/watch_list.dart';
 import 'package:movieapproute/utils/app_colors.dart';
@@ -18,6 +20,10 @@ class ProfileTab extends StatefulWidget {
 
 class _ProfileTabState extends State<ProfileTab> {
   UpdateProfileViewModel viewModel = UpdateProfileViewModel();
+  int historyCount = Hive
+      .box('movies')
+      .length;
+
   List<String> avatars = [
     AppAssets.avatar1Image,
     AppAssets.avatar2Image,
@@ -69,7 +75,7 @@ class _ProfileTabState extends State<ProfileTab> {
                       ),
                       Column(
                         children: [
-                          Text("0", style: AppStyles.bold36White),
+                          Text("$historyCount", style: AppStyles.bold36White),
                           SizedBox(height: height * 0.015),
                           Text("History", style: AppStyles.bold20White),
                         ],
@@ -82,8 +88,6 @@ class _ProfileTabState extends State<ProfileTab> {
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   SizedBox(height: height * 0.02),
-
-                  // 🔹 Buttons
                   Row(
                     children: [
                       Expanded(
@@ -148,28 +152,11 @@ class _ProfileTabState extends State<ProfileTab> {
                   // todo: Watch List Content
                   WatchList(),
                   //todo: History Content
-                  Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.history,
-                          size: 80,
-                          color: AppColors.yellowColor,
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                          "No movies in History",
-                          style: AppStyles.bold20WhiteR.copyWith(
-                            color: AppColors.yellowColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  History()
                 ],
               ),
             ),
+
           ],
         ),
       ),

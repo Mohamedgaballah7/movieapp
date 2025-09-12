@@ -10,8 +10,11 @@ class LoadingState extends MovieDetailsStates {
 
 class SuccessState extends MovieDetailsStates {
   //todo: movieDetails API data
+
   String removeMessage;
   bool data;
+  Movie movie;
+
   String backGroundImage;
   String movieName;
   String movieUrl;
@@ -27,8 +30,11 @@ class SuccessState extends MovieDetailsStates {
   List<String> genres;
   List<MoviesSuggestion>similarMovie;
   SuccessState({
+
     required this.removeMessage,
     required this.data,
+    required this.movie,
+
     required this.backGroundImage,
     required this.movieName,
     required this.movieUrl,

@@ -21,6 +21,7 @@ class MovieDetailsViewModel extends Cubit<MovieDetailsStates> {
       if (response.status == "ok") {
         emit(
           SuccessState(
+
             removeMessage: removeMessage ?? '',
             backGroundImage: movie.data?.movie?.backgroundImage ?? '',
             data: dataResponse ?? false,

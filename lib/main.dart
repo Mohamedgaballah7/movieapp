@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
 import 'package:movieapproute/cubit_theme&language/language/langauge_view_model.dart';
 import 'package:movieapproute/cubit_theme&language/language/language_states.dart';
 import 'package:movieapproute/cubit_theme&language/theme/theme_state.dart';
@@ -15,6 +16,7 @@ import 'package:movieapproute/ui/onboarding_screens/onboarding_screens.dart';
 import 'package:movieapproute/utils/app_routes.dart';
 import 'package:movieapproute/utils/app_theme.dart';
 import 'package:movieapproute/utils/cubit_observer.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'l10n/app_localizations.dart';
@@ -22,6 +24,8 @@ import 'l10n/app_localizations.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
+  final appDocumentsDir = await getApplicationDocumentsDirectory();
+  Hive.init(appDocumentsDir.path);
   final prefs = await SharedPreferences.getInstance();
   final bool showOnBoarding = prefs.getBool("OnBoardingScreen") ?? true;
   final bool appThemeLight = prefs.getBool('theme') ?? true;

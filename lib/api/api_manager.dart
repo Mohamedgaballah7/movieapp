@@ -248,6 +248,27 @@ class ApiManager {
     }
   }
 
+  //todo: search movies
+  static Future<MovieResponse> searchMovies({String? query}) async {
+    var url = Uri.https(
+      ApiConstants.movieBaseUrl,
+      ApiEndPoints.movieEndPoint,
+      {
+        'query_term': query,
+      },
+    );
+
+    try {
+      var response = await http.get(url);
+      var jsonData = jsonDecode(response.body);
+      return MovieResponse.fromJson(jsonData);
+    } catch (e) {
+      throw e;
+    }
+  }
+}
+
+
   static Future<AddMovieToFavoriteResponse> addMovieToFavorite(int movieId,
       String name,
       double rating,
@@ -304,7 +325,6 @@ class ApiManager {
       throw e;
     }
   }
-
   static Future<GetAllFavoriteMoviesResponse> getAllFavoritesMovies() async {
     Uri url = Uri.https(
       ApiConstants.baseUrl,
@@ -352,3 +372,4 @@ class ApiManager {
     }
   }
 }
+

@@ -1,6 +1,8 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
 import 'package:movieapproute/ui/home/movie_details/cubit/movie_details_states.dart';
 import 'package:movieapproute/ui/home/movie_details/cubit/movie_details_view_model.dart';
 import 'package:movieapproute/ui/home/movie_details/widgets/custom_cast_container.dart';
@@ -267,6 +269,7 @@ class _MovieDetailsState extends State<MovieDetails> {
               ),
               backgroundColor: Colors.green,
             ),
+
           );
         }
         else if(state is SuccessState && state.isFavorite == false){
@@ -274,6 +277,117 @@ class _MovieDetailsState extends State<MovieDetails> {
             SnackBar(
               content: Text(textAlign: TextAlign.center,
                 state.message??'notFav',
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: width * 0.03),
+              child: Column(
+                spacing: height * 0.02,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  //todo: year of the movie
+                  Center(child: Text(
+                      '${state.year}', style: AppStyles.medium12Gray)),
+                  SizedBox(
+                    width: double.infinity,
+                    child: CustomElevatedButton(
+                      backgroundColor: AppColors.redColor,
+                      //todo:open movie url
+                      onPressed: () async {
+                        var box = await Hive.openBox("movies");
+                        await box.put(state.movie.id, state.movie.toJson());
+                        print("Movie saved to history: $movieId");
+                        launch(state.movieUrl);
+                      },
+                      text: 'Watch', textStyle: AppStyles.medium20White,
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomReactTimeLikeContainer(
+                        width: width,
+                        //todo: likes number
+                        text: '${state.likes}',
+                        icon: CupertinoIcons.heart_solid,
+                      ),
+                      CustomReactTimeLikeContainer(
+                        width: width,
+                        //todo: movie duration
+                        text: '${state.time}',
+                        icon: CupertinoIcons.clock_fill,
+                      ),
+                      CustomReactTimeLikeContainer(
+                        width: width,
+                        //todo: rating of the movie
+                        text: '${state.rate}',
+                        icon: CupertinoIcons.star_fill,
+                      ),
+                    ],
+                  ),
+                  Text('Screen Shots', style: AppStyles.bold16White),
+                  CustomScreenShotsImages(imagePath: state.screenShot1),
+                  CustomScreenShotsImages(imagePath: state.screenShot2),
+                  CustomScreenShotsImages(imagePath: state.screenShot3),
+                  Text('Similar', style: AppStyles.bold16White),
+                  //todo:suggestion movies
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: width * 0.02),
+                    child: SizedBox(
+                      height: height * 0.2,
+                      child:
+                      ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return CustomMovieSuggestionCard(
+                                movie: state.similarMovie[index]);
+                          },
+                          separatorBuilder: (context, index) {
+                            return SizedBox(width: width * 0.02,);
+                          },
+                          itemCount: state.similarMovie.length
+                      ),
+                    ),
+                  ),
+                  Text('Summary', style: AppStyles.bold16White),
+                  //todo:summary of tha movie
+                  Text(
+                    state.summary,
+                    //'Following the events of Spider-Man No Way Home, Doctor Strange unwittingly casts a forbidden spell that accidentally opens up the multiverse. With help from Wong and Scarlet Witch, Strange confronts various versions of himself as well as teaming up with the young America Chavez while traveling through various realities and working to restore reality as he knows it. Along the way, Strange and his allies realize they must take on a powerful new adversary who seeks to take over the multiverse.—Blazer346',
+                    style: AppStyles.medium14White,
+                  ),
+                  Text('Cast', style: AppStyles.bold16White),
+                  SizedBox(
+                    height: height * 0.45,
+                    child: ListView.separated(
+                        padding: EdgeInsets.zero,
+                        itemBuilder: (context, index) {
+                          return CustomCastContainer(
+                              imagePath: state.cast[index].urlSmallImage ?? '',
+                              //todo: name of the actor
+                              name: '${state.cast[index].name}',
+                              character: '${state.cast[index].characterName}');
+                        },
+                        separatorBuilder: (context, index) {
+                          return SizedBox(height: height * 0.02,);
+                        },
+                        itemCount: state.cast.length
+                    ),
+                  ),
+                  SizedBox(
+                    height: height * 0.15,
+                    child: GridView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemCount: state.genres.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          childAspectRatio: 3.447368421,
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10
+                      ),
+                      itemBuilder: (context, index) {
+                        return CustomGenresContainer(type: state.genres[index]);
+                      },),
+                  )
+                ],
               ),
               backgroundColor: Colors.green,
             ),
