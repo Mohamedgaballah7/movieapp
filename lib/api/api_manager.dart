@@ -262,8 +262,7 @@ class ApiManager {
     } catch (e) {
       throw e;
     }
-  }
-  static Future<AddMovieToFavoriteResponse> addMovieToFavorite(int movieId,
+  }static Future<AddMovieToFavoriteResponse> addMovieToFavorite(int movieId,
       String name,
       double rating,
       String imageURL,
@@ -318,8 +317,7 @@ class ApiManager {
     } catch (e) {
       throw e;
     }
-  }
-  static Future<GetAllFavoriteMoviesResponse> getAllFavoritesMovies() async {
+  }static Future<GetAllFavoriteMoviesResponse> getAllFavoritesMovies() async {
     Uri url = Uri.https(
       ApiConstants.baseUrl,
       ApiEndPoints.getAllFavoritesMoviesEndPoint,
@@ -342,10 +340,10 @@ class ApiManager {
       rethrow;
     }
 
-  sstatic Future<bool> getMovieIsFavorite(int movieId) async {
+  static Future<bool> getMovieIsFavorite(int movieId) async {
     Uri url = Uri.https(
-        ApiConstants.baseUrl,
-        "/favorites/is-favorite/$movieId"
+      ApiConstants.baseUrl,
+      "/favorites/is-favorite/$movieId",
     );
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString("authToken");
@@ -364,4 +362,5 @@ class ApiManager {
       rethrow;
     }
   }
-}
+  }
+

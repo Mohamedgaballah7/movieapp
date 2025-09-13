@@ -165,7 +165,11 @@ class Movie {
     titleLong = json['title_long'];
     slug = json['slug'];
     year = json['year'];
-    rating = json['rating'];
+    rating = (json['rating'] is int)
+        ? (json['rating'] as int).toDouble()
+        : (json['rating'] is double)
+        ? json['rating'] as double
+        : double.tryParse(json['rating'].toString()) ?? 0.0;
     runtime = json['runtime'];
     genres = json['genres'] != null ? json['genres'].cast<String>() : [];
     likeCount = json['like_count'];
