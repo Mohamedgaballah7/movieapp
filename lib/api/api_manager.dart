@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:movieapproute/api/api_constants.dart';
 import 'package:movieapproute/api/api_endpoints.dart';
@@ -11,6 +12,7 @@ import 'package:movieapproute/model/api_responses/remove_movie_response.dart';
 import 'package:movieapproute/model/api_responses/reset_password_response.dart';
 import 'package:movieapproute/shared_preferences/shared_preferences.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../model/api_responses/movie_response.dart';
 import '../model/api_responses/movie_suggestion_response.dart';
 import '../model/api_responses/profile_response.dart';
@@ -339,7 +341,7 @@ class ApiManager {
     } catch (e) {
       rethrow;
     }
-
+  }
   static Future<bool> getMovieIsFavorite(int movieId) async {
     Uri url = Uri.https(
       ApiConstants.baseUrl,

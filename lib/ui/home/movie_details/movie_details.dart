@@ -112,7 +112,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                                   viewModel.removeMovie(movieId) :
                                   viewModel.addMovieToFavorite(
                                       movieId, state.movieName, state.rate,
-                                      state.backGroundImage, state.year);
+                                      state.movie.largeCoverImage, state.year);
                                   //Navigator.pop(context);
                                 },
                                     icon: state.isFavourite

@@ -46,7 +46,7 @@ class MovieDetailsViewModel extends Cubit<MovieDetailsStates> {
   Future<void> addMovieToFavorite(int movieId,
       String name,
       double rating,
-      String imageURL,
+      String? imageURL,
       int year,) async {
     try {
       // emit(LoadingState());
@@ -57,7 +57,7 @@ class MovieDetailsViewModel extends Cubit<MovieDetailsStates> {
         movieId,
         name,
         rating,
-        imageURL,
+        imageURL ?? '',
         year,
       );
       if (response.message == 'Added to favourite successfully') {
