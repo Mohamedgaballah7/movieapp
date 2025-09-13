@@ -50,14 +50,14 @@ class UpdateProfileViewModel extends Cubit<UpdateProfileStates> {
   }
 
   Future<void> updateProfile(String? name, int? avatarId,
-      String? phoneNumber) async {
+      String? phoneNumber,) async {
     try {
       emit(LoadingState());
       var response = await ApiManager.updateProfile(
           name: name, avatarId: avatarId, phoneNumber: phoneNumber
       );
       if (response.message == "Profile updated successfully") {
-        emit(SuccessUpdateState(successMessage: response.message!));  
+        emit(SuccessUpdateState(successMessage: response.message!));
       } else {
         emit(ErrorState(message: response.message!));
       }
@@ -70,7 +70,7 @@ class UpdateProfileViewModel extends Cubit<UpdateProfileStates> {
   void updateProfileOn() {
     if (formKey.currentState?.validate() == true) {
       //todo: register
-      updateProfile(nameController.text, selectedAvatar, phoneController.text);
+      updateProfile(nameController.text, selectedAvatar, phoneController.text,);
     }
   }
 }
