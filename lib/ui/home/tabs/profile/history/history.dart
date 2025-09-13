@@ -4,6 +4,7 @@ import 'package:movieapproute/l10n/app_localizations.dart';
 import 'package:movieapproute/ui/home/tabs/home/custom_movie_card.dart';
 
 import '../../../../../model/api_responses/movie_response.dart';
+import '../../../../../shared_preferences/shared_preferences.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_routes.dart';
 import '../../../../../utils/app_styles.dart';
@@ -26,15 +27,21 @@ class _HistoryState extends State<History> {
   }
 
   void getHistoryList() async {
-    var box = await Hive.openBox('movies');
-    if (box.isEmpty) {
-      allMovies = [];
-    } else {
-      allMovies = box.values
-          .map((e) => Movies.fromJson(Map<String, dynamic>.from(e)))
-          .toList();
+    String? token = await SharedPreferencesAll.getToken();
+
+    if (token != null && token.isNotEmpty) {
+      var box = await Hive.openBox('history_$token');
+
+      if (box.isEmpty) {
+        allMovies = [];
+      } else {
+        allMovies = box.values
+            .map((e) => Movies.fromJson(Map<String, dynamic>.from(e)))
+            .toList();
+      }
+
+      setState(() {});
     }
-    setState(() {});
   }
 
   @override

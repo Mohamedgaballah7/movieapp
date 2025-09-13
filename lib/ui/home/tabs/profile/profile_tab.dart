@@ -25,9 +25,9 @@ class ProfileTab extends StatefulWidget {
 class _ProfileTabState extends State<ProfileTab> {
   ProfileTabViewModel viewModel = ProfileTabViewModel();
   WatchListViewModel watchViewModel = WatchListViewModel();
-  int historyCount = Hive
-      .box('movies')
-      .length;
+  String? token;
+
+  int historyCount = 0;
 
 
   List<String> avatars = [
@@ -43,15 +43,23 @@ class _ProfileTabState extends State<ProfileTab> {
   ];
 
   @override
+  @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     viewModel.getProfile();
     watchViewModel.getMovies().then((_) {
-      setState(() {
+      setState(() {});
+    });
 
-      });
-    },);
+    SharedPreferencesAll.getToken().then((value) async {
+      token = value;
+      if (token != null && token!.isNotEmpty) {
+        var box = await Hive.openBox('history_$token');
+        setState(() {
+          historyCount = box.length;
+        });
+      }
+    });
   }
 
   @override
@@ -140,13 +148,14 @@ class _ProfileTabState extends State<ProfileTab> {
                                 ),
                                 backgroundColor: AppColors.redColor,
                                 textStyle: AppStyles.regular20WhiteR,
-                                onPressed: () {
+                                onPressed: () async {
                                   Navigator.pushNamedAndRemoveUntil(
                                     context,
                                     AppRoutes.loginRouteName,
                                         (route) => false,
                                   );
                                   SharedPreferencesAll.clearToken();
+                                  await Hive.box("history_$token").close();
                                 },
                                 text: AppLocalizations.of(context)!.exit,
                               ),

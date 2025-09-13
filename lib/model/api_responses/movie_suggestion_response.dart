@@ -165,7 +165,10 @@ class MoviesSuggestion {
     titleLong = json['title_long'];
     slug = json['slug'];
     year = json['year'];
-    rating = json['rating'];
+    rating = (json['rating'] is int)
+        ? (json['rating'] as int).toDouble()
+        : double.tryParse(json['rating'].toString()) ?? 0.0;
+
     runtime = json['runtime'];
     genres = json['genres'] != null ? json['genres'].cast<String>() : [];
     summary = json['summary'];
