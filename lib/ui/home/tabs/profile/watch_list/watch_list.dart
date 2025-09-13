@@ -75,7 +75,7 @@ class _WatchListState extends State<WatchList> {
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: width * 0.03,
-              childAspectRatio: 3 / 5,
+              childAspectRatio: 8 / 5,
             ),
             itemCount: state.movies.length,
           );

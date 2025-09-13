@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:movieapproute/api/api_constants.dart';
 import 'package:movieapproute/api/api_endpoints.dart';
@@ -7,13 +6,11 @@ import 'package:movieapproute/model/api_responses/add_movie_to_favorite_response
 import 'package:movieapproute/model/api_responses/get_all_favorite_movies_response.dart';
 import 'package:movieapproute/model/api_responses/login_response.dart';
 import 'package:movieapproute/model/api_responses/movie_details_response.dart';
-import 'package:movieapproute/model/api_responses/movie_is_favorite_response.dart';
 import 'package:movieapproute/model/api_responses/register_response.dart';
 import 'package:movieapproute/model/api_responses/remove_movie_response.dart';
 import 'package:movieapproute/model/api_responses/reset_password_response.dart';
 import 'package:movieapproute/shared_preferences/shared_preferences.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../model/api_responses/movie_response.dart';
 import '../model/api_responses/movie_suggestion_response.dart';
 import '../model/api_responses/profile_response.dart';
@@ -344,9 +341,10 @@ class ApiManager {
     } catch (e) {
       rethrow;
     }
-  }tatic Future<bool> getMovieIsFavorite(int movieId) async {
-    UUri url = Uri.https(
-        ApiConstants.baseUrl,
+
+  static Future<bool> getMovieIsFavorite(int movieId) async {
+    Uri url = Uri.https(
+      AApiConstants.baseUrl,
         "/favorites/is-favorite/$movieId"
     );
     final prefs = await SharedPreferences.getInstance();

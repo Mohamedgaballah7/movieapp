@@ -23,7 +23,7 @@ class WatchListViewModel extends Cubit<WatchListState> {
             rating: (movieMap['rating'] is int)
                 ? (movieMap['rating'] as int).toDouble()
                 : double.tryParse(movieMap['rating'].toString()) ?? 0.0,
-            backgroundImage: movieMap['background_image'] ?? '',
+            largeCoverImage: movieMap['imageURL'] ?? '',
           );
         }).toList();
 
