@@ -27,4 +27,8 @@ class ProfileTabViewModel extends Cubit<ProfileTabStates> {
     }
     return null;
   }
+
+  void refreshProfile() {
+    getProfile();
+  }
 }

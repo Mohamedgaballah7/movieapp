@@ -81,7 +81,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                     decoration: BoxDecoration(
 
                       image: DecorationImage(
-                        image: NetworkImage(state.backGroundImage,),
+                        image: NetworkImage(state.backGroundImage!,),
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -104,13 +104,27 @@ class _MovieDetailsState extends State<MovieDetails> {
                                     color: AppColors.whiteColor,
                                   ),
                                 ),
-                                Image.asset(AppAssets.watchListIcon),
+
+                                IconButton(onPressed: () {
+                                  state.isFavourite! ?
+                                  viewModel.removeMovie(movieId) :
+                                  viewModel.addMovieToFavorite(
+                                      movieId, state.movieName!, state.rate!,
+                                      state.backGroundImage!, state.year!);
+                                  //Navigator.pop(context);
+                                },
+                                    icon: state.isFavourite!
+                                        ? Icon(Icons.favorite,
+                                      color: AppColors.yellowColor, size: 30,)
+                                        : Icon(Icons.favorite,
+                                        color: AppColors.whiteColor, size: 30)
+                                )
                               ],
                             ),
                             Image.asset(AppAssets.videoPlayIcon),
                             //todo: Movie name
                             Text(
-                              state.movieName,
+                              state.movieName!,
                               style: AppStyles.bold16White,
                             ),
                           ],
@@ -133,10 +147,10 @@ class _MovieDetailsState extends State<MovieDetails> {
                             backgroundColor: AppColors.redColor,
                             //todo:open movie url
                             onPressed: () async {
-                              launch(state.movieUrl);
+                              launch(state.movieUrl!);
                               var box = Hive.box("movies");
                               await box.put(
-                                  state.movie.id, state.movie.toJson());
+                                  state.movie!.id, state.movie!.toJson());
                             },
                             text: AppLocalizations.of(context)!.watch,
                             textStyle: AppStyles.medium20White,
@@ -170,9 +184,9 @@ class _MovieDetailsState extends State<MovieDetails> {
                                 .of(context)
                                 .textTheme
                                 .titleLarge),
-                        CustomScreenShotsImages(imagePath: state.screenShot1),
-                        CustomScreenShotsImages(imagePath: state.screenShot2),
-                        CustomScreenShotsImages(imagePath: state.screenShot3),
+                        CustomScreenShotsImages(imagePath: state.screenShot1!),
+                        CustomScreenShotsImages(imagePath: state.screenShot2!),
+                        CustomScreenShotsImages(imagePath: state.screenShot3!),
                         Text(AppLocalizations.of(context)!.similar, style: Theme
                             .of(context)
                             .textTheme
@@ -188,12 +202,12 @@ class _MovieDetailsState extends State<MovieDetails> {
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
                                   return CustomMovieSuggestionCard(
-                                      movie: state.similarMovie[index]);
+                                      movie: state.similarMovie![index]);
                                 },
                                 separatorBuilder: (context, index) {
                                   return SizedBox(width: width * 0.02,);
                                 },
-                                itemCount: state.similarMovie.length
+                                itemCount: state.similarMovie!.length
                             ),
                           ),
                         ),
@@ -203,7 +217,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                             .titleLarge),
                         //todo:summary of tha movie
                         Text(
-                          state.summary,
+                          state.summary!,
                           //'Following the events of Spider-Man No Way Home, Doctor Strange unwittingly casts a forbidden spell that accidentally opens up the multiverse. With help from Wong and Scarlet Witch, Strange confronts various versions of himself as well as teaming up with the young America Chavez while traveling through various realities and working to restore reality as he knows it. Along the way, Strange and his allies realize they must take on a powerful new adversary who seeks to take over the multiverse.—Blazer346',
                           style: AppStyles.medium14White,
                         ),
@@ -217,24 +231,24 @@ class _MovieDetailsState extends State<MovieDetails> {
                               padding: EdgeInsets.zero,
                               itemBuilder: (context, index) {
                                 return CustomCastContainer(
-                                    imagePath: state.cast[index]
+                                    imagePath: state.cast![index]
                                         .urlSmallImage ?? '',
                                     //todo: name of the actor
-                                    name: '${state.cast[index].name}',
-                                    character: '${state.cast[index]
+                                    name: '${state.cast![index].name}',
+                                    character: '${state.cast![index]
                                         .characterName}');
                               },
                               separatorBuilder: (context, index) {
                                 return SizedBox(height: height * 0.02,);
                               },
-                              itemCount: state.cast.length
+                              itemCount: state.cast!.length
                           ),
                         ),
                         SizedBox(
                           height: height * 0.15,
                           child: GridView.builder(
                             scrollDirection: Axis.vertical,
-                            itemCount: state.genres.length,
+                            itemCount: state.genres!.length,
                             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 3,
                                 childAspectRatio: 3.447368421,
@@ -243,7 +257,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                             ),
                             itemBuilder: (context, index) {
                               return CustomGenresContainer(
-                                  type: state.genres[index]);
+                                  type: state.genres![index]);
                             },),
                         )
                       ],

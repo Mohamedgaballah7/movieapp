@@ -4,14 +4,14 @@ abstract class WatchListState {}
 
 class LoadingState extends WatchListState {}
 
-class SuccessState extends WatchListState {
+class WatchSuccessState extends WatchListState {
   List<dynamic> movies;
 
-  SuccessState({required this.movies});
+  WatchSuccessState({required this.movies});
 }
 
-class ErrorState extends WatchListState {
+class WatchErrorState extends WatchListState {
   String message;
 
-  ErrorState({required this.message});
+  WatchErrorState({required this.message});
 }

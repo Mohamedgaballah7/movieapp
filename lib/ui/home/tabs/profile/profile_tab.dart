@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:movieapproute/l10n/app_localizations.dart';
+import 'package:movieapproute/ui/home/tabs/profile/watch_list/cubit/view_model.dart';
+import 'package:movieapproute/ui/home/tabs/profile/watch_list/watch_list.dart';
+
 import '../../../../shared_preferences/shared_preferences.dart';
 import '../../../../utils/app_assets.dart';
 import '../../../../utils/app_colors.dart';
@@ -21,9 +24,11 @@ class ProfileTab extends StatefulWidget {
 
 class _ProfileTabState extends State<ProfileTab> {
   ProfileTabViewModel viewModel = ProfileTabViewModel();
+  WatchListViewModel watchViewModel = WatchListViewModel();
   int historyCount = Hive
       .box('movies')
       .length;
+
 
   List<String> avatars = [
     AppAssets.avatar1Image,
@@ -42,6 +47,11 @@ class _ProfileTabState extends State<ProfileTab> {
     // TODO: implement initState
     super.initState();
     viewModel.getProfile();
+    watchViewModel.getMovies().then((_) {
+      setState(() {
+
+      });
+    },);
   }
 
   @override
@@ -72,12 +82,13 @@ class _ProfileTabState extends State<ProfileTab> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Image.asset(
-                              avatars[state.avatarId!],
+                              avatars[state.avatarId],
                               scale: 0.8,
                             ),
                             Column(
                               children: [
-                                Text("0", style: AppStyles.bold36White),
+                                Text("${watchViewModel.moviesList.length}",
+                                    style: AppStyles.bold36White),
                                 SizedBox(height: height * 0.015),
                                 Text(
                                     AppLocalizations.of(context)!.watch_list, style: AppStyles.bold20White),
@@ -95,7 +106,7 @@ class _ProfileTabState extends State<ProfileTab> {
                         ),
                         SizedBox(height: height * 0.02),
                         Text(
-                          state.name!,
+                          state.name,
                           style: Theme
                               .of(context)
                               .textTheme
@@ -166,21 +177,8 @@ class _ProfileTabState extends State<ProfileTab> {
                     child: TabBarView(
                       children: [
                         // todo: Watch List Content
-                        Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(AppAssets.popcorn),
-                              SizedBox(height: 10),
-                              Text(
-                                AppLocalizations.of(context)!.no_movies,
-                                style: AppStyles.bold20WhiteR.copyWith(
-                                  color: AppColors.yellowColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                        WatchList(),
+
                         //todo: History Content
                         History()
                       ],

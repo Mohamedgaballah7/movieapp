@@ -344,10 +344,8 @@ class ApiManager {
     } catch (e) {
       rethrow;
     }
-  }
-
-  static Future<MovieIsFavoriteResponse> getMovieIsFavorite(int movieId) async {
-    Uri url = Uri.https(
+  }tatic Future<bool> getMovieIsFavorite(int movieId) async {
+    UUri url = Uri.https(
         ApiConstants.baseUrl,
         "/favorites/is-favorite/$movieId"
     );
@@ -363,7 +361,7 @@ class ApiManager {
       );
       var responseBody = response.body;
       var json = jsonDecode(responseBody);
-      return MovieIsFavoriteResponse.fromJson(json);
+      return json["data"] as bool;
     } catch (e) {
       rethrow;
     }
