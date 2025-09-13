@@ -31,47 +31,50 @@ class _HomescreenState extends State<Homescreen> {
 
     return Scaffold(
       body: tabs[selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        selectedItemColor: AppColors.yellowColor,
-        unselectedItemColor: AppColors.whiteColor,
-        backgroundColor: AppColors.greyDarkColor,
-        type: BottomNavigationBarType.fixed,
-        currentIndex: selectedIndex,
-        onTap: (index) {
-          setState(() {
-            selectedIndex = index;
-          });
-        },
-        items: [
+      bottomNavigationBar: ClipRRect(
+        borderRadius: BorderRadiusGeometry.circular(width * 0.07),
+        child: BottomNavigationBar(
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          selectedItemColor: AppColors.yellowColor,
+          unselectedItemColor: AppColors.whiteColor,
+          backgroundColor: AppColors.greyDarkColor,
+          type: BottomNavigationBarType.fixed,
+          currentIndex: selectedIndex,
+          onTap: (index) {
+            setState(() {
+              selectedIndex = index;
+            });
+          },
+          items: [
 
-          buildBottomNavigationBarItem(
-              index: 0,
-              selectedIconName: AppAssets.selectedHomeTabIcon,
-              unSelectedIconName: AppAssets.unSelectedHomeTabIcon,
-              name: 'home'
-          ),
-          buildBottomNavigationBarItem(
-              index: 1,
-              selectedIconName: AppAssets.selectedSearchTabIcon,
-              unSelectedIconName: AppAssets.unSelectedSearchTabIcon,
-              name: 'search'
+            buildBottomNavigationBarItem(
+                index: 0,
+                selectedIconName: AppAssets.selectedHomeTabIcon,
+                unSelectedIconName: AppAssets.unSelectedHomeTabIcon,
+                name: 'home'
+            ),
+            buildBottomNavigationBarItem(
+                index: 1,
+                selectedIconName: AppAssets.selectedSearchTabIcon,
+                unSelectedIconName: AppAssets.unSelectedSearchTabIcon,
+                name: 'search'
 
-          ),
-          buildBottomNavigationBarItem(
-              index: 2,
-              selectedIconName: AppAssets.selectedBrowseTabIcon,
-              unSelectedIconName: AppAssets.unSelectedBrowseTabIcon,
-              name: 'browse'
-          ),
-          buildBottomNavigationBarItem(
-              index: 3,
-              selectedIconName: AppAssets.selectedProfileTabIcon,
-              unSelectedIconName: AppAssets.unSelectedProfileTabIcon,
-              name: 'profile'
-          ),
-        ],
+            ),
+            buildBottomNavigationBarItem(
+                index: 2,
+                selectedIconName: AppAssets.selectedBrowseTabIcon,
+                unSelectedIconName: AppAssets.unSelectedBrowseTabIcon,
+                name: 'browse'
+            ),
+            buildBottomNavigationBarItem(
+                index: 3,
+                selectedIconName: AppAssets.selectedProfileTabIcon,
+                unSelectedIconName: AppAssets.unSelectedProfileTabIcon,
+                name: 'profile'
+            ),
+          ],
+        ),
       ),
     );
   }

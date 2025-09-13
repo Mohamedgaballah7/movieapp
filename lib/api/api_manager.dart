@@ -342,9 +342,9 @@ class ApiManager {
       rethrow;
     }
 
-  static Future<bool> getMovieIsFavorite(int movieId) async {
+  sstatic Future<bool> getMovieIsFavorite(int movieId) async {
     Uri url = Uri.https(
-      AApiConstants.baseUrl,
+        ApiConstants.baseUrl,
         "/favorites/is-favorite/$movieId"
     );
     final prefs = await SharedPreferences.getInstance();
